@@ -44,7 +44,9 @@ export default function HistoryTier() {
         <div className="bg-base-accent min-h-screen w-full">
           <Header>
             <div className="flex items-center justify-between mt-8">
-              <span className="text-xs">RIWAYAT TIER</span>
+              <span className="text-[10px] fontMon tracking-widest">
+                RIWAYAT TIER
+              </span>
               <div className="flex items-center gap-2 cursor-pointer">
                 <Image
                   src="/images/filter.svg"
@@ -53,7 +55,9 @@ export default function HistoryTier() {
                   height={100}
                   className="w-auto h-auto"
                 />
-                <span className="text-xs">FILTER</span>
+                <span className="text-[10px] fontMon tracking-widest">
+                  FILTER
+                </span>
               </div>
             </div>
           </Header>
@@ -63,7 +67,7 @@ export default function HistoryTier() {
               data.historyTierData.length > 0 ? (
                 data.historyTierData.map((item: Tier) => (
                   <div
-                    className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-2"
+                    className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4"
                     key={item.id}
                   >
                     <span className="text-sm">

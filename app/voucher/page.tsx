@@ -27,7 +27,7 @@ export default function Page() {
             <div className="flex justify-evenly items-center mt-8">
               <span
                 className={`text-xs font-medium cursor-pointer ${
-                  menu === "voucher" ? "underline" : ""
+                  menu === "voucher" ? "underline underline-offset-8" : ""
                 }`}
                 onClick={() => handleMenuChange("voucher")}
               >
@@ -35,7 +35,7 @@ export default function Page() {
               </span>
               <span
                 className={`text-xs font-medium cursor-pointer ${
-                  menu === "rewards" ? "underline" : ""
+                  menu === "rewards" ? "underline underline-offset-8" : ""
                 }`}
                 onClick={() => handleMenuChange("rewards")}
               >

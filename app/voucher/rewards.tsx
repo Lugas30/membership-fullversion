@@ -105,7 +105,7 @@ export default function Rewards() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
           <div className="bg-white w-full max-w-md min-h-screen shadow-lg">
             <div className="flex justify-between items-center p-6">
-              <span className="text-xs">REWARD KAMU</span>
+              <span className="text-xs">REWARD</span>
               <button onClick={closeModal} className="text-black">
                 &#10005;
               </button>

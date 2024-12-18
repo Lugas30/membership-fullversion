@@ -27,7 +27,7 @@ export default function Brand() {
       {data &&
         data.brandData.map((brand: Brand) => (
           <div
-            className="p-8 bg-gray-200 rounded-md flex justify-center cursor-pointer"
+            className="px-8 bg-gray-200 rounded-md flex justify-center cursor-pointer"
             key={brand.id}
             onClick={() => {
               window.open(brand.siteUrl, "_blank");

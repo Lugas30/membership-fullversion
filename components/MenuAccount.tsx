@@ -14,13 +14,13 @@ export default function MenuAccount() {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center w-full px-8 py-4">
+    <div className="flex flex-col justify-center items-center w-full px-8 pt-8 pb-4">
       <div className="flex flex-col w-full shadow">
         {menubars.map((item, index) => (
           <Link
             href={item.link}
             key={index}
-            className="flex items-center justify-between w-full px-4 py-2 border border-slate-200"
+            className="flex items-center justify-between w-full p-4 border border-slate-200"
           >
             <span className="text-xs">{item.label}</span>
             <Image

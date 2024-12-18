@@ -84,14 +84,14 @@ export default function TierInfo() {
                 width={30}
                 height={30}
                 alt="arrow-left"
-                className="w-auto h-auto cursor-pointer"
+                className="w-auto h-auto cursor-pointer absolute"
                 onClick={() => window.history.back()}
               />
               <div className="flex-grow flex justify-center">
-                <span className="font-medium">Tier Member</span>
+                <span className="text-xl">Tier Member</span>
               </div>
             </div>
-            <p className="text-[10px] text-center my-6">
+            <p className="text-[10px] text-center tracking-wider my-6">
               Penentuan tier member berdasarkan total transaksi belanja, setiap
               tingkatan tier memiliki benefit yang berbeda seperti penambahan
               nilai poin dan akses benefit lainnya

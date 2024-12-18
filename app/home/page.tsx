@@ -76,24 +76,28 @@ export default function Page() {
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <div className="bg-base-accent w-full">
           <div className="flex justify-between items-center p-8">
-            <span className="text-sm text-white">
+            <span className="text-lg text-white">
               {user.memberInfoData.fullName}
             </span>
-            <div className="flex justify-center items-center gap-2">
-              <div className="flex flex-col items-end">
-                <span className="text-xs text-white">Tier Kamu</span>
-                <span className="text-xs text-white">
-                  {user.memberInfoData.tierInfo.tier_name}
-                </span>
+            <Link href="/account" className="text-white">
+              <div className="flex justify-center items-center gap-2">
+                <div className="flex flex-col items-end">
+                  <span className="text-[7px] fontMon uppercase tracking-widest text-white">
+                    Tier
+                  </span>
+                  <span className="text-sm text-white">
+                    {user.memberInfoData.tierInfo.tier_name}
+                  </span>
+                </div>
+                <Image
+                  src={`https://amscorp.id/card/${user.memberInfoData.tierInfo.profileImage}`}
+                  width={50}
+                  height={50}
+                  alt={`${user.memberInfoData.tierInfo.profileImage}`}
+                  className="h-10 w-10 rounded-full"
+                />
               </div>
-              <Image
-                src={`https://amscorp.id/card/${user.memberInfoData.tierInfo.profileImage}`}
-                width={50}
-                height={50}
-                alt={`${user.memberInfoData.tierInfo.profileImage}`}
-                className="h-10 w-10 rounded-full"
-              />
-            </div>
+            </Link>
           </div>
 
           {/* promo carousel */}
@@ -101,7 +105,10 @@ export default function Page() {
             <div className="w-full h-full rounded-lg">
               <Carousel />
             </div>
-            <Link href={"/promo"} className="text-xs z-20 mt-2">
+            <Link
+              href={"/promo"}
+              className="text-[8px] tracking-wider z-20 mt-2 fontMon"
+            >
               LIHAT SEMUA
             </Link>
           </div>
@@ -110,7 +117,9 @@ export default function Page() {
           <div className="flex flex-col bg-white p-8 pt-28 rounded-t-3xl -top-24 relative">
             <div className="flex justify-between items-center">
               <div className="flex flex-col items-start">
-                <span className="text-xs">TOTAL POIN</span>
+                <span className="text-[8px] tracking-wider fontMon">
+                  TOTAL POIN
+                </span>
                 <span className="font-medium">
                   Rp {formatToIDR(user.memberInfoData.points || 0)}
                 </span>
@@ -119,7 +128,7 @@ export default function Page() {
                 className="flex items-center justify-center border border-base-accent rounded-lg p-2 gap-2 cursor-pointer"
                 onClick={handlePopUpQr}
               >
-                <span className="text-xs">Tampilkan QR</span>
+                <span className="text-[9px] tracking-wider">Tampilkan QR</span>
                 <Image
                   src="/images/qr.svg"
                   width={50}
@@ -147,7 +156,7 @@ export default function Page() {
             <ModalQRCode data={user.memberInfoData} closeModal={closeModal} />
           )}
 
-          <div className="flex justify-between items-center p-8 gap-2 bg-white -top-20 relative">
+          <div className="flex justify-between items-center px-8 pt-8 gap-2 bg-white -top-20 relative">
             <div className="flex flex-col justify-center items-center gap-2">
               <Image
                 src="https://via.placeholder.com/200x200"
@@ -156,7 +165,7 @@ export default function Page() {
                 alt="Misi"
                 className="w-auto h-auto rounded-md"
               />
-              <span className="text-xs">Misi</span>
+              <span className="text-[10px]">Misi</span>
             </div>
             <Link
               href="/lucky-draw"
@@ -169,7 +178,7 @@ export default function Page() {
                 alt="Hadiah"
                 className="w-auto h-auto rounded-md"
               />
-              <span className="text-xs">Lucky Draw</span>
+              <span className="text-[10px]">Lucky Draw</span>
             </Link>
             <div className="flex flex-col justify-center items-center gap-2">
               <Image
@@ -179,7 +188,7 @@ export default function Page() {
                 alt="Referal"
                 className="w-auto h-auto rounded-md"
               />
-              <span className="text-xs">Referal</span>
+              <span className="text-[10px]">Referal</span>
             </div>
             <Link
               href="/promo"
@@ -192,11 +201,11 @@ export default function Page() {
                 alt="Promo"
                 className="w-auto h-auto rounded-md"
               />
-              <span className="text-xs">Promo</span>
+              <span className="text-[10px]">Promo</span>
             </Link>
           </div>
           <div className="flex flex-col p-8 gap-2 bg-white -top-20 relative">
-            <h2 className="font-medium mb-4">Brand Kami</h2>
+            <h2 className="text-lg mb-4">Brand Kami</h2>
             <Brand />
           </div>
         </div>

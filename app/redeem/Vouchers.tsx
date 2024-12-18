@@ -34,7 +34,7 @@ const Vouchers: FC<Voucher> = ({
         {data.map((voucher: VoucherData) => (
           <div
             key={voucher.id}
-            className={`px-4 py-2 border cursor-pointer text-center text-xs ${
+            className={`px-4 py-3 border cursor-pointer text-center text-xs ${
               selectedVoucher === voucher.voucherCode
                 ? "bg-gray-300"
                 : "hover:bg-gray-100"
@@ -46,12 +46,14 @@ const Vouchers: FC<Voucher> = ({
         ))}
       </div>
 
-      <Button
-        label="Tukar Point"
-        type="submit"
-        className="bg-base-accent text-white rounded-full w-full mt-8 p-2"
-        loading={isLoading}
-      />
+      <div className="mt-8 flex justify-center">
+        <Button
+          label="Tukar Point"
+          type="submit"
+          className="bg-base-accent text-white"
+          loading={isLoading}
+        />
+      </div>
     </form>
   );
 };

@@ -22,7 +22,7 @@ export default function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${className} text-sm fontMon tracking-wider p-4 rounded-full w-72`}
+      className={`${className} text-sm fontMon tracking-wider p-4 rounded-full w-72 uppercase`}
     >
       {loading ? <span>Loading...</span> : label}
     </button>

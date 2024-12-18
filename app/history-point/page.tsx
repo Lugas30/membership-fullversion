@@ -46,7 +46,9 @@ export default function HistoryPoint() {
         <div className="bg-base-accent min-h-screen w-full">
           <Header>
             <div className="flex items-center justify-between mt-8">
-              <span className="text-xs">RIWAYAT POIN</span>
+              <span className="text-[10px] fontMon tracking-widest">
+                RIWAYAT POIN
+              </span>
               <div className="flex items-center gap-2 cursor-pointer">
                 <Image
                   src="/images/filter.svg"
@@ -55,7 +57,9 @@ export default function HistoryPoint() {
                   height={100}
                   className="w-auto h-auto"
                 />
-                <span className="text-xs">FILTER</span>
+                <span className="text-[10px] fontMon tracking-widest">
+                  FILTER
+                </span>
               </div>
             </div>
           </Header>
@@ -71,18 +75,24 @@ export default function HistoryPoint() {
                     <div className="flex flex-col space-y-6">
                       <div className="flex flex-col">
                         <small className="text-xs">{item.store}</small>
-                        <small className="text-[8px]">{item.invoice}</small>
+                        <small className="text-[8px] fontMon tracking-wider">
+                          {item.invoice}
+                        </small>
                       </div>
-                      <h2 className="text-xs mt-1">{formatDate(item.date)}</h2>
+                      <h2 className="text-[10px] fontMon mt-1">
+                        {formatDate(item.date)}
+                      </h2>
                     </div>
 
                     <div className="w-px h-16 bg-gray-300"></div>
 
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center mb-1">
                       <span className="text-sm">
                         + {formatToIDR(item.addPoint)}
                       </span>
-                      <span className="text-xs">POIN</span>
+                      <span className="text-[8px] fontMon tracking-widest">
+                        POIN
+                      </span>
                     </div>
                   </div>
                 ))

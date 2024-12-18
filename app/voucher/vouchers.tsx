@@ -66,13 +66,13 @@ export default function Vouchers() {
               item.category == "VCR"
                 ? "bg-[#E0DDD4]"
                 : "bg-[#131010] text-white"
-            } w-full max-w-md rounded-lg p-6 flex flex-col justify-between space-y-4 shadow-md mb-3 cursor-pointer`}
+            } w-full max-w-md rounded-lg p-6 flex flex-col justify-between space-y-4 shadow-md mb-4 cursor-pointer`}
             key={item.id}
             onClick={() => handleShowVoucher(item.noVoucher)}
           >
             <div className="flex justify-between items-start">
               <div className="flex flex-col">
-                <span className="text-sm font-semibold">
+                <span className="text-sm">
                   {item.category == "VCR" ? "Voucher" : "Voucher Special"}
                 </span>
                 <div className="">
@@ -83,9 +83,7 @@ export default function Vouchers() {
                   >
                     Code :{" "}
                   </span>
-                  <span className="text-sm font-semibold">
-                    {item.noVoucher}
-                  </span>
+                  <span className="text-sm">{item.noVoucher}</span>
                 </div>
               </div>
               {item.category == "VCR" ? (
@@ -117,7 +115,7 @@ export default function Vouchers() {
 
             <div className="flex justify-between items-center">
               <span
-                className={`text-xs font-bold ${
+                className={`text-xs ${
                   item.category == "VCR" ? "text-[#131010]" : "text-white"
                 }`}
               >
@@ -136,7 +134,7 @@ export default function Vouchers() {
           </div>
         ))
       ) : (
-        <p className="text-center text-gray-500">Tidak ada data voucher.</p>
+        <p className="text-center text-gray-500">Belum ada data voucher.</p>
       )}
 
       {isModalVisible && (

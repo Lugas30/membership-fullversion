@@ -35,12 +35,12 @@ const ModalQRVoucher: React.FC<ModalQRVoucherProps> = ({
             />
           </div>
 
-          <div className="flex flex-col justify-center items-center my-2 py-2 gap-1 w-full">
-            <span className="text-xs text-zinc-400">Code</span>
-            <span className="text-sm font-semibold">{data?.noVoucher}</span>
+          <div className="flex flex-col justify-center items-center my-4 py-2 gap-1 w-full">
+            <span className="text-xs text-zinc-400">Kode Voucher</span>
+            <span className="text-sm tracking-wider">{data?.noVoucher}</span>
           </div>
           <span className="text-xs mb-6">
-            Perlihatkan Code Anda kepada kasir
+            Perlihatkan kode voucher kepada kasir
           </span>
         </div>
       </div>

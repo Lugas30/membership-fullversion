@@ -20,7 +20,7 @@ export default function Header({
           alt="Arrow Left"
           width={100}
           height={100}
-          className="w-auto h-auto cursor-pointer"
+          className="absolute w-auto h-auto cursor-pointer"
           onClick={() => window.history.back()}
         />
         <div className="flex-grow flex justify-center">

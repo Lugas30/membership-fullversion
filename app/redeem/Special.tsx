@@ -45,22 +45,24 @@ const Special: FC<Voucher> = ({
             <div className="flex justify-between items-center">
               <div className="flex flex-col items-start gap-2">
                 <span>Voucher Special</span>
-                <span className="font-semibold">
+                <span className="text-xl">
                   Rp {formatToIDR(voucher.nominal)}
                 </span>
               </div>
-              <span> : {formatToIDR(voucher.pointVoucher)} Point</span>
+              <span> {formatToIDR(voucher.pointVoucher)} Poin</span>
             </div>
           </div>
         ))}
       </div>
 
-      <Button
-        label="Tukar Point"
-        type="submit"
-        className="bg-base-accent text-white rounded-full w-full mt-8 p-2"
-        loading={isLoading}
-      />
+      <div className="mt-8 flex justify-center">
+        <Button
+          label="Tukar Point"
+          type="submit"
+          className="bg-base-accent text-white"
+          loading={isLoading}
+        />
+      </div>
     </form>
   );
 };

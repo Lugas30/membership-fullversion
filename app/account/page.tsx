@@ -94,23 +94,25 @@ export default function Page() {
                 className="logo shadow w-full h-auto"
               />
               <div className="absolute inset-0 flex flex-col items-start justify-start z-10 p-4">
-                <span className="text-xs text-white">
+                <span className="text-sm text-white mb-1">
                   {user.memberInfoData.fullName}
                 </span>
-                <span className="text-[8px] text-white">
+                <span className="text-[8px] fontMon text-white tracking-widest">
                   MEMBER SEJAK {year}
                 </span>
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                <span className="text-xs text-white">
+                <span className="text-sm fontMon uppercase tracking-widest text-white mb-1">
                   {user.memberInfoData.tierInfo.tier_name}
                 </span>
-                <span className="text-[8px] text-white">TIER ANDA</span>
+                <span className="text-[8px] fontMon tracking-widest text-white">
+                  TIER
+                </span>
               </div>
               <div className="absolute inset-0 flex items-end justify-between z-10 p-6">
                 <Link
                   href="/history-tier"
-                  className="bg-white/50 flex px-2 rounded py-1 gap-1 cursor-pointer"
+                  className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
                 >
                   <Image
                     src="/images/graf-up.svg"
@@ -119,10 +121,12 @@ export default function Page() {
                     height={12}
                     className="logo shadow"
                   />
-                  <span className="text-[8px]">RIWAYAT TIER</span>
+                  <span className="text-[8px] fontMon tracking-widest">
+                    RIWAYAT TIER
+                  </span>
                 </Link>
                 <div
-                  className="bg-white/50 flex px-2 rounded py-1 gap-1 cursor-pointer"
+                  className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
                   onClick={handlePopUpQr}
                 >
                   <Image
@@ -132,18 +136,20 @@ export default function Page() {
                     height={12}
                     className="logo shadow"
                   />
-                  <span className="text-[8px]">TAMPILKAN ID</span>
+                  <span className="text-[8px] fontMon tracking-widest">
+                    TAMPILKAN ID
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
-          <h2 className="text-white font-medium my-4 self-start">
+          <h2 className="text-white text-lg my-4 self-start">
             {user.memberInfoData.fullName}
           </h2>
 
-          <div className="flex justify-between items-center w-full">
-            <small className="text-white">
+          <div className="flex justify-between items-center w-full text-pretty">
+            <small className="text-white text-[10px] tracking-wider fontMon">
               Rp{" "}
               {formatToIDR(user.memberInfoData.tierInfo.amountForNextTier || 0)}{" "}
               untuk tier selanjutnya
@@ -160,19 +166,21 @@ export default function Page() {
           />
 
           <div className="flex justify-between items-center w-full my-2">
-            <small className="text-white">TOTAL POINT</small>
-            <small className="text-white text-[10px]">
+            <small className="text-white text-[9px] fontMon tracking-wider">
+              TOTAL POINT
+            </small>
+            <small className="text-white text-[9px] tracking-wider fontMon">
               100 Poin kadaluarsa pada 25 Desember 2024
             </small>
           </div>
 
           <div className="flex justify-between items-center w-full">
-            <span className="text-yellow-500 text-lg">
+            <span className="text-amber-200 text-lg">
               Rp {formatToIDR(user.memberInfoData.points || 0)}
             </span>
             <Link
               href="/history-point"
-              className="text-white text-[10px] underline"
+              className="text-white text-[10px] tracking-wider underline underline-offset-8"
             >
               Riwayat Poin
             </Link>
@@ -198,7 +206,10 @@ export default function Page() {
         {/* Menu Section */}
         <MenuAccount />
         <button className="pb-24">
-          <span className="text-sm" onClick={handleLogout}>
+          <span
+            className="text-sm fontMon tracking-wider font-semibold"
+            onClick={handleLogout}
+          >
             SIGN OUT
           </span>
         </button>

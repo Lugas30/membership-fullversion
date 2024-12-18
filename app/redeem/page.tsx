@@ -192,11 +192,11 @@ export default function Redeem() {
                 width={30}
                 height={30}
                 alt="arrow-left"
-                className="w-auto h-auto cursor-pointer"
+                className="w-auto h-auto cursor-pointer absolute"
                 onClick={() => window.history.back()}
               />
               <div className="flex-grow flex justify-center">
-                <span className="font-medium">Tukar Poin</span>
+                <span className="text-xl">Tukar Poin</span>
               </div>
             </div>
 
@@ -204,7 +204,7 @@ export default function Redeem() {
             <div className="flex justify-evenly items-center my-8">
               <span
                 className={`text-xs font-medium cursor-pointer ${
-                  menu === "voucher" ? "underline" : ""
+                  menu === "voucher" ? "underline underline-offset-8" : ""
                 }`}
                 onClick={() => handleMenuChange("voucher")}
               >
@@ -212,7 +212,7 @@ export default function Redeem() {
               </span>
               <span
                 className={`text-xs font-medium cursor-pointer ${
-                  menu === "special" ? "underline" : ""
+                  menu === "special" ? "underline underline-offset-8" : ""
                 }`}
                 onClick={() => handleMenuChange("special")}
               >
@@ -229,20 +229,24 @@ export default function Redeem() {
             )}
 
             {/* Content */}
-            <div className="flex flex-col justify-center items-center mt-4">
-              <span className="text-sm">
-                Tukarkan point menjadi voucher belanja
+            <div className="flex flex-col justify-center text-center items-center mt-4">
+              <span className="text-xs">
+                {menu === "voucher"
+                  ? "Tukarkan point menjadi voucher belanja"
+                  : "Penawaran khusus untuk penukaran poin dengan voucher spesial terbatas"}
               </span>
 
               <div className="flex flex-col justify-center items-center mt-10">
-                <span className="text-sm">POIN TERKINI</span>
+                <span className="text-[10px] fontMon tracking-wider">
+                  POIN TERKINI
+                </span>
                 <span className="text-lg font-medium">
                   Rp {formatToIDR(user.memberInfoData.points || 0)}
                 </span>
               </div>
 
               <div className="flex self-start mt-10 mb-4">
-                <span className="text-sm">Nominal point yang akan ditukar</span>
+                <span className="text-xs">Nominal point yang akan ditukar</span>
               </div>
 
               {renderMenuContent()}
@@ -352,15 +356,17 @@ export default function Redeem() {
                       </div>
                     </div>
 
-                    <Button
-                      label="OK"
-                      onClick={() => (
-                        setIsModalVisible(false),
-                        setVoucherRedeem(null),
-                        router.push("/voucher")
-                      )}
-                      className="bg-base-accent text-white rounded-full w-full p-2 my-4"
-                    />
+                    <div className="flex justify-center my-8">
+                      <Button
+                        label="Lihat Voucher"
+                        onClick={() => (
+                          setIsModalVisible(false),
+                          setVoucherRedeem(null),
+                          router.push("/voucher")
+                        )}
+                        className="bg-base-accent text-white"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
