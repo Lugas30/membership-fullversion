@@ -66,6 +66,17 @@ export default function Register() {
       [name]: value,
     });
 
+    // Hapus pesan error jika ada input
+    if (formError[name]) {
+      setFormError((prevErrors) => {
+        const { [name]: _, ...remainingErrors } = prevErrors;
+        return remainingErrors;
+      });
+    }
+
+    // Hapus error global jika inputan diisi
+    if (isError) setIsError(false);
+
     // Validasi password hanya jika field yang diubah adalah password
     if (name === "password") {
       if (value.length < 8) {
@@ -106,6 +117,13 @@ export default function Register() {
       ...formData,
       [field]: value,
     });
+
+    if (formError[field]) {
+      setFormError((prevErrors) => {
+        const { [field]: _, ...remainingErrors } = prevErrors;
+        return remainingErrors;
+      });
+    }
   };
 
   useEffect(() => {
@@ -203,7 +221,7 @@ export default function Register() {
         }
       } else {
         setIsError(true);
-        setTimeout(() => setIsError(false), 3000);
+        // setTimeout(() => setIsError(false), 3000);
       }
     } catch (error) {
       console.log("Error:", error);
@@ -233,7 +251,7 @@ export default function Register() {
               className="mb-4"
             />
             <Input
-              label="*No Handphone"
+              label="*No Telepon (WhatsApp)"
               type="tel"
               name="phone"
               value={formData.phone}
@@ -317,14 +335,14 @@ export default function Register() {
             </div>
 
             {formMessagePassword && (
-              <p className="text-red-500 text-xs mb-4 italic">
+              <p className="text-red-500 text-[10px] mb-4 fontMon">
                 {formMessagePassword.password}
               </p>
             )}
 
             <div className="relative">
               <Input
-                label="*PIN"
+                label="*PIN (6 digit angka)"
                 type={showPin ? "text" : "password"}
                 inputMode="numeric"
                 pattern="[0-9]*"
@@ -352,7 +370,7 @@ export default function Register() {
             </div>
 
             {formMessagePin && (
-              <p className="text-red-500 text-xs mb-4 italic">
+              <p className="text-red-500 text-[10px] mb-4 fontMon">
                 {formMessagePin.pin}
               </p>
             )}
@@ -371,7 +389,11 @@ export default function Register() {
               </span>
             </div>
 
-            {isError && <ErrorMessage message={"User sudah terdaftar"} />}
+            <div className="mb-4">
+              {isError && (
+                <ErrorMessage message={"No Telepon/Email sudah terdaftar"} />
+              )}
+            </div>
 
             <div className="flex justify-center">
               <Button
@@ -383,7 +405,7 @@ export default function Register() {
 
             <p className="text-center text-xs mt-4">
               Sudah pernah daftar?{" "}
-              <Link href="/login" className="underline">
+              <Link href="/login" className="underline underline-offset-4">
                 Masuk akun
               </Link>
             </p>

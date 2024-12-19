@@ -147,7 +147,7 @@ export default function Otp() {
 
             <Button
               label="KIRIM"
-              className="bg-base-accent text-white rounded-full w-full p-2"
+              className="bg-base-accent text-white"
               loading={loading}
             />
 

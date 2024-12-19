@@ -56,7 +56,9 @@ export default function Input({
         disabled={disabled}
         maxLength={maxLength}
       />
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && (
+        <p className="text-red-500 text-[10px] fontMon mt-1">{error}</p>
+      )}
     </div>
   );
 }

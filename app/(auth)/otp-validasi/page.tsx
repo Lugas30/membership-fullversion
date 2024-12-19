@@ -174,11 +174,13 @@ export default function Otp() {
               ))}
             </div>
 
-            <Button
-              label="KIRIM"
-              className="bg-base-accent text-white rounded-full w-full p-2"
-              loading={loading}
-            />
+            <div className="flex justify-center pt-4">
+              <Button
+                label="KIRIM"
+                className="bg-base-accent text-white"
+                loading={loading}
+              />
+            </div>
 
             <p className="text-center text-xs mt-4">
               Tidak menerima kode OTP?{" "}

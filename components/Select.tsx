@@ -30,7 +30,7 @@ export default function Select({
       <select
         value={value}
         onChange={onChange}
-        className="block w-full px-3 py-2 text-sm text-gray-700 placeholder-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-black focus:border-black fontMon"
+        className="block w-full p-3 text-sm text-gray-700 placeholder-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-black focus:border-black fontMon"
       >
         <option value="">{labelOption}</option>
         {options.map((option) => (
@@ -39,7 +39,9 @@ export default function Select({
           </option>
         ))}
       </select>
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && (
+        <p className="text-red-500 text-[10px] fontMon mt-1">{error}</p>
+      )}
     </div>
   );
 }

@@ -118,9 +118,12 @@ export default function Login() {
               </span>
             </div>
 
-            <p className="text-sm mt-8 mb-14 fontGeo">
+            <p className="text-xs mt-8 mb-14 fontGeo">
               Lupa Password?{" "}
-              <Link href="/forgot-password" className="underline">
+              <Link
+                href="/forgot-password"
+                className="underline underline-offset-4"
+              >
                 Klik disini
               </Link>
             </p>
