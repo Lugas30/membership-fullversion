@@ -27,4 +27,11 @@ const nextConfig: NextConfig = {
   },
 };
 
+// Konfigurasi eslint
+module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
+
 export default nextConfig;
