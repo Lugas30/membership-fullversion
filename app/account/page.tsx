@@ -148,7 +148,7 @@ export default function Page() {
             {user.memberInfoData.fullName}
           </h2>
 
-          <div className="flex justify-between items-center w-full text-pretty">
+          {/* <div className="flex justify-between items-center w-full text-pretty">
             <small className="text-white text-[10px] tracking-wider fontMon">
               Rp{" "}
               {formatToIDR(user.memberInfoData.tierInfo.amountForNextTier || 0)}{" "}
@@ -157,7 +157,7 @@ export default function Page() {
             <small className="text-white">
               {user.memberInfoData.tierInfo.memberPersentase || 0}%
             </small>
-          </div>
+          </div> */}
 
           {/* Progress Bar */}
           {user.memberInfoData.tierInfo.tier_name === "Maestro" ? (
