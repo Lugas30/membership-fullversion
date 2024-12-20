@@ -160,10 +160,40 @@ export default function Page() {
           </div>
 
           {/* Progress Bar */}
-          <ProgressBar
-            currentValue={user.memberInfoData.tierInfo.memberPersentase || 0}
-            maxValue={100}
-          />
+          {user.memberInfoData.tierInfo.tier_name === "Maestro" ? (
+            <p
+              className="text-3xl font-bold text-center my-4 animate-pulse"
+              style={{
+                color: "gold",
+                textShadow: "0 0 10px gold, 0 0 20px gold, 0 0 30px gold",
+              }}
+            >
+              TOP TIER MEMBER
+            </p>
+          ) : (
+            <>
+              <div className="flex justify-between items-center w-full text-pretty">
+                <small className="text-white text-[10px] tracking-wider fontMon">
+                  Rp{" "}
+                  {formatToIDR(
+                    user.memberInfoData.tierInfo.amountForNextTier || 0
+                  )}{" "}
+                  untuk tier selanjutnya
+                </small>
+                <small className="text-white">
+                  {user.memberInfoData.tierInfo.memberPersentase || 0}%
+                </small>
+              </div>
+
+              {/* Progress Bar */}
+              <ProgressBar
+                currentValue={
+                  user.memberInfoData.tierInfo.memberPersentase || 0
+                }
+                maxValue={100}
+              />
+            </>
+          )}
 
           <div className="flex justify-between items-center w-full my-2">
             <small className="text-white text-[9px] fontMon tracking-wider">
