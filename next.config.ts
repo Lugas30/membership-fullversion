@@ -25,12 +25,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-};
-
-// Konfigurasi eslint
-module.exports = {
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // Konfig eslint
   },
 };
 
