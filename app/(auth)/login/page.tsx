@@ -79,11 +79,13 @@ export default function Login() {
           {isError && (
             <ErrorMessage message={"No Telepon atau Password Salah"} />
           )}
-          <p className="text-sm my-10">Masuk menggunakan kredensial anda</p>
+          <p className="text-sm my-10">
+            Masukkan nomor handphone dan password untuk masuk ke akun membership
+          </p>
           <form onSubmit={handleSubmit}>
             <Input
               type="tel"
-              label="No Telepon"
+              label="No Handphone"
               name="user"
               value={data.user}
               onChange={handleChange}

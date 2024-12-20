@@ -161,15 +161,17 @@ export default function Page() {
 
           {/* Progress Bar */}
           {user.memberInfoData.tierInfo.tier_name === "Maestro" ? (
-            <p
-              className="text-3xl font-bold text-center my-4 animate-pulse"
-              style={{
-                color: "gold",
-                textShadow: "0 0 10px gold, 0 0 20px gold, 0 0 30px gold",
-              }}
-            >
-              TOP TIER MEMBER
-            </p>
+            <>
+              <div className="flex justify-between items-center w-full text-pretty">
+                <small className="text-white text-[10px] tracking-wider fontMon">
+                  Kamu telah mencapai tier tertinggi.
+                </small>
+                <small className="text-white">{100}%</small>
+              </div>
+
+              {/* Progress Bar */}
+              <ProgressBar currentValue={100} maxValue={100} />
+            </>
           ) : (
             <>
               <div className="flex justify-between items-center w-full text-pretty">

@@ -32,9 +32,9 @@ export default function Auth() {
 
         <div className="flex flex-col justify-center items-center m-8">
           <div className="text-center mb-16 space-y-6">
-            <h2 className="text-xl fontGeo">Masuk Akun</h2>
+            {/* <h2 className="text-xl fontGeo">Masuk Akun</h2> */}
             <p className="text-sm text-center fontGeo">
-              Kumpulkan point, dapatkan promo dan penawaran khusus member
+              Kumpulkan poin, dapatkan promo dan penawaran khusus member
             </p>
           </div>
 
