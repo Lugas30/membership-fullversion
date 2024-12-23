@@ -26,7 +26,7 @@ export default function Validasi() {
   const validateInputs = () => {
     const errors: { [key: string]: string } = {};
 
-    if (!data.userAccount) errors.user = "No Telepon tidak boleh kosong";
+    if (!data.userAccount) errors.user = "No Handphone tidak boleh kosong";
 
     setInputError(errors);
     return Object.keys(errors).length === 0;
@@ -68,14 +68,14 @@ export default function Validasi() {
         <LogoHeader className="m-12" />
         <div className="flex flex-col w-full p-8">
           <h1 className="text-xl">Validasi Nomor</h1>
-          {error && <ErrorMessage message="No telepon tidak terdaftar" />}
+          {error && <ErrorMessage message="No handphone tidak terdaftar" />}
           <p className="text-sm my-10">
             Pastikan memasukan nomor yang telah terdaftar dan aktif. Kode OTP
             akan dikirimkan ke WhatsApp anda.
           </p>
           <form action="" onSubmit={handleSendPhone}>
             <Input
-              label="No Telepon"
+              label="No Handphone"
               type="tel"
               name="userAccount"
               value={data.userAccount}

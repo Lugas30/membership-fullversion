@@ -117,9 +117,16 @@ export default function Profile() {
   ) => {
     const target = event.currentTarget as HTMLInputElement | HTMLSelectElement;
     const { name, value } = target;
+
+    // Regex spesial karakter
+    const disallowedChars = /["'`\-_=%?<>|]/g;
+
+    // Replace spesial karakter
+    const sanitizedValue = value.replace(disallowedChars, "");
+
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: sanitizedValue,
     }));
   };
 
@@ -189,7 +196,7 @@ export default function Profile() {
               width={30}
               height={30}
               alt="arrow-left"
-              className="w-auto h-auto cursor-pointer"
+              className="w-auto h-auto cursor-pointer absolute"
               onClick={() => window.history.back()}
             />
             <div className="flex-grow flex justify-center">
@@ -284,7 +291,7 @@ export default function Profile() {
               onChange={handleChange}
               disabled={true}
             />
-            <small className="text-xs text-red-400 italic">
+            <small className="text-[9px] fontMon">
               * Untuk mengubah tanggal lahir, silahkan hubungi admin
             </small>
 

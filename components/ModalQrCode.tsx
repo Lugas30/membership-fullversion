@@ -10,6 +10,13 @@ type ModalQRCodeProps = {
   closeModal: () => void;
 };
 
+function toNormalCase(str: string) {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
+
 const ModalQRCode: React.FC<ModalQRCodeProps> = ({ data, closeModal }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-8 z-50">
@@ -21,7 +28,7 @@ const ModalQRCode: React.FC<ModalQRCodeProps> = ({ data, closeModal }) => {
         </div>
 
         <div className="flex flex-col justify-center items-center w-full">
-          <h2 className="font-medium">{data?.fullName}</h2>
+          <h2 className="font-medium">{toNormalCase(data?.fullName || "")}</h2>
           <div className="bg-zinc-100 flex flex-col justify-center items-center my-4 py-4 gap-2 w-full">
             <span className="text-xs text-zinc-400">Nomor Telepon Anda</span>
             <span className="text-xs text-zinc-400">{data?.phone}</span>

@@ -71,13 +71,20 @@ export default function Page() {
     }
   };
 
+  function toNormalCase(str: string) {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
+
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <div className="bg-base-accent w-full">
           <div className="flex justify-between items-center p-8">
-            <span className="text-lg text-white">
-              {user.memberInfoData.fullName}
+            <span className="text-lg text-white normal-case">
+              {toNormalCase(user.memberInfoData.fullName)}
             </span>
             <Link href="/account" className="text-white">
               <div className="flex justify-center items-center gap-2">

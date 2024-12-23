@@ -126,7 +126,7 @@ export default function Otp() {
         <div className="flex flex-col justify-center items-center m-8">
           <h2 className="text-lg font-bold">Masukan kode OTP</h2>
           <p className="text-xs text-center my-6">
-            kode OTP akan dikirmkan melalui WA
+            kode OTP akan dikirmkan melalui Whatsapp
           </p>
           <form action="" onSubmit={handleSubmit}>
             <div className="flex justify-center mb-6">

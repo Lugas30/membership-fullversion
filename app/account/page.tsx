@@ -61,6 +61,13 @@ export default function Page() {
     }
   };
 
+  function toNormalCase(str: string) {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
+
   const handleLogout = () => {
     localStorage.removeItem("member");
     router.push("/");
@@ -94,8 +101,8 @@ export default function Page() {
                 className="logo shadow w-full h-auto"
               />
               <div className="absolute inset-0 flex flex-col items-start justify-start z-10 p-4">
-                <span className="text-sm text-white mb-1">
-                  {user.memberInfoData.fullName}
+                <span className="text-sm text-white mb-1 normal-case">
+                  {toNormalCase(user.memberInfoData.fullName)}
                 </span>
                 <span className="text-[8px] fontMon text-white tracking-widest">
                   MEMBER SEJAK {year}
@@ -144,8 +151,8 @@ export default function Page() {
             </div>
           </div>
 
-          <h2 className="text-white text-lg my-4 self-start">
-            {user.memberInfoData.fullName}
+          <h2 className="text-white text-lg my-4 self-start normal-case">
+            {toNormalCase(user.memberInfoData.fullName)}
           </h2>
 
           {/* <div className="flex justify-between items-center w-full text-pretty">

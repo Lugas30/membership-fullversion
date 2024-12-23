@@ -227,7 +227,7 @@ export default function Validasi() {
 
           <h1 className="text-lg font-medium">Validasi Data</h1>
           <p className="text-xs mt-4 mb-8">
-            Harap lengkapi data diri anda, pastikan data yang dimasukkan benar.
+            Harap lengkapi data diri dan pastikan data yang dimasukkan benar.
           </p>
 
           <form action="" onSubmit={handleSubmit}>

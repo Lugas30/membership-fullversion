@@ -31,3 +31,7 @@ body {
   font-weight: normal;
   src: local("Georgia Regular"), url("./fonts/georgia.woff") format("woff");
 }
+
+select {
+  background: white;
+}
