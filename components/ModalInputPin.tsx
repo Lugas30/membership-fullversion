@@ -44,7 +44,7 @@ const ModalInputPin: FC<ModalInputPinProps> = ({
           <h2 className="text-lg font-bold text-center">Masukkan PIN</h2>
 
           {/* Input PIN */}
-          <p className="text-gray-600 mb-4 text-center text-xs my-8">
+          <p className="text-gray-600 mb-4 text-center text-xs my-8 fontMon">
             Masukkan 6 digit angka PIN anda
           </p>
 

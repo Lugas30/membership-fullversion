@@ -30,7 +30,9 @@ const ModalQRCode: React.FC<ModalQRCodeProps> = ({ data, closeModal }) => {
         <div className="flex flex-col justify-center items-center w-full">
           <h2 className="font-medium">{toNormalCase(data?.fullName || "")}</h2>
           <div className="bg-zinc-100 flex flex-col justify-center items-center my-4 py-4 gap-2 w-full">
-            <span className="text-xs text-zinc-400">Nomor Telepon Anda</span>
+            <span className="text-xs text-zinc-400 fontMon">
+              Nomor Handphone
+            </span>
             <span className="text-xs text-zinc-400">{data?.phone}</span>
           </div>
 
@@ -41,12 +43,12 @@ const ModalQRCode: React.FC<ModalQRCodeProps> = ({ data, closeModal }) => {
             />
           </div>
 
-          <div className="flex flex-col justify-center items-center my-2 py-2 gap-1 w-full">
-            <span className="text-xs text-zinc-400">ID Member</span>
+          <div className="flex flex-col justify-center items-center my-4 py-4 gap-1 w-full">
+            <span className="text-xs text-zinc-400 fontMon">ID Member</span>
             <span className="text-xs">{data?.memberID}</span>
           </div>
           <span className="text-xs mb-6">
-            Perlihatkan ID Member Anda kepada kasir
+            Perlihatkan ID Member kepada kasir
           </span>
         </div>
       </div>

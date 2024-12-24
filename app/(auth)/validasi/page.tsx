@@ -19,8 +19,21 @@ export default function Validasi() {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
+    if (name === "userAccount") {
+      if (!/^\d*$/.test(value)) {
+        setInputError((prev) => ({
+          ...prev,
+          userAccount: "Nomor handphone hanya boleh mengandung angka",
+        }));
+        return; // Keluar agar tidak mengubah state `data`
+      }
+    }
+
     setData((prevData) => ({ ...prevData, [name]: value }));
-    setInputError({});
+
+    // Hapus pesan error untuk input yang valid
+    setInputError((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateInputs = () => {
@@ -69,9 +82,9 @@ export default function Validasi() {
         <div className="flex flex-col w-full p-8">
           <h1 className="text-xl">Validasi Nomor</h1>
           {error && <ErrorMessage message="No handphone tidak terdaftar" />}
-          <p className="text-sm my-10">
+          <p className="text-xs my-10 fontMon leading-relaxed">
             Pastikan memasukan nomor yang telah terdaftar dan aktif. Kode OTP
-            akan dikirimkan ke WhatsApp anda.
+            akan dikirimkan ke WhatsApp.
           </p>
           <form action="" onSubmit={handleSendPhone}>
             <Input
@@ -80,7 +93,7 @@ export default function Validasi() {
               name="userAccount"
               value={data.userAccount}
               onChange={handleChange}
-              error={inputError.user}
+              error={inputError.userAccount}
               className="mb-6"
             />
 

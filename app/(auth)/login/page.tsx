@@ -26,13 +26,39 @@ export default function Login() {
     loading: false,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value,
-    });
-    setInputError({});
-    setIsError(false); // Error hilang saat diinput
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setData({
+  //     ...data,
+  //     [event.target.name]: event.target.value,
+  //   });
+  //   setInputError({});
+  //   setIsError(false); // Error hilang saat diinput
+  // };
+
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const target = event.currentTarget as HTMLInputElement;
+    const { name, value } = target;
+
+    // Validasi untuk phone
+    if (name === "user") {
+      if (!/^\d*$/.test(value)) {
+        setInputError((prev) => ({
+          ...prev,
+          user: "Nomor handphone hanya boleh mengandung angka",
+        }));
+        return;
+      }
+    }
+
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    setInputError((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
+    setIsError(false); // Hilangkan error saat input valid
   };
 
   const validateInputs = () => {
@@ -79,9 +105,9 @@ export default function Login() {
           {isError && (
             <ErrorMessage message={"No Telepon atau Password Salah"} />
           )}
-          <p className="text-sm my-10">
+          {/* <p className="text-sm my-10">
             Masukkan nomor handphone dan password untuk masuk ke akun membership
-          </p>
+          </p> */}
           <form onSubmit={handleSubmit}>
             <Input
               type="tel"

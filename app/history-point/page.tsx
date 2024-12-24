@@ -16,7 +16,8 @@ interface Point {
   store: string;
   invoice: string;
   date: string;
-  addPoint: number;
+  point: number;
+  status: string;
 }
 
 export default function HistoryPoint() {
@@ -69,15 +70,16 @@ export default function HistoryPoint() {
               data.historyPointData.length > 0 ? (
                 data.historyPointData.map((item: Point) => (
                   <div
-                    className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-2"
+                    className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4"
                     key={item.id}
                   >
                     <div className="flex flex-col space-y-6">
                       <div className="flex flex-col">
-                        <small className="text-xs">{item.store}</small>
-                        <small className="text-[8px] fontMon tracking-wider">
+                        <small className="text-xs mb-1">{item.store}</small>
+                        <small className="text-[10px] fontMon tracking-wider">
                           {item.invoice}
                         </small>
+                        {/* <small className="text-xs">Status {item.status}</small> */}
                       </div>
                       <h2 className="text-[10px] fontMon mt-1">
                         {formatDate(item.date)}
@@ -87,9 +89,16 @@ export default function HistoryPoint() {
                     <div className="w-px h-16 bg-gray-300"></div>
 
                     <div className="flex flex-col items-center mb-1">
-                      <span className="text-sm">
-                        + {formatToIDR(item.addPoint)}
-                      </span>
+                      {item.status.toLowerCase() === "tambah" ? (
+                        <span className="text-sm">
+                          + {formatToIDR(item.point)}
+                        </span>
+                      ) : item.status.toLowerCase() === "pakai" ? (
+                        <span className="text-sm">
+                          - {formatToIDR(item.point)}
+                        </span>
+                      ) : null}
+
                       <span className="text-[8px] fontMon tracking-widest">
                         POIN
                       </span>

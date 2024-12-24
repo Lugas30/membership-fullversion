@@ -57,7 +57,7 @@ const Special: FC<Voucher> = ({
 
       <div className="mt-8 flex justify-center">
         <Button
-          label="Tukar Point"
+          label="Tukar Poin"
           type="submit"
           className="bg-base-accent text-white"
           loading={isLoading}

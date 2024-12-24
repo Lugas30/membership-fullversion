@@ -120,12 +120,12 @@ export default function Otp() {
       setMessage(true);
       setTimeout(() => {
         setMessage(false);
-      }, 2000);
+      }, 5000);
     } else {
       console.log("Error OTP:", response.data);
     }
 
-    setCountdown(30);
+    setCountdown(60);
     setIsWaiting(true);
     const timer = setInterval(() => {
       setCountdown((prevCountdown) => {
@@ -136,7 +136,7 @@ export default function Otp() {
         }
         return prevCountdown ? prevCountdown - 1 : null;
       });
-    }, 1000);
+    }, 5000);
   };
 
   return (
@@ -153,9 +153,9 @@ export default function Otp() {
         </div>
 
         <div className="flex flex-col justify-center items-center m-8">
-          <h2 className="text-lg font-bold">Masukan kode OTP</h2>
-          <p className="text-xs text-center my-6">
-            kode OTP akan dikirmkan melalui WA
+          <h2 className="text-lg font-bold">Masukkan kode OTP</h2>
+          <p className="text-xs text-center my-6 fontMon">
+            kode OTP akan dikirmkan melalui Whatsapp
           </p>
           <form action="" onSubmit={handleSubmit}>
             <div className="flex justify-center mb-6">
@@ -190,7 +190,7 @@ export default function Otp() {
                 </span>
               ) : (
                 <span onClick={handleRecodeOTP} className="cursor-pointer">
-                  Kirim ulang OTP.
+                  Kirim ulang.
                 </span>
               )}
             </p>

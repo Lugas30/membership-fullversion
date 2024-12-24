@@ -38,6 +38,13 @@ export default function HistoryTier() {
     return <p>Error: {error}</p>;
   }
 
+  function toNormalCase(str: string) {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
+
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
@@ -70,16 +77,16 @@ export default function HistoryTier() {
                     className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4"
                     key={item.id}
                   >
-                    <span className="text-sm">
+                    <span className="text-xs">
                       {formatDate(item.effectiveDate)}
                     </span>
 
                     <div className="flex items-center justify-center gap-2">
                       <div className="flex flex-col items-end gap-1">
-                        <span className="text-xs text-zinc-400">
-                          {item.status} Tier
+                        <span className="text-xs normal-case text-zinc-400">
+                          {toNormalCase(item.status)} Tier
                         </span>
-                        <span className="text-xs font-medium">
+                        <span className="text-[10px] fontMon uppercase">
                           {item.tierName}
                         </span>
                       </div>

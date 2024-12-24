@@ -67,7 +67,9 @@ export default function Promo() {
         <div className="bg-base-accent w-full min-h-screen">
           <Header>
             <div className="flex items-center justify-between mt-8">
-              <span className="text-xs">PROMO BERLAKU</span>
+              <span className="text-[10px] fontMon tracking-widest">
+                PROMO BERLAKU
+              </span>
               <div className="flex items-center justify-center gap-2 cursor-pointer">
                 <Image
                   src="/images/filter.svg"
@@ -76,7 +78,9 @@ export default function Promo() {
                   height={100}
                   className="w-auto h-auto cursor-pointer"
                 />
-                <span className="text-xs">FILTER</span>
+                <span className="text-[10px] fontMon tracking-widest">
+                  FILTER
+                </span>
               </div>
             </div>
           </Header>
@@ -114,7 +118,7 @@ export default function Promo() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
               <div className="bg-white w-full max-w-md min-h-screen shadow-lg">
                 <div className="flex justify-between items-center p-6">
-                  <span className="text-xs">PROMO KAMU</span>
+                  <span className="text-xs">PROMO</span>
                   <button onClick={closeModal} className="text-black">
                     &#10005;
                   </button>

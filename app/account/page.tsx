@@ -206,10 +206,10 @@ export default function Page() {
 
           <div className="flex justify-between items-center w-full my-2">
             <small className="text-white text-[9px] fontMon tracking-wider">
-              TOTAL POINT
+              TOTAL POIN
             </small>
             <small className="text-white text-[9px] tracking-wider fontMon">
-              100 Poin kadaluarsa pada 25 Desember 2024
+              100 Poin kedaluwarsa pada 25 Desember 2024
             </small>
           </div>
 
@@ -244,11 +244,8 @@ export default function Page() {
 
         {/* Menu Section */}
         <MenuAccount />
-        <button className="pb-24">
-          <span
-            className="text-sm fontMon tracking-wider font-semibold"
-            onClick={handleLogout}
-          >
+        <button className="pb-24 my-3 underline underline-offset-4">
+          <span className="text-sm tracking-wider" onClick={handleLogout}>
             SIGN OUT
           </span>
         </button>

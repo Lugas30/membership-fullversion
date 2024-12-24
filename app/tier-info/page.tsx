@@ -91,7 +91,7 @@ export default function TierInfo() {
                 <span className="text-xl">Tier Member</span>
               </div>
             </div>
-            <p className="text-[10px] text-center tracking-wider my-6">
+            <p className="text-[10px] text-center tracking-wider my-6 fontMon leading-relaxed">
               Penentuan tier member berdasarkan total transaksi belanja, setiap
               tingkatan tier memiliki benefit yang berbeda seperti penambahan
               nilai poin dan akses benefit lainnya

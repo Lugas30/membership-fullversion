@@ -60,6 +60,71 @@ export default function Register() {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
+    // Validasi untuk fullName
+    if (name === "fullName") {
+      if (!/^[a-zA-Z\s]*$/.test(value)) {
+        setFormError((prev) => ({
+          ...prev,
+          fullName: "Nama lengkap hanya boleh mengandung huruf",
+        }));
+        return;
+      }
+    }
+
+    // Validasi untuk phone
+    if (name === "phone") {
+      if (!/^\d*$/.test(value)) {
+        setFormError((prev) => ({
+          ...prev,
+          phone: "Nomor handphone hanya boleh mengandung angka",
+        }));
+        return;
+      }
+    }
+
+    // Validasi untuk email dengan format khusus
+    if (name === "email") {
+      const emailRegex = /^[a-zA-Z0-9@.-_/s]*$/;
+      if (!emailRegex.test(value)) {
+        setFormError((prev) => ({
+          ...prev,
+          email: "Format email tidak valid",
+        }));
+        return;
+      }
+    }
+
+    // Validasi khusus untuk PIN (hanya angka dan maksimal 6 karakter)
+    if (name === "pin") {
+      if (!/^\d{0,6}$/.test(value)) {
+        setFormError((prev) => ({
+          ...prev,
+          pin: "PIN hanya boleh mengandung angka dan maksimal 6 karakter",
+        }));
+        return;
+      }
+    }
+
+    // Validasi password untuk melarang spasi
+    if (name === "password") {
+      if (/\s/.test(value)) {
+        setFormError((prev) => ({
+          ...prev,
+          password: "Password tidak boleh mengandung spasi",
+        }));
+        return;
+      }
+
+      // Validasi panjang password minimal 8 karakter
+      if (value.length < 8) {
+        setFormMessagePassword({
+          password: "Password minimal 8 karakter",
+        });
+      } else {
+        setFormMessagePassword({});
+      }
+    }
+
     // Update form data
     setFormData({
       ...formData,
@@ -76,33 +141,50 @@ export default function Register() {
 
     // Hapus error global jika inputan diisi
     if (isError) setIsError(false);
-
-    // Validasi password hanya jika field yang diubah adalah password
-    if (name === "password") {
-      if (value.length < 8) {
-        setFormMessagePassword({
-          password: "Password minimal 8 karakter",
-        });
-      } else {
-        setFormMessagePassword({});
-      }
-    }
-
-    // Validasi PIN hanya jika field yang diubah adalah PIN
-    if (name === "pin") {
-      if (value.length < 6) {
-        setFormMessagePin({
-          pin: "PIN minimal 6 karakter",
-        });
-      } else if (value.length > 6) {
-        setFormMessagePin({
-          pin: "PIN maksimal 6 karakter",
-        });
-      } else {
-        setFormMessagePin({});
-      }
-    }
   };
+
+  // Validasi untuk tanggal lahir minimal umur 17 tahun dan nonaktifkan tanggal yang melampaui tanggal saat ini
+  const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = new Date(event.target.value);
+    const currentDate = new Date();
+
+    // Hitung umur berdasarkan tahun, bulan, dan hari
+    let age = currentDate.getFullYear() - selectedDate.getFullYear();
+    const monthDifference = currentDate.getMonth() - selectedDate.getMonth();
+    const dayDifference = currentDate.getDate() - selectedDate.getDate();
+
+    // Jika bulan saat ini belum melewati bulan lahir atau
+    // berada di bulan yang sama tetapi belum melewati hari lahir
+    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+      age--;
+    }
+
+    // Validasi umur minimal 17 tahun dan pastikan tidak lebih dari tanggal hari ini
+    if (selectedDate > currentDate) {
+      setFormError((prevErrors) => ({
+        ...prevErrors,
+        dateofBirth:
+          "Tanggal lahir tidak valid (tidak boleh melebihi hari ini).",
+      }));
+    } else if (age < 17) {
+      setFormError((prevErrors) => ({
+        ...prevErrors,
+        dateofBirth: "Minimal umur 17 tahun untuk menjadi member.",
+      }));
+    } else {
+      // Hapus pesan error jika valid
+      setFormError((prevErrors) => {
+        const { dateofBirth, ...remainingErrors } = prevErrors;
+        return remainingErrors;
+      });
+
+      // Update formData
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        dateofBirth: event.target.value,
+      }));
+    }
+  }; // Validasi tanggal lahir dan umur
 
   const handleSelectChange = (
     event: ChangeEvent<HTMLSelectElement>,
@@ -234,13 +316,13 @@ export default function Register() {
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
-        <div className="flex flex-col m-8">
-          <h1 className="text-xl">Daftar Member</h1>
-          <p className="text-sm my-6">
+        <div className="flex flex-col p-8 w-full">
+          <h1 className="text-xl mb-6">Daftar Member</h1>
+          {/* <p className="text-sm my-6">
             Daftar akun untuk mendapatkan info terbaru tentang promo, koleksi
             dan keuntungan member lainnya.
-          </p>
-          <form onSubmit={handleSubmit}>
+          </p> */}
+          <form onSubmit={handleSubmit} className="">
             <Input
               label="*Nama Lengkap"
               type="text"
@@ -250,15 +332,23 @@ export default function Register() {
               error={formError.fullName}
               className="mb-4"
             />
-            <Input
-              label="*No Telepon (WhatsApp)"
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              error={formError.phone}
-              className="mb-4"
-            />
+            <div className="mb-4">
+              <Input
+                label="*No Handphone"
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                error={formError.phone}
+                className=""
+              />
+              {!formError.phone && (
+                <small className="text-[8px] text-zinc-500 fontMon">
+                  contoh: 0812xxx
+                </small>
+              )}
+            </div>
+
             <Input
               label="*Alamat Email"
               type="email"
@@ -291,7 +381,7 @@ export default function Register() {
               type="date"
               name="dateofBirth"
               value={formData.dateofBirth}
-              onChange={handleInputChange}
+              onChange={handleDateChange}
               error={formError.dateofBirth}
               className="mb-4"
             />
@@ -382,10 +472,12 @@ export default function Register() {
                 className="peer h-4 w-4 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800 checked:text-white"
                 required
               />
-              <span className="text-xs ms-2 fontGeo">
+              <span className="text-[10px] ms-2 fontMon">
                 Saya menyetujui{" "}
-                <span className="font-medium">Syarat dan ketentuan</span> yang
-                berlaku.
+                <Link href="/#" className="text-zinc-500">
+                  <span className="font-medium">Syarat dan Ketentuan </span>
+                </Link>
+                yang berlaku.
               </span>
             </div>
 

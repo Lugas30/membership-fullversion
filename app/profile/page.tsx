@@ -118,15 +118,9 @@ export default function Profile() {
     const target = event.currentTarget as HTMLInputElement | HTMLSelectElement;
     const { name, value } = target;
 
-    // Regex spesial karakter
-    const disallowedChars = /["'`\-_=%?<>|]/g;
-
-    // Replace spesial karakter
-    const sanitizedValue = value.replace(disallowedChars, "");
-
     setFormData((prevData) => ({
       ...prevData,
-      [name]: sanitizedValue,
+      [name]: value,
     }));
   };
 
@@ -187,9 +181,6 @@ export default function Profile() {
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <div className="flex flex-col p-8 w-full">
-          {successMessage && <SuccessMessage message="Data berhasil diubah" />}
-          {errorMessage && <ErrorMessage message="Data gagal diubah" />}
-
           <div className="flex items-center">
             <Image
               src="/images/arrow-left.svg"
@@ -205,7 +196,7 @@ export default function Profile() {
           </div>
 
           <p className="text-xs mt-4 mb-8">
-            Pastikan data anda diperbaharui dengan benar
+            Pastikan data diperbaharui dengan benar
           </p>
 
           <form action="" onSubmit={handleSubmit}>
@@ -295,11 +286,19 @@ export default function Profile() {
               * Untuk mengubah tanggal lahir, silahkan hubungi admin
             </small>
 
-            <Button
-              label="SIMPAN"
-              className="bg-base-accent text-white rounded-full w-full p-2 my-6"
-              loading={isLoading}
-            />
+            <div className="flex flex-col">
+              {successMessage && (
+                <SuccessMessage message="Data berhasil diubah" />
+              )}
+              {errorMessage && <ErrorMessage message="Data gagal diubah" />}
+            </div>
+            <div className="mt-4 flex justify-center">
+              <Button
+                label="SIMPAN"
+                className="bg-base-accent text-white"
+                loading={isLoading}
+              />
+            </div>
           </form>
         </div>
       </div>

@@ -68,10 +68,10 @@ export default function ForgotPassword() {
           {success && (
             <SuccessMessage message="Link ubah password telah dikirim" />
           )}
-          {error && <ErrorMessage message="No telepon tidak terdaftar" />}
+          {error && <ErrorMessage message="Nomor tidak terdaftar" />}
           <p className="text-sm mt-20 mb-10">
-            Masukan nomor handphone (Whatsapp) yang terdaftar pada akun anda dan
-            kami akan mengirimkan OTP untuk mengatur ulang password
+            Kami akan mengirimkan link via Whatsapp untuk mengatur ulang
+            passsword.
           </p>
           <form action="" onSubmit={handleSendPhone}>
             <Input
@@ -92,9 +92,7 @@ export default function ForgotPassword() {
               />
             </div>
             <div className="text-xs text-center fontMon my-4">
-              <Link href="/forgot-password-email">
-                Gunakan cara lain, kirim melalui email
-              </Link>
+              <Link href="/forgot-password-email">Kirim melalui email</Link>
             </div>
             <div className="text-xs text-center fontMon my-8 underline underline-offset-4">
               <Link href="/">Kembali ke beranda</Link>

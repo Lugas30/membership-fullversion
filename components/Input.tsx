@@ -52,7 +52,11 @@ export default function Input({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full p-3 text-sm text-gray-700 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-black focus:border-black fontMon"
+        className={
+          disabled
+            ? "w-full p-3 text-sm rounded-lg opacity-75 bg-zinc-300"
+            : "w-full p-3 text-sm text-gray-700 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-black focus:border-black fontMon"
+        }
         disabled={disabled}
         maxLength={maxLength}
       />

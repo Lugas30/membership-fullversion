@@ -225,14 +225,14 @@ export default function Redeem() {
               <ErrorMessage message="Anda sudah tukar voucher" />
             )}
             {errorMessageRedeemPoint && (
-              <ErrorMessage message="Point anda tidak mencukupi" />
+              <ErrorMessage message="Poin anda tidak mencukupi" />
             )}
 
             {/* Content */}
             <div className="flex flex-col justify-center text-center items-center mt-4">
               <span className="text-xs">
                 {menu === "voucher"
-                  ? "Tukarkan point menjadi voucher belanja"
+                  ? "Tukarkan poin menjadi voucher belanja"
                   : "Penawaran khusus untuk penukaran poin dengan voucher spesial terbatas"}
               </span>
 
@@ -246,7 +246,7 @@ export default function Redeem() {
               </div>
 
               <div className="flex self-start mt-10 mb-4">
-                <span className="text-xs">Nominal point yang akan ditukar</span>
+                <span className="text-xs">Nominal poin yang akan ditukar</span>
               </div>
 
               {renderMenuContent()}

@@ -22,7 +22,7 @@ export default function MenuAccount() {
             key={index}
             className="flex items-center justify-between w-full p-4 border border-slate-200"
           >
-            <span className="text-xs">{item.label}</span>
+            <span className="text-xs fontMon">{item.label}</span>
             <Image
               src="/images/arrow-right.svg"
               width={30}
