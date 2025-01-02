@@ -28,10 +28,11 @@ export default function Page() {
   // Memuat data user saat komponen dirender
   useEffect(() => {
     const member = localStorage.getItem("member");
-    if (!member) {
+    const token = localStorage.getItem("token");
+    if (!member || !token) {
       router.push("/"); // Redirect ke halaman login
     } else {
-      dispatch(getUsers());
+      dispatch(getUsers()); // Panggil thunk dengan token
     }
   }, [dispatch, router]);
 
@@ -82,6 +83,19 @@ export default function Page() {
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <div className="bg-base-accent w-full">
+          {/* notif verif email */}
+          {user.memberInfoData.emailStatus == "email not verified" ? (
+            <div className="bg-red-600 w-full text-center py-2">
+              <p className="text-[10px] text-white fontMon">
+                Anda belum verifkasi email.{" "}
+                <Link href="/validasi" className="underline underline-offset-4">
+                  Klik disini
+                </Link>
+              </p>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="flex justify-between items-center p-8">
             <span className="text-lg text-white normal-case">
               {toNormalCase(user.memberInfoData.fullName)}
@@ -192,10 +206,10 @@ export default function Page() {
                 src="https://via.placeholder.com/200x200"
                 width={50}
                 height={50}
-                alt="Referal"
+                alt="Referral"
                 className="w-auto h-auto rounded-md"
               />
-              <span className="text-[10px]">Referal</span>
+              <span className="text-[10px]">Referral</span>
             </div>
             <Link
               href="/promo"

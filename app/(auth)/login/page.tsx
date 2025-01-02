@@ -84,6 +84,7 @@ export default function Login() {
 
       if (response.data.responseCode == 2002500) {
         localStorage.setItem("member", response.data.loginData.memberID);
+        localStorage.setItem("token", response.data.loginData.token);
         router.push("/home");
       } else {
         setIsError(true);

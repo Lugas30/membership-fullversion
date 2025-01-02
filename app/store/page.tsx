@@ -18,7 +18,8 @@ type Store = {
   kota: string;
   storeAddress: string;
   noTelpon: string;
-  mapStoreUrl: string;
+  mapStoreUrl: string; //iframe map
+  mapLink: string;
 };
 
 type Brand = {
@@ -247,7 +248,7 @@ export default function Store() {
                   </div>
 
                   <a
-                    href="#"
+                    href={detail?.mapLink}
                     target="_blank"
                     className="text-sm my-2 bg-base-accent w-full py-2 text-center text-white cursor-pointer rounded-full"
                   >

@@ -6,10 +6,18 @@ export const getUsers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const member = localStorage.getItem("member");
+      const token = localStorage.getItem("token");
       if (!member) {
         return rejectWithValue("Member ID tidak ditemukan");
       }
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}dashboard/info?memberID=${member}`);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}dashboard/info?memberID=${member}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || "Terjadi kesalahan");

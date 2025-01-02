@@ -140,7 +140,7 @@ export default function HistoryTransaction() {
                 </p>
               )
             ) : (
-              <p className="text-center text-white">Data tidak tersedia.</p>
+              <p className="text-center text-white">Belum ada transaksi.</p>
             )}
           </div>
 

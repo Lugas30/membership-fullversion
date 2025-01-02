@@ -9,7 +9,14 @@ export const getUserData = createAsyncThunk(
       if (!member) {
         return rejectWithValue("Member ID tidak ditemukan");
       }
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}profile?memberID=${member}`);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}profile?memberID=${member}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || "Terjadi kesalahan");

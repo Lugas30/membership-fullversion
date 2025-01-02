@@ -3,7 +3,7 @@ import React from "react";
 
 export default function AllBrands() {
   return (
-    <div className="flex justify-center items-center gap-5 mt-24">
+    <div className="flex justify-center items-center gap-5 mt-20">
       <Image
         src="/images/brands/celcius.svg"
         width={150}

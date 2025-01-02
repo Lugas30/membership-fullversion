@@ -28,10 +28,10 @@ export default function Auth() {
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center max-w-md w-full min-h-screen bg-white md:rounded-lg">
-        <LogoHeader className="m-12" />
+        <LogoHeader className="m-11" />
 
-        <div className="flex flex-col justify-center items-center m-8">
-          <div className="text-center mb-16 space-y-6">
+        <div className="flex flex-col justify-center items-center m-7">
+          <div className="text-center mb-14 space-y-6">
             {/* <h2 className="text-xl fontGeo">Masuk Akun</h2> */}
             <p className="text-xs text-center fontMon leading-relaxed">
               Kumpulkan poin, dapatkan promo dan penawaran <br></br> khusus
@@ -50,6 +50,13 @@ export default function Auth() {
               className="bg-base-accent text-white"
               onClick={handleDaftar}
             />
+
+            <hr className="w-full border-gray-300 my-4" />
+
+            <p className="text-[9px] text-center fontMon">
+              Program khusus member yang telah terdaftar
+            </p>
+
             <Button
               label="VALIDASI MEMBER"
               className="bg-gray-300 text-base-accent"

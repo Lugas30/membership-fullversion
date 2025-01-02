@@ -13,7 +13,7 @@ export default function TabBar() {
           alt="toko"
           className="w-auto h-auto"
         />
-        <span className="text-[9px]">Tukar</span>
+        <span className="text-[9px]">Tukar Poin</span>
       </Link>
       <Link href={"/voucher"} className="flex flex-col items-center">
         <Image
@@ -23,7 +23,7 @@ export default function TabBar() {
           alt="voucher"
           className="w-auto h-auto"
         />
-        <span className="text-[9px]">Voucher</span>
+        <span className="text-[9px]">Voucer</span>
       </Link>
       <Link href={"/home"} className="flex flex-col items-center">
         <Image
@@ -46,7 +46,7 @@ export default function TabBar() {
           alt="history"
           className="w-auto h-auto"
         />
-        <span className="text-[9px]">Pesanan</span>
+        <span className="text-[9px]">Riwayat</span>
       </Link>
       <Link href={"/account"} className="flex flex-col items-center">
         <Image

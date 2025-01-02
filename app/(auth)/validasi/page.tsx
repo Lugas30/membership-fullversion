@@ -84,7 +84,7 @@ export default function Validasi() {
           {error && <ErrorMessage message="No handphone tidak terdaftar" />}
           <p className="text-xs my-10 fontMon leading-relaxed">
             Pastikan memasukan nomor yang telah terdaftar dan aktif. Kode OTP
-            akan dikirimkan ke WhatsApp.
+            akan dikirimkan via WhatsApp.
           </p>
           <form action="" onSubmit={handleSendPhone}>
             <Input

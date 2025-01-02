@@ -420,7 +420,7 @@ export default function Validasi() {
 
             <div className="relative">
               <Input
-                label="*PIN"
+                label="*PIN (6 digit angka)"
                 type={showPin ? "text" : "password"}
                 inputMode="numeric"
                 pattern="[0-9]*"
