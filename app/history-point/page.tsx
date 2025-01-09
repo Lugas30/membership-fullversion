@@ -25,24 +25,31 @@ export default function HistoryPoint() {
   const dispatch = useAppDispatch();
   const { error, data } = useSelector((state: RootState) => state.point);
   const [menu, setMenu] = useState<"transaksi" | "kedaluarsa">("transaksi");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(getPoint());
+    const fetchPoints = async () => {
+      setIsLoading(true);
+      await dispatch(getPoint());
+      setIsLoading(false);
+    };
+
+    fetchPoints();
   }, [dispatch]);
 
   const handleMenuChange = (selectedMenu: "transaksi" | "kedaluarsa") => {
     setMenu(selectedMenu);
   };
 
-  const renderMenuContent = () => {
-    if (menu === "transaksi") {
-      return <Riwayat isLoading={isLoading} />;
-    }
-    if (menu === "kedaluarsa") {
-      return <Kedaluarsa isLoading={isLoading} />;
-    }
-    return null;
-  };
+  // const renderMenuContent = () => {
+  //   if (menu === "transaksi") {
+  //     return (<Riwayat isLoading={isLoading} />);
+  //   }
+  //   if (menu === "kedaluarsa") {
+  //     return (<Kedaluarsa isLoading={isLoading} />);
+  //   }
+  //   return null;
+  // };
 
   if (data == null) {
     return (
