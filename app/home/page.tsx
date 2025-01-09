@@ -88,7 +88,10 @@ export default function Page() {
             <div className="bg-red-600 w-full text-center py-2">
               <p className="text-[10px] text-white fontMon">
                 Anda belum verifkasi email.{" "}
-                <Link href="/validasi" className="underline underline-offset-4">
+                <Link
+                  href="/validasi-email"
+                  className="underline underline-offset-4"
+                >
                   Klik disini
                 </Link>
               </p>

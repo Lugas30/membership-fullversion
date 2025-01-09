@@ -5,7 +5,7 @@ import ErrorMessage from "@/components/ErrorMessage";
 import Input from "@/components/Input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LogoHeader from "@/components/LogoHeader";
 
 export default function Validasi() {
@@ -15,16 +15,24 @@ export default function Validasi() {
   const [inputError, setInputError] = useState<{ [key: string]: string }>({});
   const [data, setData] = useState({
     userAccount: "",
+    memberID: "",
   });
+
+  useEffect(() => {
+    // Ambil memberId dari localStorage saat komponen dimuat
+    const memberID = localStorage.getItem("member") || "";
+    setData((prevData) => ({ ...prevData, memberID }));
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     if (name === "userAccount") {
-      if (!/^\d*$/.test(value)) {
+      const emailRegex = /^[a-zA-Z0-9@.-_/s]*$/;
+      if (!emailRegex.test(value)) {
         setInputError((prev) => ({
           ...prev,
-          userAccount: "Nomor handphone hanya boleh mengandung angka",
+          userAccount: "Format email tidak valid",
         }));
         return; // Keluar agar tidak mengubah state `data`
       }
@@ -39,13 +47,13 @@ export default function Validasi() {
   const validateInputs = () => {
     const errors: { [key: string]: string } = {};
 
-    if (!data.userAccount) errors.user = "No Handphone tidak boleh kosong";
+    if (!data.userAccount) errors.user = "Email tidak boleh kosong";
 
     setInputError(errors);
     return Object.keys(errors).length === 0;
   };
 
-  const handleSendPhone = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSendEmail = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!validateInputs()) return;
@@ -54,13 +62,14 @@ export default function Validasi() {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}dashboard/Verify?userAccount=${data.userAccount}`
+        `https://golangapi-j5iu.onrender.com/send-mail-otp-validasi?`,
+        data,
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
 
       if (response.data.responseCode === "2002500") {
-        localStorage.setItem("member", response.data.loginData.memberID);
-        sessionStorage.setItem("phone", data.userAccount);
-        router.push(`/otp-validasi`);
+        sessionStorage.setItem("email", data.userAccount);
+        router.push(`/otp-email`);
       } else {
         setError(true);
       }
@@ -68,7 +77,7 @@ export default function Validasi() {
       console.log("Error processing OTP:", error);
     } finally {
       setLoading(false);
-      setData({ userAccount: "" });
+      setData((prevData) => ({ ...prevData, userAccount: "" }));
       setTimeout(() => {
         setError(false);
       }, 3000);
@@ -80,15 +89,15 @@ export default function Validasi() {
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <LogoHeader className="m-12" />
         <div className="flex flex-col w-full p-8">
-          <h1 className="text-xl">Validasi Nomor</h1>
-          {error && <ErrorMessage message="No handphone tidak terdaftar" />}
+          <h1 className="text-xl">Validasi Email</h1>
+          {error && <ErrorMessage message="Email tidak terdaftar" />}
           <p className="text-xs my-10 fontMon leading-relaxed">
-            Pastikan memasukkan nomor yang telah terdaftar dan aktif. Kode OTP
-            akan dikirimkan via WhatsApp.
+            Pastikan memasukkan alamat email aktif. Kode OTP akan dikirimkan ke
+            email.
           </p>
-          <form action="" onSubmit={handleSendPhone}>
+          <form action="" onSubmit={handleSendEmail}>
             <Input
-              label="No Handphone"
+              label="Alamat email"
               type="tel"
               name="userAccount"
               value={data.userAccount}

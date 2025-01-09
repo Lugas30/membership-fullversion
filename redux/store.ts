@@ -7,6 +7,7 @@ import brandReducer from "./slices/brandSlice";
 import transactionReducer from "./slices/transaction";
 import tierReducer from "./slices/tierSlice";
 import pointReducer from "./slices/pointSlice";
+import pointExpiredReducer from "./slices/pointExpiredSlice";
 import historyTierReducer from "./slices/historyTierSlice";
 import voucherReducer from "./slices/voucherSlice";
 import voucherListReducer from "./slices/voucherListSlice";
@@ -24,6 +25,7 @@ const store = configureStore({
     transaction: transactionReducer,
     tier: tierReducer,
     point: pointReducer,
+    pointExpired: pointExpiredReducer,
     tierHistory: historyTierReducer,
     voucher: voucherReducer,
     voucherList: voucherListReducer,

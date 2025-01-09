@@ -1,15 +1,16 @@
 "use client";
 
-import Header from "@/components/Header";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getPoint } from "@/redux/thunks/pointThunks";
 import formatDate from "@/utils/formatDate";
 import formatToIDR from "@/utils/formatToIDR";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
+import Riwayat from "./Riwayat";
+import Kedaluarsa from "./Kedaluarsa";
 
 interface Point {
   id: number;
@@ -23,10 +24,25 @@ interface Point {
 export default function HistoryPoint() {
   const dispatch = useAppDispatch();
   const { error, data } = useSelector((state: RootState) => state.point);
+  const [menu, setMenu] = useState<"transaksi" | "kedaluarsa">("transaksi");
 
   useEffect(() => {
     dispatch(getPoint());
   }, [dispatch]);
+
+  const handleMenuChange = (selectedMenu: "transaksi" | "kedaluarsa") => {
+    setMenu(selectedMenu);
+  };
+
+  const renderMenuContent = () => {
+    if (menu === "transaksi") {
+      return <Riwayat isLoading={isLoading} />;
+    }
+    if (menu === "kedaluarsa") {
+      return <Kedaluarsa isLoading={isLoading} />;
+    }
+    return null;
+  };
 
   if (data == null) {
     return (
@@ -45,25 +61,42 @@ export default function HistoryPoint() {
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <div className="bg-base-accent min-h-screen w-full">
-          <Header>
-            <div className="flex items-center justify-between mt-8">
-              <span className="text-[10px] fontMon tracking-widest">
-                RIWAYAT POIN
-              </span>
-              <div className="flex items-center gap-2 cursor-pointer">
-                <Image
-                  src="/images/filter.svg"
-                  alt="Filter"
-                  width={100}
-                  height={100}
-                  className="w-auto h-auto"
-                />
-                <span className="text-[10px] fontMon tracking-widest">
-                  FILTER
-                </span>
+          <div className="bg-white shadow-lg p-8 rounded-b-3xl sticky top-0 z-10">
+            {/* Header */}
+            <div className="flex items-center">
+              <Image
+                src="/images/arrow-left.svg"
+                width={30}
+                height={30}
+                alt="arrow-left"
+                className="w-auto h-auto cursor-pointer absolute"
+                onClick={() => window.history.back()}
+              />
+              <div className="flex-grow flex justify-center">
+                <span className="text-xl">Riwayat Poin</span>
               </div>
             </div>
-          </Header>
+
+            {/* Menu */}
+            <div className="flex justify-evenly items-center my-8">
+              <span
+                className={`text-xs font-medium cursor-pointer ${
+                  menu === "transaksi" ? "underline underline-offset-8" : ""
+                }`}
+                onClick={() => handleMenuChange("transaksi")}
+              >
+                Poin Transaksi
+              </span>
+              <span
+                className={`text-xs font-medium cursor-pointer ${
+                  menu === "kedaluarsa" ? "underline underline-offset-8" : ""
+                }`}
+                onClick={() => handleMenuChange("kedaluarsa")}
+              >
+                Akan Kedaluarsa
+              </span>
+            </div>
+          </div>
 
           <div className="flex flex-col items-center p-4">
             {data && data.historyPointData ? (

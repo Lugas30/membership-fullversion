@@ -70,6 +70,7 @@ export default function Page() {
 
   const handleLogout = () => {
     localStorage.removeItem("member");
+    localStorage.removeItem("token");
     router.push("/");
   };
 

@@ -134,6 +134,7 @@ export default function Redeem() {
     setIsLoading(true);
 
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}voucher/redeem`,
         {
@@ -144,6 +145,7 @@ export default function Redeem() {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
           },
         }
       );

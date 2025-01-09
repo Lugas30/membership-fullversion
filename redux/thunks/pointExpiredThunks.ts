@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getVoucher = createAsyncThunk(
-  "tier/getVoucher",
+export const getPointExpired = createAsyncThunk(
+  "point/getPointExpired",
   async (_, { rejectWithValue }) => {
     try {
       const member = localStorage.getItem("member");
@@ -11,16 +11,15 @@ export const getVoucher = createAsyncThunk(
         return rejectWithValue("Member ID tidak ditemukan");
       }
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}voucher/tukar/redeem?memberID=${member}`,
+        `${process.env.NEXT_PUBLIC_API_URL}point/xxxcxx?memberID=${member}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      return response.data.voucherData;
+      return response.data;
     } catch (error: any) {
-      console.log(error.response?.data);
       return rejectWithValue(error.response?.data || "Terjadi kesalahan");
     }
   }

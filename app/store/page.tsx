@@ -127,7 +127,9 @@ export default function Store() {
         <div className="bg-base-accent w-full min-h-screen">
           <Header>
             <div className="flex items-center justify-between mt-4">
-              <span className="text-xs">LOKASI TOKO</span>
+              <span className="text-[10px] tracking-widest fontMon">
+                LOKASI TOKO
+              </span>
               <div className="flex items-center justify-center gap-2 cursor-pointer">
                 <Image
                   src="/images/search.svg"
@@ -191,11 +193,16 @@ export default function Store() {
             ).map((location: Store) => (
               <div
                 key={location.storeID}
-                className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
+                className="bg-white px-4 py-6 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
                 onClick={() => showModal({ storeID: location.storeID })}
               >
                 <span className="text-sm">
-                  {location.brand} {location.kota}
+                  {location?.brand &&
+                    location.brand.charAt(0).toUpperCase() +
+                      location.brand.slice(1).toLowerCase()}{" "}
+                  {location?.kota &&
+                    location.kota.charAt(0).toUpperCase() +
+                      location.kota.slice(1).toLowerCase()}
                 </span>
                 <Image
                   src="/images/location.svg"
@@ -213,15 +220,22 @@ export default function Store() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
               <div className="bg-white w-full max-w-md min-h-screen shadow-lg p-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs">LOKASI TOKO</span>
+                  <span className="text-[10px] tracking-widest fontMon">
+                    LOKASI TOKO
+                  </span>
                   <button onClick={closeModal} className="text-black">
                     &#10005;
                   </button>
                 </div>
 
                 <div className="flex flex-col items-center justify-center my-6">
-                  <h2 className="font-bold">
-                    {detail?.brand} {detail?.kota}
+                  <h2 className="text-base">
+                    {detail?.brand &&
+                      detail.brand.charAt(0).toUpperCase() +
+                        detail.brand.slice(1).toLowerCase()}{" "}
+                    {detail?.kota &&
+                      detail.kota.charAt(0).toUpperCase() +
+                        detail.kota.slice(1).toLowerCase()}
                   </h2>
 
                   <div
@@ -241,19 +255,17 @@ export default function Store() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-center justify-center mb-4">
+                  <div className="flex flex-col items-center justify-center mb-6">
                     <span className="text-sm font-semibold mb-2">Jam Toko</span>
                     <p className="text-xs">Senin - Sabtu</p>
                     <p className="text-xs">10.00 - 22.00</p>
                   </div>
 
-                  <a
-                    href={detail?.mapLink}
-                    target="_blank"
-                    className="text-sm my-2 bg-base-accent w-full py-2 text-center text-white cursor-pointer rounded-full"
-                  >
-                    BUKA MAP
-                  </a>
+                  <Button
+                    label="BUKA MAP"
+                    onClick={() => window.open(detail?.mapLink, "_blank")}
+                    className="bg-base-accent text-white"
+                  />
                 </div>
               </div>
             </div>

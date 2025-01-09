@@ -19,6 +19,7 @@ export default function Login() {
   const router = useRouter();
   const [inputError, setInputError] = useState<{ [key: string]: string }>({});
   const [isError, setIsError] = useState(false);
+  const [globalError, setGlobalError] = useState<string | null>(null);
   const [showPass, setShowPass] = useState(false);
   const [data, setData] = useState<UserLogin>({
     user: "",
@@ -64,10 +65,14 @@ export default function Login() {
   const validateInputs = () => {
     const errors: { [key: string]: string } = {};
 
-    if (!data.user) errors.user = "No Telepon tidak boleh kosong";
-    if (!data.password) errors.password = "Password tidak boleh kosong";
+    if (!data.user?.trim()) errors.user = "No Telepon tidak boleh kosong";
+    if (!data.password?.trim()) errors.password = "Password tidak boleh kosong";
 
     setInputError(errors);
+    if (Object.keys(errors).length === 0) {
+      setGlobalError(null); // Clear global error when inputs are valid
+    }
+
     return Object.keys(errors).length === 0;
   };
 
@@ -87,12 +92,15 @@ export default function Login() {
         localStorage.setItem("token", response.data.loginData.token);
         router.push("/home");
       } else {
-        setIsError(true);
+        // setIsError(true);
+        setGlobalError(
+          response.data.responseMessage || "No Telepon atau Password Salah"
+        );
       }
     } catch (error) {
       console.log(error);
+      setGlobalError("Terjadi kesalahan, coba lagi nanti.");
     } finally {
-      setData({ ...data, loading: false });
       setData({ user: "", password: "", loading: false });
     }
   };
@@ -103,16 +111,17 @@ export default function Login() {
         <LogoHeader className="m-14" />
 
         <div className="flex flex-col w-full px-8">
-          {isError && (
+          {/* {isError && (
             <ErrorMessage message={"No Telepon atau Password Salah"} />
-          )}
+          )} */}
+          {globalError && <ErrorMessage message={globalError} />}
           {/* <p className="text-sm my-10">
             Masukkan nomor handphone dan password untuk masuk ke akun membership
           </p> */}
           <form onSubmit={handleSubmit}>
             <Input
               type="tel"
-              label="No Handphone"
+              label="No. Handphone"
               name="user"
               value={data.user}
               onChange={handleChange}

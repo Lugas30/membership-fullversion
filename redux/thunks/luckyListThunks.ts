@@ -11,7 +11,7 @@ export const getLuckyList = createAsyncThunk(
         return rejectWithValue("Member ID tidak ditemukan");
       }
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}voucher/lucky?memberID=${member}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/voucher/lucky?memberID=${member}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

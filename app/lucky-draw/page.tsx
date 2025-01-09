@@ -18,6 +18,7 @@ type Redeem = {
   memberID: string;
   voucher_code: string;
   ip_address: string;
+  token: string;
 };
 
 interface Lucky {
@@ -43,6 +44,7 @@ export default function Page() {
     memberID: "",
     voucher_code: "",
     ip_address: "",
+    token: "",
   });
 
   const [errorMessageRedeem, setErrorMessageRedeem] = useState(false);
@@ -66,6 +68,7 @@ export default function Page() {
   const handleRedeem = async () => {
     setIsLoading(true);
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}voucher/redeem`,
         {
@@ -76,6 +79,7 @@ export default function Page() {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -169,13 +173,15 @@ export default function Page() {
               </span>
             </div>
 
-            <Button
-              label="TUKAR KUPON"
-              onClick={handleRedeem}
-              type="button"
-              className="bg-base-accent text-white rounded-full w-full p-2"
-              loading={isLoading}
-            />
+            <div className="flex justify-center">
+              <Button
+                label="TUKAR KUPON"
+                onClick={handleRedeem}
+                type="button"
+                className="bg-base-accent text-white"
+                loading={isLoading}
+              />
+            </div>
 
             {errorMessageRedeem && (
               <ErrorMessage message="Anda sudah tukar kupon" />
