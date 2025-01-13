@@ -59,6 +59,7 @@ export default function Login() {
       ...prev,
       [name]: "",
     }));
+    setGlobalError(null);
     setIsError(false); // Hilangkan error saat input valid
   };
 
@@ -90,7 +91,7 @@ export default function Login() {
       if (response.data.responseCode == 2002500) {
         localStorage.setItem("member", response.data.loginData.memberID);
         localStorage.setItem("token", response.data.loginData.token);
-        router.push("/home");
+        router.replace("/home");
       } else {
         // setIsError(true);
         setGlobalError(
@@ -114,10 +115,10 @@ export default function Login() {
           {/* {isError && (
             <ErrorMessage message={"No Telepon atau Password Salah"} />
           )} */}
-          {globalError && <ErrorMessage message={globalError} />}
-          {/* <p className="text-sm my-10">
-            Masukkan nomor handphone dan password untuk masuk ke akun membership
-          </p> */}
+          {globalError && (
+            <ErrorMessage message={"No Telepon atau Password Salah"} />
+          )}
+
           <form onSubmit={handleSubmit}>
             <Input
               type="tel"

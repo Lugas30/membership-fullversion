@@ -50,6 +50,7 @@ export default function Profile() {
   const [successMessage, setSuccessMessage] = useState<boolean | false>(false);
   const [errorMessage, setErrorMessage] = useState<boolean | false>(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [formError, setFormError] = useState<{ [key: string]: string }>({});
 
   const [formData, setFormData] = useState<MemberInfo>({
     memberID: "",
@@ -118,6 +119,23 @@ export default function Profile() {
     const target = event.currentTarget as HTMLInputElement | HTMLSelectElement;
     const { name, value } = target;
 
+    setFormError((prev) => ({ ...prev, [name]: "" })); // Clear previous error
+
+    if (name === "fullName" && !/^[a-zA-Z\s]*$/.test(value)) {
+      setFormError((prev) => ({
+        ...prev,
+        fullName: "Nama hanya boleh mengandung huruf.",
+      }));
+      return;
+    }
+
+    if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setFormError((prev) => ({
+        ...prev,
+        email: "Format email tidak valid.",
+      }));
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -142,10 +160,16 @@ export default function Profile() {
     };
 
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}profile`,
         data,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (response.data.responseCode === "2002500") {
@@ -201,11 +225,12 @@ export default function Profile() {
 
           <form action="" onSubmit={handleSubmit}>
             <Input
-              label="No Handphone"
+              label="No. Handphone"
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
+              disabled={true}
               className="mb-4"
             />
             <Input
@@ -214,6 +239,7 @@ export default function Profile() {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
+              error={formError.fullName}
               className="mb-4"
             />
             <Input
@@ -222,6 +248,7 @@ export default function Profile() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              error={formError.email}
               className="mb-4"
             />
             <Select
@@ -239,6 +266,7 @@ export default function Profile() {
                   city: "", // Mengosongkan kota saat provinsi diubah
                 }));
               }}
+              required={true}
               className="mb-4"
             />
             <Select
@@ -254,6 +282,7 @@ export default function Profile() {
                   city: selectedCity, // Menyimpan kota di formData
                 }));
               }}
+              required={true}
               className="mb-4"
             />
 
@@ -271,6 +300,7 @@ export default function Profile() {
                   gender: e.target.value,
                 }))
               }
+              required={true}
               className="mb-4"
             />
 

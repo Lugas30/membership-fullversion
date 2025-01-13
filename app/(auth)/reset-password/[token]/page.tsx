@@ -99,7 +99,7 @@ export default function ResetPassword() {
       if (response.data.responseCode === "2002500") {
         setSuccessMessagePassword(true);
         setTimeout(() => {
-          router.push("/login");
+          router.replace("/login");
         }, 2000);
       } else if (response.data.responseCode === "4002500") {
         setErrorMessagePassword(true);

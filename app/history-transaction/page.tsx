@@ -1,6 +1,9 @@
 "use client";
 
+import Button from "@/components/Button";
+import ErrorMessage from "@/components/ErrorMessage";
 import Header from "@/components/Header";
+import Input from "@/components/Input";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getTransaction } from "@/redux/thunks/transactionThunks";
@@ -32,10 +35,24 @@ interface Product {
   Net: number;
 }
 
+interface Filter {
+  startDate: string;
+  endDate: string;
+}
+
 export default function HistoryTransaction() {
   const dispatch = useAppDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [detail, setDetail] = useState<Transaction | null>(null);
+  const [showModalFilter, setShowModalFilter] = useState<boolean>(false);
+  const [filter, setFilter] = useState<Filter>({
+    startDate: "",
+    endDate: "",
+  });
+
+  const [messageError, setMessageError] = useState<boolean>(false);
+
+  const [filteredData, setFilteredData] = useState<Transaction[]>([]);
 
   const totalQty = detail?.produk.reduce((sum, item) => sum + item.QTY, 0);
 
@@ -44,6 +61,12 @@ export default function HistoryTransaction() {
   useEffect(() => {
     dispatch(getTransaction());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (data?.transactionData.length > 0) {
+      setFilteredData(data.transactionData);
+    }
+  }, [data?.transactionData]);
 
   const showModal = ({ id }: { id: number }) => {
     data.transactionData.find((item: Transaction) => {
@@ -57,6 +80,80 @@ export default function HistoryTransaction() {
 
   const closeModal = () => {
     setIsModalVisible(false);
+  };
+
+  // modal untuk filter
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      [name]: value,
+    }));
+    setMessageError(false);
+  };
+
+  const convertToYYYYMMDD = (date: string): string => {
+    const [day, month, year] = date.split("/");
+    return `${year}-${month}-${day}`;
+  };
+
+  // Konversi tanggal ke format yyyy-mm-dd
+  const convertedData = data?.transactionData.map((item: Transaction) => ({
+    ...item,
+    tanggalTransksi: convertToYYYYMMDD(item.tanggalTransksi),
+  }));
+
+  const showFilterModal = () => {
+    setShowModalFilter(true);
+  };
+
+  const handleFilter = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Fungsi untuk menghitung selisih hari antara dua tanggal
+    const calculateDateDifference = (start: string, end: string): number => {
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+      const differenceInTime = endDate.getTime() - startDate.getTime();
+      return differenceInTime / (1000 * 3600 * 24); // Konversi dari ms ke hari
+    };
+
+    // Validasi rentang tanggal
+    if (filter.startDate && filter.endDate) {
+      const daysDifference = calculateDateDifference(
+        filter.startDate,
+        filter.endDate
+      );
+
+      if (daysDifference > 90) {
+        setMessageError(true);
+        return; // Hentikan proses jika rentang terlalu besar
+      }
+    }
+
+    // Proses filter data
+    const filtered = convertedData.filter((item: Transaction) => {
+      return (
+        (!filter.startDate || item.tanggalTransksi >= filter.startDate) &&
+        (!filter.endDate || item.tanggalTransksi <= filter.endDate)
+      );
+    });
+
+    // Simpan hasil filter ke state
+    setFilteredData(filtered);
+
+    // Tutup modal filter
+    setShowModalFilter(false);
+
+    // Reset form filter
+    setFilter({
+      startDate: "",
+      endDate: "",
+    });
+  };
+
+  const closeModalFilter = () => {
+    setShowModalFilter(false);
   };
 
   if (data == null) {
@@ -81,7 +178,10 @@ export default function HistoryTransaction() {
               <span className="text-[10px] fontMon tracking-widest">
                 RIWAYAT BELANJA
               </span>
-              <div className="flex items-center justify-center gap-2 cursor-pointer">
+              <div
+                className="flex items-center justify-center gap-2 cursor-pointer"
+                onClick={showFilterModal}
+              >
                 <Image
                   src="/images/filter.svg"
                   alt="Filter"
@@ -97,9 +197,9 @@ export default function HistoryTransaction() {
           </Header>
 
           <div className="flex flex-col items-center justify-center p-4">
-            {data && data.transactionData ? (
-              data.transactionData.length > 0 ? (
-                data.transactionData.map((item: Transaction) => (
+            {filteredData && filteredData ? (
+              filteredData.length > 0 ? (
+                filteredData.map((item: Transaction) => (
                   <div
                     key={item.id}
                     className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
@@ -136,7 +236,7 @@ export default function HistoryTransaction() {
                 ))
               ) : (
                 <p className="text-center text-white">
-                  Belum ada data transaksi.
+                  Tidak ada transaksi untuk tanggal tersebut
                 </p>
               )
             ) : (
@@ -235,6 +335,60 @@ export default function HistoryTransaction() {
                     </span>
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* modal filter */}
+          {showModalFilter && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
+              <div className="bg-white w-full max-w-md shadow-lg rounded-lg">
+                <div className="flex justify-between items-center p-4">
+                  <span>Filter Transaksi</span>
+                  <button onClick={closeModalFilter} className="text-black">
+                    &#10005;
+                  </button>
+                </div>
+
+                {/* validasi error */}
+                {messageError && (
+                  <div className="flex justify-center">
+                    <ErrorMessage
+                      message={
+                        "Rentang tanggal tidak boleh lebih dari 3 bulan (90 hari)."
+                      }
+                    />
+                  </div>
+                )}
+
+                <form onSubmit={handleFilter}>
+                  <div className="p-4">
+                    <div className="flex flex-col gap-2 mb-4">
+                      <div className="flex gap-4 justify-evenly mb-4">
+                        <Input
+                          label="Tanggal Awal"
+                          type="date"
+                          name="startDate"
+                          value={filter.startDate}
+                          onChange={handleFilterChange}
+                        />
+                        <Input
+                          label="Tanggal Akhir"
+                          type="date"
+                          name="endDate"
+                          value={filter.endDate}
+                          onChange={handleFilterChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="flex justify-center">
+                      <Button
+                        label="Terapkan"
+                        className="bg-base-accent text-white"
+                      />
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           )}

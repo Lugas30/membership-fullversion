@@ -15,6 +15,10 @@ import { useRouter } from "next/navigation";
 import React, { FormEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
+import Misi from "@/public/images/CRM-Mission.svg";
+import Lucky from "@/public/images/CRM-Lucky draw.svg";
+import Referral from "@/public/images/CRM-Referral.svg";
+import Promo from "@/public/images/CRM-Promo.svg";
 
 export default function Page() {
   const router = useRouter();
@@ -30,7 +34,7 @@ export default function Page() {
     const member = localStorage.getItem("member");
     const token = localStorage.getItem("token");
     if (!member || !token) {
-      router.push("/"); // Redirect ke halaman login
+      router.replace("/"); // Redirect ke halaman login
     } else {
       dispatch(getUsers()); // Panggil thunk dengan token
     }
@@ -181,49 +185,49 @@ export default function Page() {
           )}
 
           <div className="flex justify-between items-center px-8 pt-8 gap-2 bg-white -top-20 relative">
-            <div className="flex flex-col justify-center items-center gap-2">
+            <div className="flex flex-col justify-center items-center gap-2 w-16">
               <Image
-                src="https://via.placeholder.com/200x200"
+                src={Misi}
                 width={50}
                 height={50}
                 alt="Misi"
-                className="w-auto h-auto rounded-md"
+                className="w-auto h-full rounded-md"
               />
               <span className="text-[10px]">Misi</span>
             </div>
             <Link
               href="/lucky-draw"
-              className="flex flex-col justify-center items-center gap-2"
+              className="flex flex-col justify-center items-center gap-2 w-16"
             >
               <Image
-                src="https://via.placeholder.com/200x200"
+                src={Lucky}
                 width={50}
                 height={50}
-                alt="Hadiah"
-                className="w-auto h-auto rounded-md"
+                alt="Lucky Draw"
+                className="w-auto h-full rounded-md"
               />
               <span className="text-[10px]">Lucky Draw</span>
             </Link>
-            <div className="flex flex-col justify-center items-center gap-2">
+            <div className="flex flex-col justify-center items-center gap-2 w-16">
               <Image
-                src="https://via.placeholder.com/200x200"
+                src={Referral}
                 width={50}
                 height={50}
                 alt="Referral"
-                className="w-auto h-auto rounded-md"
+                className="w-auto h-full rounded-md"
               />
               <span className="text-[10px]">Referral</span>
             </div>
             <Link
               href="/promo"
-              className="flex flex-col justify-center items-center gap-2"
+              className="flex flex-col justify-center items-center gap-2 w-16"
             >
               <Image
-                src="https://via.placeholder.com/200x200"
+                src={Promo}
                 width={50}
                 height={50}
                 alt="Promo"
-                className="w-auto h-auto rounded-md"
+                className="w-auto h-full rounded-md"
               />
               <span className="text-[10px]">Promo</span>
             </Link>

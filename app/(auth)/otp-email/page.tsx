@@ -102,7 +102,7 @@ export default function Otp() {
       if (response.data.responseCode === "2002500") {
         setMessageSuccess(true);
         setTimeout(() => {
-          router.push(`/home`);
+          router.push(`/login`);
         }, 5000);
       } else {
         setErrorMessage(true);

@@ -299,7 +299,7 @@ export default function Register() {
 
         if (response.data.responseCode === "2002500") {
           sessionStorage.setItem("phone", formData.phone);
-          router.push(`/otp-register`);
+          router.replace(`/otp-register`);
         }
       } else {
         setIsError(true);

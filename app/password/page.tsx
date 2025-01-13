@@ -46,6 +46,9 @@ export default function Profile() {
   const [showPin, setShowPin] = useState<boolean>(false);
   const [showPinConf, setShowPinConf] = useState<boolean>(false);
 
+  const [passwordError, setPasswordError] = useState<boolean>(false);
+  const [pinError, setPinError] = useState<boolean>(false);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const member = localStorage.getItem("member");
@@ -89,15 +92,15 @@ export default function Profile() {
     const { name, value } = event.target;
 
     // Validasi khusus untuk PIN (hanya angka dan maksimal 6 karakter)
-    // if (name === "pin") {
-    //   if (!/^\d{0,6}$/.test(value)) {
-    //     setFormError((prev) => ({
-    //       ...prev,
-    //       pin: "PIN hanya boleh mengandung angka dan maksimal 6 karakter",
-    //     }));
-    //     return;
-    //   }
-    // }
+    if (name === "pin") {
+      if (!/^\d{0,6}$/.test(value)) {
+        setFormMessagePin((prev) => ({
+          ...prev,
+          pin: "PIN hanya boleh mengandung angka dan maksimal 6 karakter",
+        }));
+        return;
+      }
+    }
 
     // Validasi password untuk melarang spasi
     // if (name === "password") {
@@ -117,6 +120,9 @@ export default function Profile() {
         [name]: value,
         error: [],
       }));
+
+      setErrorMessagePassword(false);
+      setPasswordError(false);
 
       // Validasi password hanya jika field yang diubah adalah password
       if (name === "password") {
@@ -148,11 +154,14 @@ export default function Profile() {
         error: [],
       }));
 
+      setErrorMessagePin(false);
+      setPinError(false);
+
       // Validasi password hanya jika field yang diubah adalah password
       if (name === "pin") {
         if (value.length < 6) {
           setFormMessagePin({
-            pin: "PIN minimal 8 karakter",
+            pin: "PIN minimal 6 karakter",
           });
         } else if (value.length > 6) {
           setFormMessagePin({
@@ -194,24 +203,42 @@ export default function Profile() {
       return;
     }
 
+    if (password.password.length < 8) {
+      setPasswordError(true);
+      setPassword((prevPassword) => ({
+        ...prevPassword,
+        loading: false,
+      }));
+      return;
+    }
+
     try {
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}profile/auth/2`,
-        password,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        {
+          memberID: password.memberID,
+          password: password.password,
+          currentPassword: password.currentPassword,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       // check response status
       if (response.data.responseCode === "2002500") {
         // show success message
         setSuccessMessagePassword(true);
-        // remove message after 3 seconds
-        setTimeout(() => setSuccessMessagePassword(false), 3000);
+        // clear notif
+        setTimeout(() => {
+          setSuccessMessagePassword(false);
+        }, 2000);
       } else if (response.data.responseCode === "4002500") {
         // show error message
         setErrorMessagePassword(true);
-        // remove message after 3 seconds
-        setTimeout(() => setErrorMessagePassword(false), 3000);
       } else {
         console.error("Terjadi kesalahan pada server");
       }
@@ -252,24 +279,35 @@ export default function Profile() {
       return;
     }
 
+    if (pin.pin.length < 6) {
+      setPinError(true);
+      setPin((prevPin) => ({ ...prevPin, loading: false }));
+      return;
+    }
+
     try {
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}profile/auth/1`,
         pin,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       // check response status
       if (response.data.responseCode === "2002500") {
         // show success message
         setSuccessMessagePin(true);
-        // remove message after 3 seconds
-        setTimeout(() => setSuccessMessagePin(false), 3000);
+        // clear notif
+        setTimeout(() => {
+          setSuccessMessagePin(false);
+        }, 2000);
       } else if (response.data.responseCode === "4002500") {
         // show error message
         setErrorMessagePin(true);
-        // remove message after 3 seconds
-        setTimeout(() => setErrorMessagePin(false), 3000);
       } else {
         console.error("Terjadi kesalahan pada server");
       }
@@ -416,10 +454,13 @@ export default function Profile() {
               </form>
 
               {errorMessagePassword && (
-                <ErrorMessage message={"Password Salah"} />
+                <ErrorMessage message={"Password Terkini Tidak Sesuai"} />
               )}
               {successMessagePassword && (
                 <SuccessMessage message={"Password Berhasil Diubah"} />
+              )}
+              {passwordError && (
+                <ErrorMessage message={"Password Minimal 8 Karakter"} />
               )}
             </div>
             <hr className="my-2 border-gray-300" />
@@ -513,6 +554,7 @@ export default function Profile() {
               {successMessagePin && (
                 <SuccessMessage message={"PIN Berhasil Diubah"} />
               )}
+              {pinError && <ErrorMessage message={"PIN Harus 6 Digit Angka"} />}
             </div>
           </div>
         </div>

@@ -154,15 +154,22 @@ export default function Validasi() {
         ...prev,
         email: "Format email tidak valid.",
       }));
-      return;
     }
 
-    if (name === "pin" && (!/^\d{0,6}$/.test(value) || value.length > 6)) {
-      setFormError((prev) => ({
-        ...prev,
-        pin: "PIN maksimal 6 angka.",
-      }));
-      return;
+    if (name === "pin") {
+      if (!/^\d{0,6}$/.test(value)) {
+        setFormError((prev) => ({
+          ...prev,
+          pin: "PIN hanya boleh mengandung angka",
+        }));
+        return;
+      }
+      if (value.length < 6) {
+        setFormError((prev) => ({
+          ...prev,
+          pin: "PIN maksimal 6 karakter",
+        }));
+      }
     }
 
     if (name === "password") {
@@ -178,7 +185,6 @@ export default function Validasi() {
           ...prev,
           password: "Password minimal 8 karakter.",
         }));
-        return;
       }
     }
 
@@ -242,7 +248,7 @@ export default function Validasi() {
 
       if (response.data.responseCode === "2002500") {
         setSuccessMessage(true);
-        setTimeout(() => router.push("/home"), 2000);
+        setTimeout(() => router.replace("/home"), 2000);
       } else if (response.data.responseCode === "4002500") {
         setErrorMessage(true);
         setTimeout(() => setErrorMessage(false), 2000);
@@ -298,6 +304,7 @@ export default function Validasi() {
               value={toNormalCase(formData.fullName)}
               onChange={handleChange}
               error={formError.fullName}
+              required={true}
               className="mb-4"
             />
             <div className="mb-4 bg-white">
@@ -323,6 +330,7 @@ export default function Validasi() {
               value={formData.email}
               onChange={handleChange}
               error={formError.email}
+              required={true}
               className="mb-4"
             />
             <Select
@@ -341,6 +349,7 @@ export default function Validasi() {
                 }));
               }}
               error={formError.province}
+              required={true}
               className="mb-4"
             />
             <Select
@@ -357,6 +366,7 @@ export default function Validasi() {
                 }));
               }}
               error={formError.city}
+              required={true}
               className="mb-4"
             />
             <Input
@@ -366,6 +376,7 @@ export default function Validasi() {
               value={formData.dateofBirth}
               onChange={handleChange}
               error={formError.dateofBirth}
+              required={true}
               className="mb-4"
             />
             <Select
@@ -383,6 +394,7 @@ export default function Validasi() {
                 }))
               }
               error={formError.gender}
+              required={true}
               className="mb-4"
             />
 
@@ -393,6 +405,7 @@ export default function Validasi() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
+                required={true}
                 error={formError.password}
               />
 
@@ -428,6 +441,7 @@ export default function Validasi() {
                 name="pin"
                 value={formData.pin}
                 onChange={handleChange}
+                required={true}
                 error={formError.pin}
               />
 

@@ -85,15 +85,22 @@ export default function Otp() {
     setLoading(true);
 
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.post(
         `https://golangapi-j5iu.onrender.com/send-wa-otp-verify?userAccount=${data.userAccount}&otp=${otpInput}`,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (response.data.responseCode === "2002500") {
         setMessageSuccess(true);
+        localStorage.setItem("token", response.data.verifyData.token);
         setTimeout(() => {
-          router.push(`/validasi-form`);
+          router.replace(`/validasi-form`);
         }, 2000);
       } else {
         setErrorMessage(true);

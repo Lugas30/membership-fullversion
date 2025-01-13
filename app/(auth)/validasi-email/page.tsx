@@ -69,7 +69,7 @@ export default function Validasi() {
 
       if (response.data.responseCode === "2002500") {
         sessionStorage.setItem("email", data.userAccount);
-        router.push(`/otp-email`);
+        router.replace(`/otp-email`);
       } else {
         setError(true);
       }
@@ -98,7 +98,7 @@ export default function Validasi() {
           <form action="" onSubmit={handleSendEmail}>
             <Input
               label="Alamat email"
-              type="tel"
+              type="email"
               name="userAccount"
               value={data.userAccount}
               onChange={handleChange}

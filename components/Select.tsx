@@ -13,6 +13,7 @@ type SelectProps = {
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   className?: string;
   error?: string;
+  required?: boolean;
 };
 
 export default function Select({
@@ -22,6 +23,7 @@ export default function Select({
   value,
   onChange,
   className,
+  required = false,
   error,
 }: SelectProps) {
   return (
@@ -31,6 +33,7 @@ export default function Select({
         value={value}
         onChange={onChange}
         className="block w-full p-3 text-sm text-gray-700 placeholder-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-black focus:border-black fontMon"
+        required={required}
       >
         <option value="">{labelOption}</option>
         {options.map((option) => (

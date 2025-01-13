@@ -66,7 +66,7 @@ export default function Otp() {
       );
 
       if (response.data.responseCode === "2002500") {
-        router.push(`/reset-password`);
+        router.replace(`/reset-password`);
       } else {
         setErrorMessage(true);
       }

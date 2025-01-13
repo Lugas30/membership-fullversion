@@ -22,6 +22,7 @@ type InputProps = {
   pattern?: string;
   error?: string;
   disabled?: boolean;
+  required?: boolean;
   maxLength?: number;
 };
 
@@ -38,6 +39,7 @@ export default function Input({
   className,
   error,
   disabled,
+  required = false,
   maxLength,
 }: InputProps) {
   return (
@@ -58,6 +60,7 @@ export default function Input({
             : "w-full p-3 text-sm text-gray-700 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-black focus:border-black fontMon"
         }
         disabled={disabled}
+        required={required}
         maxLength={maxLength}
       />
       {error && (

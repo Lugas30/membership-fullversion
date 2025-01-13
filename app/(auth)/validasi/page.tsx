@@ -60,7 +60,7 @@ export default function Validasi() {
       if (response.data.responseCode === "2002500") {
         localStorage.setItem("member", response.data.loginData.memberID);
         sessionStorage.setItem("phone", data.userAccount);
-        router.push(`/otp-validasi`);
+        router.replace(`/otp-validasi`);
       } else {
         setError(true);
       }
