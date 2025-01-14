@@ -92,6 +92,15 @@ export default function Login() {
         localStorage.setItem("member", response.data.loginData.memberID);
         localStorage.setItem("token", response.data.loginData.token);
         router.replace("/home");
+      } else if (response.data.responseCode == 4002501) {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}dashboard/Verify?userAccount=${data.user}`
+        );
+
+        if (response.data.responseCode === "2002500") {
+          sessionStorage.setItem("phone", data.user);
+          router.replace(`/otp-validasi-login`);
+        }
       } else {
         // setIsError(true);
         setGlobalError(
