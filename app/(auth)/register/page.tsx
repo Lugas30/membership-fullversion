@@ -99,9 +99,17 @@ export default function Register() {
       if (!/^\d{0,6}$/.test(value)) {
         setFormError((prev) => ({
           ...prev,
-          pin: "PIN hanya boleh mengandung angka dan maksimal 6 karakter",
+          pin: "PIN hanya boleh mengandung angka",
         }));
         return;
+      }
+      // Validasi panjang password minimal 8 karakter
+      if (value.length < 6) {
+        setFormMessagePin({
+          pin: "PIN minimal 6 karakter",
+        });
+      } else {
+        setFormMessagePin({});
       }
     }
 
