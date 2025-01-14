@@ -1,13 +1,14 @@
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getPointExpired } from "@/redux/thunks/pointExpiredThunks";
+import formatToIDR from "@/utils/formatToIDR";
 import Image from "next/image";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
 
 interface PointExpired {
-  id: number;
+  ID: number;
   periode: string;
   pointExpired: number;
   expiredDate: string;
@@ -40,12 +41,15 @@ export default function Kedaluarsa() {
           data.expiredPointData.map((item: PointExpired) => (
             <div
               className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4"
-              key={item.id}
+              key={item.ID}
             >
               <div className="flex justify-between items-center w-full">
-                <small className="text-[10px] fontMon tracking-wider">
-                  {item.pointExpired}
-                </small>
+                <p className="text-[10px] text-sm tracking-wider">
+                  {formatToIDR(item.pointExpired)}{" "}
+                  <small className="text-[8px] uppercase tracking-widest fontMon">
+                    Poin
+                  </small>
+                </p>
                 <small className="text-xs">{item.expiredDate}</small>
               </div>
             </div>

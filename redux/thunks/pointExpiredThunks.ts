@@ -11,7 +11,7 @@ export const getPointExpired = createAsyncThunk(
         return rejectWithValue("Member ID tidak ditemukan");
       }
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}point/xxxcxx?memberID=${member}`,
+        `${process.env.NEXT_PUBLIC_API_URL}point/hitory/expired?memberID=${member}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

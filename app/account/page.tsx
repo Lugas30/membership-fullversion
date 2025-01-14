@@ -210,9 +210,9 @@ export default function Page() {
             <small className="text-white text-[9px] fontMon tracking-wider">
               TOTAL POIN
             </small>
-            {user.memberInfoData.points !== 0 ? (
+            {user.memberInfoData.expiredPoint !== 0 ? (
               <small className="text-white text-[9px] tracking-wider fontMon">
-                {user.memberInfoData.point} Poin kedaluwarsa pada{" "}
+                {user.memberInfoData.expiredPoint} Poin kedaluwarsa pada{" "}
                 {formatDate(user.memberInfoData.expiredPointDate)}
               </small>
             ) : (
