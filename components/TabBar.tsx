@@ -5,7 +5,7 @@ import React from "react";
 export default function TabBar() {
   return (
     <div className="flex justify-between items-center px-8 py-5 bg-white fixed bottom-0 w-full border-t-2 border-t-slate-300 fontMon tracking-wide">
-      <Link href={"/redeem"} className="flex flex-col items-center">
+      <Link href={"/redeem"} className="flex flex-col items-center w-24">
         <Image
           src="/images/rewards.svg"
           width={30}
@@ -15,7 +15,7 @@ export default function TabBar() {
         />
         <span className="text-[9px]">Tukar Poin</span>
       </Link>
-      <Link href={"/voucher"} className="flex flex-col items-center">
+      <Link href={"/voucher"} className="flex flex-col items-center w-24">
         <Image
           src="/images/voucher.svg"
           width={30}
@@ -25,7 +25,7 @@ export default function TabBar() {
         />
         <span className="text-[9px]">Voucer</span>
       </Link>
-      <Link href={"/home"} className="flex flex-col items-center">
+      <Link href={"/home"} className="flex flex-col items-center w-24">
         <Image
           src="/images/home.svg"
           width={30}
@@ -37,7 +37,7 @@ export default function TabBar() {
       </Link>
       <Link
         href={"/history-transaction"}
-        className="flex flex-col items-center"
+        className="flex flex-col items-center w-24"
       >
         <Image
           src="/images/history.svg"
@@ -48,7 +48,7 @@ export default function TabBar() {
         />
         <span className="text-[9px]">Riwayat</span>
       </Link>
-      <Link href={"/account"} className="flex flex-col items-center">
+      <Link href={"/account"} className="flex flex-col items-center w-24">
         <Image
           src="/images/account.svg"
           width={30}
