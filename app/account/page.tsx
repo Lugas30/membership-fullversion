@@ -8,6 +8,7 @@ import TabBar from "@/components/TabBar";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getUsers } from "@/redux/thunks/usersThunks";
+import formatDate from "@/utils/formatDate";
 import formatToIDR from "@/utils/formatToIDR";
 import Image from "next/image";
 import Link from "next/link";
@@ -209,9 +210,14 @@ export default function Page() {
             <small className="text-white text-[9px] fontMon tracking-wider">
               TOTAL POIN
             </small>
-            <small className="text-white text-[9px] tracking-wider fontMon">
-              100 Poin kedaluwarsa pada 25 Desember 2024
-            </small>
+            {user.memberInfoData.points !== 0 ? (
+              <small className="text-white text-[9px] tracking-wider fontMon">
+                {user.memberInfoData.point} Poin kedaluwarsa pada{" "}
+                {formatDate(user.memberInfoData.expiredPointDate)}
+              </small>
+            ) : (
+              <></>
+            )}
           </div>
 
           <div className="flex justify-between items-center w-full">

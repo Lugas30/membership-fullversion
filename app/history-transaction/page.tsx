@@ -68,14 +68,24 @@ export default function HistoryTransaction() {
     }
   }, [data?.transactionData]);
 
+  // const showModal = ({ id }: { id: number }) => {
+  //   data.transactionData.find((item: Transaction) => {
+  //     if (item.id === id) {
+  //       setIsModalVisible(true);
+  //       setDetail(item);
+  //       return true;
+  //     }
+  //   });
+  // };
+
   const showModal = ({ id }: { id: number }) => {
-    data.transactionData.find((item: Transaction) => {
-      if (item.id === id) {
-        setIsModalVisible(true);
-        setDetail(item);
-        return true;
-      }
-    });
+    const foundItem = data?.transactionData?.find(
+      (item: Transaction) => item.id === id
+    );
+    if (foundItem) {
+      setIsModalVisible(true);
+      setDetail(foundItem);
+    }
   };
 
   const closeModal = () => {
@@ -98,10 +108,17 @@ export default function HistoryTransaction() {
   };
 
   // Konversi tanggal ke format yyyy-mm-dd
-  const convertedData = data?.transactionData.map((item: Transaction) => ({
-    ...item,
-    tanggalTransksi: convertToYYYYMMDD(item.tanggalTransksi),
-  }));
+  // const convertedData = data?.transactionData.map((item: Transaction) => ({
+  //   ...item,
+  //   tanggalTransksi: convertToYYYYMMDD(item.tanggalTransksi),
+  // }));
+
+  const convertedData = data?.transactionData
+    ? data.transactionData.map((item: Transaction) => ({
+        ...item,
+        tanggalTransksi: convertToYYYYMMDD(item.tanggalTransksi),
+      }))
+    : [];
 
   const showFilterModal = () => {
     setShowModalFilter(true);
@@ -197,50 +214,48 @@ export default function HistoryTransaction() {
           </Header>
 
           <div className="flex flex-col items-center justify-center p-4">
-            {filteredData && filteredData ? (
-              filteredData.length > 0 ? (
-                filteredData.map((item: Transaction) => (
-                  <div
-                    key={item.id}
-                    className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
-                    onClick={() => showModal({ id: item.id })}
-                  >
-                    {/* Kolom kiri */}
-                    <div className="flex flex-col space-y-6 w-1/2">
-                      {/* Nama toko dan ID */}
-                      <div className="flex flex-col">
-                        <small className="text-xs mb-1">{item.idStore}</small>
-                        <small className="text-[8px] fontMon tracking-widest">
-                          {item.invoice}
-                        </small>
-                      </div>
-                      {/* Tanggal */}
-                      <h2 className="text-[10px] fontMon tracking-wider uppercase mt-1">
-                        {formatDate(item.tanggalTransksi)}
-                      </h2>
+            {filteredData && filteredData.length > 0 ? (
+              filteredData.map((item: Transaction) => (
+                <div
+                  key={item.id}
+                  className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
+                  onClick={() => showModal({ id: item.id })}
+                >
+                  {/* Kolom kiri */}
+                  <div className="flex flex-col space-y-6 w-1/2">
+                    {/* Nama toko dan ID */}
+                    <div className="flex flex-col">
+                      <small className="text-xs mb-1">{item.idStore}</small>
+                      <small className="text-[8px] fontMon tracking-widest">
+                        {item.invoice}
+                      </small>
                     </div>
-
-                    {/* Garis pemisah */}
-                    <div className="w-px h-16 bg-gray-300"></div>
-
-                    {/* Kolom kanan */}
-                    <div className="flex flex-col items-end">
-                      <span className="text-[8px] fontMon tracking-widest uppercase">
-                        Total
-                      </span>
-                      <span className="text-xs">
-                        RP {formatToIDR(item.total)}
-                      </span>
-                    </div>
+                    {/* Tanggal */}
+                    <h2 className="text-[10px] fontMon tracking-wider uppercase mt-1">
+                      {formatDate(item.tanggalTransksi)}
+                    </h2>
                   </div>
-                ))
-              ) : (
-                <p className="text-center text-white">
-                  Tidak ada transaksi untuk tanggal tersebut
-                </p>
-              )
+
+                  {/* Garis pemisah */}
+                  <div className="w-px h-16 bg-gray-300"></div>
+
+                  {/* Kolom kanan */}
+                  <div className="flex flex-col items-end">
+                    <span className="text-[8px] fontMon tracking-widest uppercase">
+                      Total
+                    </span>
+                    <span className="text-xs">
+                      RP {formatToIDR(item.total)}
+                    </span>
+                  </div>
+                </div>
+              ))
             ) : (
-              <p className="text-center text-white">Belum ada transaksi.</p>
+              <p className="text-center text-white">
+                {data?.transactionData
+                  ? "Tidak ada transaksi."
+                  : "Tidak ada transaksi."}
+              </p>
             )}
           </div>
 
