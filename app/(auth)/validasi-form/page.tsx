@@ -239,6 +239,19 @@ export default function Validasi() {
       minatKategori: "-",
     };
 
+    // Pastikan tidak ada error pada formError
+    const noError = Object.values(formError).every((err) => err === "");
+
+    // Pastikan semua field formData yang diwajibkan tidak kosong
+    const allFieldsFilled = Object.values(formData).every((value) =>
+      value ? true : false
+    );
+
+    if (!noError || !allFieldsFilled) {
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.put(
         `https://golangapi-j5iu.onrender.com/api/v1.0/member/mobile/profile`,
@@ -467,11 +480,14 @@ export default function Validasi() {
               </p>
             )}
 
-            <Button
-              label="SIMPAN"
-              className="bg-base-accent text-white rounded-full w-full p-2 my-6"
-              loading={isLoading}
-            />
+            <div className="flex justify-center pt-3">
+              <Button
+                label="SIMPAN"
+                className="bg-base-accent text-white"
+                loading={isLoading}
+                type="submit"
+              />
+            </div>
           </form>
         </div>
       </div>

@@ -274,6 +274,19 @@ export default function Register() {
     setLoading(true);
     setFormData((prevData) => ({ ...prevData, loading: true, error: "" }));
 
+    // Pastikan tidak ada error pada formError
+    const noError = Object.values(formError).every((err) => err === "");
+
+    // Pastikan semua field formData yang diwajibkan tidak kosong
+    const allFieldsFilled = Object.values(formData).every((value) =>
+      value ? true : false
+    );
+
+    if (!noError || !allFieldsFilled) {
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}dashboard/register`,

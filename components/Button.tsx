@@ -7,6 +7,7 @@ type ButtonProps = {
   disabled?: boolean;
   className?: string;
   loading?: boolean;
+  style?: React.CSSProperties;
 };
 
 export default function Button({
@@ -16,12 +17,14 @@ export default function Button({
   disabled,
   className,
   loading = false,
+  style,
 }: ButtonProps) {
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
+      style={style}
       className={`${className} text-sm fontMon tracking-wider p-4 rounded-full w-72 uppercase`}
     >
       {loading ? <span>Loading...</span> : label}
