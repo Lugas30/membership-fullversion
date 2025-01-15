@@ -4,6 +4,7 @@ import Select from "@/components/Select";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getTier } from "@/redux/thunks/tierThunks";
+import { getTierInfo } from "@/redux/thunks/tierInfoSementara";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -39,6 +40,7 @@ export default function TierInfo() {
 
   useEffect(() => {
     dispatch(getTier());
+    dispatch(getTierInfo()); //Gak jadi dipake nanti dihapus
   }, [dispatch]);
 
   const options = data
@@ -47,6 +49,33 @@ export default function TierInfo() {
         label: tier.tier,
       }))
     : [];
+
+  // Kondisi sementara buat point per tier
+  const getAmountPoint = (tierId: number | undefined) => {
+    if (tierId === undefined) return 0;
+    switch (tierId) {
+      case 0:
+        return 0;
+      case 1:
+        return 100;
+      case 2:
+        return 150;
+      case 3:
+        return 200;
+      case 4:
+        return 250;
+      case 5:
+        return 300;
+      case 6:
+        return 350;
+      case 7:
+        return 400;
+      default:
+        return 0;
+    }
+  };
+
+  const amountPoint = getAmountPoint(selectedTier?.id);
 
   useEffect(() => {
     if (data && data.tierData.length > 0) {
@@ -137,7 +166,7 @@ export default function TierInfo() {
                 <div className="flex flex-col w-full mt-2">
                   <span className="text-sm font-semibold">Penambahan Poin</span>
                   <span className="text-[10px]">
-                    Setiap pembelian Rp 10.000 = 100 Poin
+                    Setiap pembelian Rp 10.000 = {amountPoint} Poin
                   </span>
                 </div>
                 <div className="flex flex-col w-full mt-2">

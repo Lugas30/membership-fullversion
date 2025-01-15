@@ -191,7 +191,7 @@ export default function Page() {
                 width={50}
                 height={50}
                 alt="Misi"
-                className="w-auto h-full rounded-md"
+                className="w-auto h-full rounded-md bg-gray-200"
               />
               <span className="text-[10px]">Misi</span>
             </div>
@@ -204,7 +204,7 @@ export default function Page() {
                 width={50}
                 height={50}
                 alt="Lucky Draw"
-                className="w-auto h-full rounded-md"
+                className="w-auto h-full rounded-md bg-gray-200"
               />
               <span className="text-[10px]">Lucky Draw</span>
             </Link>
@@ -214,7 +214,7 @@ export default function Page() {
                 width={50}
                 height={50}
                 alt="Referral"
-                className="w-auto h-full rounded-md"
+                className="w-auto h-full rounded-md bg-gray-200"
               />
               <span className="text-[10px]">Referral</span>
             </div>
@@ -227,7 +227,7 @@ export default function Page() {
                 width={50}
                 height={50}
                 alt="Promo"
-                className="w-auto h-full rounded-md"
+                className="w-auto h-full rounded-md bg-gray-200"
               />
               <span className="text-[10px]">Promo</span>
             </Link>

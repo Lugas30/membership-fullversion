@@ -15,6 +15,7 @@ import rewardsReducer from "./slices/rewardsSlice";
 import luckyReducer from "./slices/luckySlice";
 import luckyListReducer from "./slices/luckyListSlice";
 import categoryPromoReducer from "./slices/categoryPromoSlice";
+import tierInfoSementara from "./slices/tierInfoSementara";
 
 const store = configureStore({
   reducer: {
@@ -34,6 +35,7 @@ const store = configureStore({
     lucky: luckyReducer,
     luckyList: luckyListReducer,
     categoryPromo: categoryPromoReducer,
+    tierInfoSementara: tierInfoSementara,
   },
   devTools: process.env.NEXT_PUBLIC_NODE_ENV !== "production",
 });
