@@ -186,13 +186,19 @@ export default function Page() {
 
           <div className="flex justify-between items-center px-8 pt-8 gap-2 bg-white -top-20 relative">
             <div className="flex flex-col justify-center items-center gap-2 w-16">
-              <Image
-                src={Misi}
-                width={50}
-                height={50}
-                alt="Misi"
-                className="w-auto h-full rounded-md bg-gray-200"
-              />
+              <Link
+                href="/commingsoon"
+                className="flex flex-col justify-center items-center gap-2 w-16"
+              >
+                <Image
+                  src={Misi}
+                  width={50}
+                  height={50}
+                  alt="Misi"
+                  className="w-auto h-full rounded-md bg-gray-200"
+                />
+              </Link>
+
               <span className="text-[10px]">Misi</span>
             </div>
             <Link
@@ -209,13 +215,19 @@ export default function Page() {
               <span className="text-[10px]">Lucky Draw</span>
             </Link>
             <div className="flex flex-col justify-center items-center gap-2 w-16">
-              <Image
-                src={Referral}
-                width={50}
-                height={50}
-                alt="Referral"
-                className="w-auto h-full rounded-md bg-gray-200"
-              />
+              <Link
+                href="/commingsoon"
+                className="flex flex-col justify-center items-center gap-2 w-16"
+              >
+                <Image
+                  src={Referral}
+                  width={50}
+                  height={50}
+                  alt="Referral"
+                  className="w-auto h-full rounded-md bg-gray-200"
+                />
+              </Link>
+
               <span className="text-[10px]">Referral</span>
             </div>
             <Link
