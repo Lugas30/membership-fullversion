@@ -25,6 +25,7 @@ interface Tier {
   tier: string;
   amountStartingFrom: number;
   amountUpTo: number;
+  amountPoint: number;
   tier_image: string;
   benefitData: BenefitData;
   cardImage: string;
@@ -121,7 +122,7 @@ export default function TierInfo() {
                       <span className="text-xs text-white">
                         {selectedTier.tier}
                       </span>
-                      <span className="text-[8px] text-white">TIER ANDA</span>
+                      <span className="text-[8px] text-white">TIER</span>
                     </div>
                   </div>
                 </div>
@@ -136,7 +137,7 @@ export default function TierInfo() {
                 <div className="flex flex-col w-full mt-2">
                   <span className="text-sm font-semibold">Penambahan Poin</span>
                   <span className="text-[10px]">
-                    Setiap pembelian Rp 10.000 = 150 Poin
+                    Setiap pembelian Rp 10.000 = 100 Poin
                   </span>
                 </div>
                 <div className="flex flex-col w-full mt-2">
