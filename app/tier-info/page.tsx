@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
+import formatToIDR from "@/utils/formatToIDR";
 
 interface BenefitData {
   point_1: string;
@@ -159,8 +160,8 @@ export default function TierInfo() {
                 <h2 className="font-semibold">{selectedTier.tier}</h2>
                 <div className="flex self-start">
                   <span className="text-sm font-medium my-4">
-                    Rp {selectedTier.amountStartingFrom.toLocaleString()} - Rp{" "}
-                    {selectedTier.amountUpTo.toLocaleString()}
+                    Rp {formatToIDR(selectedTier.amountStartingFrom)} - Rp{" "}
+                    {formatToIDR(selectedTier.amountUpTo)}
                   </span>
                 </div>
                 <div className="flex flex-col w-full mt-2">

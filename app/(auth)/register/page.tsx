@@ -105,10 +105,11 @@ export default function Register() {
       }
       // Validasi panjang password minimal 8 karakter
       if (value.length < 6) {
-        setFormError((prev) => ({
-          ...prev,
-          pin: "PIN minimal 6 karakter",
-        }));
+        setFormMessagePin({
+          pin: "Password minimal 6 karakter",
+        });
+      } else {
+        setFormMessagePin({});
       }
     }
 
@@ -137,14 +138,6 @@ export default function Register() {
       ...formData,
       [name]: value,
     });
-
-    // Hapus pesan error jika ada input
-    if (formError[name]) {
-      setFormError((prevErrors) => {
-        const { [name]: _, ...remainingErrors } = prevErrors;
-        return remainingErrors;
-      });
-    }
 
     // Hapus error global jika inputan diisi
     if (isError) setIsError(false);
