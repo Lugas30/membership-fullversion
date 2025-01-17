@@ -252,7 +252,7 @@ export default function Register() {
 
   const validateForm = () => {
     const errors: { [key: string]: string } = {};
-    if (!formData.phone) errors.phone = "No Handphone tidak boleh kosong";
+    if (!formData.phone) errors.phone = "No. Handphone tidak boleh kosong";
     if (!formData.fullName) errors.fullName = "Nama Lengkap tidak boleh kosong";
     if (!formData.email) errors.email = "Alamat Email tidak boleh kosong";
     if (!formData.province) errors.province = "Provinsi tidak boleh kosong";
@@ -347,7 +347,7 @@ export default function Register() {
             />
             <div className="mb-4">
               <Input
-                label="*No Handphone"
+                label="*No. Handphone"
                 type="tel"
                 name="phone"
                 value={formData.phone}
@@ -496,7 +496,7 @@ export default function Register() {
 
             <div className="mb-4">
               {isError && (
-                <ErrorMessage message={"No Telepon/Email sudah terdaftar"} />
+                <ErrorMessage message={"No. Telepon/Email sudah terdaftar"} />
               )}
             </div>
 

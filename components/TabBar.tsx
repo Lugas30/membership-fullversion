@@ -23,7 +23,7 @@ export default function TabBar() {
           alt="voucher"
           className="w-auto h-auto"
         />
-        <span className="text-[9px]">Voucer</span>
+        <span className="text-[9px]">Voucher</span>
       </Link>
       <Link href={"/home"} className="flex flex-col items-center w-20">
         <Image

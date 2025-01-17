@@ -275,7 +275,7 @@ export default function Store() {
           {isFilterModalVisible && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
               <div className="bg-white w-full max-w-md shadow-lg rounded-lg">
-                <div className="flex justify-between items-center p-4">
+                <div className="flex justify-between items-center p-5">
                   <span>Filter Brand</span>
                   <button onClick={closeFilterModal} className="text-black">
                     &#10005;
@@ -283,27 +283,27 @@ export default function Store() {
                 </div>
 
                 <form onSubmit={handleFilter}>
-                  <div className="p-4">
+                  <div className="p-5">
                     {brand.brandData.map((item: Brand) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center justify-between mb-2"
-                      >
+                      <div key={item.id} className="flex items-center mb-2">
                         <div className="flex items-center">
                           <Input
                             type="checkbox"
                             name="brand"
                             value={item.brand}
                             onChange={handleCheckboxChange}
+                            className="flex items-center"
                           />
-                          <span className="ml-2">{item.brand}</span>
+                          <span className="pl-2 text-sm">{item.brand}</span>
                         </div>
                       </div>
                     ))}
-                    <Button
-                      label="Terapkan"
-                      className="bg-base-accent text-white rounded-full w-full p-2"
-                    />
+                    <div className="flex justify-center pt-5">
+                      <Button
+                        label="Terapkan"
+                        className="bg-base-accent text-white"
+                      />
+                    </div>
                   </div>
                 </form>
               </div>

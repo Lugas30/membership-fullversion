@@ -58,7 +58,7 @@ export default function HistoryPoint() {
                 }`}
                 onClick={() => handleMenuChange("kedaluarsa")}
               >
-                Akan Kedaluarsa
+                Akan Kedaluwarsa
               </span>
             </div>
           </div>

@@ -134,7 +134,7 @@ export default function Vouchers() {
           </div>
         ))
       ) : (
-        <p className="text-center text-gray-500">Belum ada data voucher.</p>
+        <p className="text-center text-gray-500">Belum memiliki voucher.</p>
       )}
 
       {isModalVisible && (

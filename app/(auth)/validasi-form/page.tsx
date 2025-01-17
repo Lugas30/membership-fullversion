@@ -322,7 +322,7 @@ export default function Validasi() {
             />
             <div className="mb-4 bg-white">
               <Input
-                label="No Handphone"
+                label="No. Handphone"
                 type="tel"
                 name="phone"
                 value={formData.phone}

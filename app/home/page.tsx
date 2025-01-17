@@ -187,7 +187,7 @@ export default function Page() {
           <div className="flex justify-between items-center px-8 pt-8 gap-2 bg-white -top-20 relative">
             <div className="flex flex-col justify-center items-center gap-2 w-16">
               <Link
-                href="/commingsoon"
+                href="/comingsoon"
                 className="flex flex-col justify-center items-center gap-2 w-16"
               >
                 <Image
@@ -216,7 +216,7 @@ export default function Page() {
             </Link>
             <div className="flex flex-col justify-center items-center gap-2 w-16">
               <Link
-                href="/commingsoon"
+                href="/comingsoon"
                 className="flex flex-col justify-center items-center gap-2 w-16"
               >
                 <Image

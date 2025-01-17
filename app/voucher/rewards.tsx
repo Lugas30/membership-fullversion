@@ -94,10 +94,10 @@ export default function Rewards() {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500">Belum memiliki voucer.</p>
+          <p className="text-center text-gray-500">Belum memiliki voucher.</p>
         )
       ) : (
-        <p className="text-center text-gray-500">Belum memiliki voucer.</p>
+        <p className="text-center text-gray-500">Belum memiliki voucher.</p>
       )}
 
       {/* open modal */}
@@ -130,7 +130,7 @@ export default function Rewards() {
                     <span className="text-sm">{detail?.voucherCode}</span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-sm">Voucer berlaku:</span>
+                    <span className="text-sm">Voucher berlaku:</span>
                     <span className="text-xs">{detail?.used_at}</span>
                   </div>
                 </div>

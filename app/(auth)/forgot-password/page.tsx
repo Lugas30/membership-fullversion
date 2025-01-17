@@ -75,7 +75,7 @@ export default function ForgotPassword() {
           </p>
           <form action="" onSubmit={handleSendPhone}>
             <Input
-              label="No Handphone"
+              label="No. Handphone"
               type="tel"
               name="userAccount"
               value={data.userAccount}

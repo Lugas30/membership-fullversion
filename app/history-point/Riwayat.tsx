@@ -63,9 +63,15 @@ export default function Riwayat() {
 
               <div className="flex flex-col items-center mb-1">
                 {item.status.toLowerCase() === "tambah" ? (
-                  <span className="text-sm">+ {formatToIDR(item.point)}</span>
+                  <span className="text-sm">
+                    <span className="text-green-600">+</span>{" "}
+                    {formatToIDR(item.point)}
+                  </span>
                 ) : item.status.toLowerCase() === "pakai" ? (
-                  <span className="text-sm">- {formatToIDR(item.point)}</span>
+                  <span className="text-sm">
+                    <span className="text-red-500">-</span>{" "}
+                    {formatToIDR(item.point)}
+                  </span>
                 ) : null}
 
                 <span className="text-[8px] fontMon tracking-widest">POIN</span>
