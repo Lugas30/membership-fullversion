@@ -13,6 +13,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
+import Link from "next/link";
 
 type Promo = {
   id: number;
@@ -187,38 +188,59 @@ export default function Promo() {
 
           {/* card */}
           <div className="p-4">
-            {filteredData && filteredData ? (
-              filteredData.length > 0 ? (
-                filteredData.map((item: Promo) => (
-                  <div
-                    key={item.id}
-                    className="bg-white w-full rounded-lg flex flex-col justify-between cursor-pointer mb-4"
-                    onClick={() => showModal({ id: item.id })}
-                  >
-                    <Image
-                      src={`https://web.amscorp.id:3060/imagestorage/promo/${item.imageUrl}`}
-                      alt="reward"
-                      width={1240}
-                      height={1240}
-                      className="w-auto h-auto rounded-t-lg"
-                    />
-
-                    <div className="p-4">
-                      <h2 className="font-bold text-sm">{item.promoTitle}</h2>
-                      <p className="text-xs">
-                        {item.promoLocation} | {formatDate(item.promoStartDate)}{" "}
-                        - {formatDate(item.promoEndDate)}
-                      </p>
+            {filteredData && filteredData.length > 0 ? (
+              filteredData.map((item: Promo) => (
+                <div
+                  key={item.id}
+                  className="bg-white w-full rounded-lg flex flex-col justify-between cursor-pointer mb-4 shadow-lg overflow-hidden"
+                >
+                  {item.category === "LUCKY DRAW" ? (
+                    <Link href="/lucky-draw">
+                      <div>
+                        <Image
+                          src={`https://web.amscorp.id:3060/imagestorage/promo/${item.imageUrl}`}
+                          alt="reward"
+                          width={1240}
+                          height={1240}
+                          className="w-full h-auto rounded-t-lg"
+                        />
+                        <div className="p-4">
+                          <h2 className="font-bold text-sm">
+                            {item.promoTitle}
+                          </h2>
+                          <p className="text-xs text-gray-600">
+                            {item.promoLocation} |{" "}
+                            {formatDate(item.promoStartDate)} -{" "}
+                            {formatDate(item.promoEndDate)}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  ) : (
+                    <div onClick={() => showModal({ id: item.id })}>
+                      <Image
+                        src={`https://web.amscorp.id:3060/imagestorage/promo/${item.imageUrl}`}
+                        alt="reward"
+                        width={1240}
+                        height={1240}
+                        className="w-full h-auto rounded-t-lg"
+                      />
+                      <div className="p-4">
+                        <h2 className="font-bold text-sm">{item.promoTitle}</h2>
+                        <p className="text-xs text-gray-600">
+                          {item.promoLocation} |{" "}
+                          {formatDate(item.promoStartDate)} -{" "}
+                          {formatDate(item.promoEndDate)}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-center text-white">
-                  Promo tidak tersedia untuk kategori ini.
-                </p>
-              )
+                  )}
+                </div>
+              ))
             ) : (
-              <p className="text-center text-white">Promo tidak tersedia.</p>
+              <div className="text-center text-gray-700 py-10">
+                <p className="text-center text-white">Promo tidak tersedia</p>
+              </div>
             )}
           </div>
 
