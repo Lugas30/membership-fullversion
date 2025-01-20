@@ -132,6 +132,15 @@ export default function Redeem() {
   };
 
   const handlePinSubmit = async () => {
+    // Jika point 0
+    if (user.memberInfoData.points === 0) {
+      setErrorMessageRedeemPoint(true);
+      setTimeout(() => {
+        setErrorMessageRedeemPoint(false);
+      }, 3000);
+      return;
+    }
+
     if (!pin || pin.length < 6) {
       setPinErrorMessage("PIN harus terdiri dari 6 digit.");
       return;
@@ -172,57 +181,6 @@ export default function Redeem() {
       setPin("");
     }
   };
-
-  //Handel Submit Lama
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (selectedVoucher === null) {
-  //     setErrorMessage(true);
-  //     setTimeout(() => {
-  //       setErrorMessage(false);
-  //     }, 3000);
-  //     return;
-  //   }
-
-  //   setIsLoading(true);
-
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     const response = await axios.post(
-  //       `${process.env.NEXT_PUBLIC_API_URL}voucher/redeem`,
-  //       {
-  //         memberID: redeem.memberID,
-  //         voucher_code: redeem.voucher_code,
-  //         ip_address: redeem.ip_address,
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-
-  //     if (response.data.responseCode === "2002500") {
-  //       setVoucherRedeem(response.data.voucherData);
-  //       setIsModalVisible(true);
-  //     } else if (response.data.responseCode === "4003500") {
-  //       setErrorMessageRedeemPoint(true);
-  //       setTimeout(() => {
-  //         setErrorMessageRedeemPoint(false);
-  //       }, 3000);
-  //     } else if (response.data.responseCode === "4002500") {
-  //       setErrorMessageRedeemBatas(true);
-  //       setTimeout(() => {
-  //         setErrorMessageRedeemBatas(false);
-  //       }, 3000);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
