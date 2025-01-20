@@ -68,9 +68,9 @@ export default function TierInfo() {
       case 5:
         return 300;
       case 6:
-        return 350;
-      case 7:
         return 400;
+      case 7:
+        return 500;
       default:
         return 0;
     }

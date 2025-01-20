@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
@@ -17,6 +17,8 @@ import axios from "axios";
 import ErrorMessage from "@/components/ErrorMessage";
 import Vouchers from "./Vouchers";
 import Special from "./Special";
+import Input from "@/components/Input";
+import { set } from "date-fns";
 
 interface Voucher {
   id: number;
@@ -65,6 +67,10 @@ export default function Redeem() {
     voucher_code: "",
     ip_address: "",
   });
+
+  const [isPinModalVisible, setIsPinModalVisible] = useState(false);
+  const [pin, setPin] = useState("");
+  const [pinErrorMessage, setPinErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -121,18 +127,17 @@ export default function Redeem() {
     setRedeem((prev) => ({ ...prev, voucher_code: voucherCode }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (selectedVoucher === null) {
-      setErrorMessage(true);
-      setTimeout(() => {
-        setErrorMessage(false);
-      }, 3000);
+  const handleInputPinChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPin(e.target.value);
+  };
+
+  const handlePinSubmit = async () => {
+    if (!pin || pin.length < 6) {
+      setPinErrorMessage("PIN harus terdiri dari 6 digit.");
       return;
     }
 
     setIsLoading(true);
-
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -141,6 +146,7 @@ export default function Redeem() {
           memberID: redeem.memberID,
           voucher_code: redeem.voucher_code,
           ip_address: redeem.ip_address,
+          pin,
         },
         {
           headers: {
@@ -153,22 +159,79 @@ export default function Redeem() {
       if (response.data.responseCode === "2002500") {
         setVoucherRedeem(response.data.voucherData);
         setIsModalVisible(true);
-      } else if (response.data.responseCode === "4003500") {
-        setErrorMessageRedeemPoint(true);
-        setTimeout(() => {
-          setErrorMessageRedeemPoint(false);
-        }, 3000);
-      } else if (response.data.responseCode === "4002500") {
-        setErrorMessageRedeemBatas(true);
-        setTimeout(() => {
-          setErrorMessageRedeemBatas(false);
-        }, 3000);
+        setIsPinModalVisible(false);
+      } else if (response.data.responseCode === "4002501") {
+        setPinErrorMessage("PIN yang Anda masukkan salah.");
+        setIsPinModalVisible(true);
+        return;
       }
     } catch (error) {
       console.error(error);
     } finally {
       setIsLoading(false);
+      setPin("");
     }
+  };
+
+  //Handel Submit Lama
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (selectedVoucher === null) {
+  //     setErrorMessage(true);
+  //     setTimeout(() => {
+  //       setErrorMessage(false);
+  //     }, 3000);
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const response = await axios.post(
+  //       `${process.env.NEXT_PUBLIC_API_URL}voucher/redeem`,
+  //       {
+  //         memberID: redeem.memberID,
+  //         voucher_code: redeem.voucher_code,
+  //         ip_address: redeem.ip_address,
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+
+  //     if (response.data.responseCode === "2002500") {
+  //       setVoucherRedeem(response.data.voucherData);
+  //       setIsModalVisible(true);
+  //     } else if (response.data.responseCode === "4003500") {
+  //       setErrorMessageRedeemPoint(true);
+  //       setTimeout(() => {
+  //         setErrorMessageRedeemPoint(false);
+  //       }, 3000);
+  //     } else if (response.data.responseCode === "4002500") {
+  //       setErrorMessageRedeemBatas(true);
+  //       setTimeout(() => {
+  //         setErrorMessageRedeemBatas(false);
+  //       }, 3000);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedVoucher) {
+      setErrorMessage(true);
+      setTimeout(() => setErrorMessage(false), 3000);
+      return;
+    }
+    setIsPinModalVisible(true);
   };
 
   if (!user || !data) {
@@ -261,7 +324,9 @@ export default function Redeem() {
               <div className="bg-white w-full max-w-md shadow-lg rounded-lg">
                 <div className="flex justify-end items-center p-4">
                   <button
-                    onClick={() => setIsModalVisible(false)}
+                    onClick={() => {
+                      setIsModalVisible(false);
+                    }}
                     className="text-black"
                   >
                     &#10005;
@@ -370,6 +435,52 @@ export default function Redeem() {
                       />
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Modal input PIN */}
+          {isPinModalVisible && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
+              <div className="bg-white w-full max-w-md shadow-lg p-6 rounded-t-2xl">
+                <div className="flex justify-end items-center mb-4">
+                  <button
+                    onClick={() => {
+                      setIsPinModalVisible(false),
+                        setPinErrorMessage(""),
+                        setPin("");
+                    }}
+                    className="text-black"
+                  >
+                    &#10005;
+                  </button>
+                </div>
+                <h2 className="text-center text-lg mb-5">Masukkan PIN</h2>
+                {/* Pesan Error */}
+                {pinErrorMessage && (
+                  <div className="text-red-500 text-sm text-center mb-4 fontMon">
+                    {pinErrorMessage}
+                  </div>
+                )}
+                <Input
+                  type="password"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  name="pin"
+                  value={pin}
+                  maxLength={6}
+                  onChange={handleInputPinChange}
+                  className="pb-10 w-2/3 mx-auto text-center"
+                  placeholder="6-digit PIN"
+                />
+                <div className="flex justify-center">
+                  <Button
+                    type="submit"
+                    label="Submit"
+                    onClick={handlePinSubmit}
+                    className="bg-base-accent text-white"
+                  />
                 </div>
               </div>
             </div>

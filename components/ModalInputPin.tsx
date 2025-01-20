@@ -15,12 +15,14 @@ type ModalInputPinProps = {
   handleCheckPin: (e: FormEvent<HTMLFormElement>) => void;
   closeModal: () => void;
   errorMessage: boolean;
+  maxLength: number;
 };
 
 const ModalInputPin: FC<ModalInputPinProps> = ({
   pin,
   setPin,
   handleCheckPin,
+  maxLength,
   closeModal,
   errorMessage,
 }) => {
@@ -54,6 +56,7 @@ const ModalInputPin: FC<ModalInputPinProps> = ({
               inputMode="numeric"
               pattern="[0-9]*"
               name="pin"
+              maxLength={maxLength}
               value={pin}
               onChange={handleInputPinChange}
               className="mb-4"
