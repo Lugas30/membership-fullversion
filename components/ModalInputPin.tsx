@@ -15,7 +15,7 @@ type ModalInputPinProps = {
   handleCheckPin: (e: FormEvent<HTMLFormElement>) => void;
   closeModal: () => void;
   errorMessage: boolean;
-  maxLength: number;
+  maxLength?: number;
 };
 
 const ModalInputPin: FC<ModalInputPinProps> = ({

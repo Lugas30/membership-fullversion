@@ -176,6 +176,7 @@ export default function Page() {
               handleCheckPin={handleCheckPin}
               closeModal={closeModal}
               errorMessage={errorMessage}
+              maxLength={6}
             />
           )}
 
