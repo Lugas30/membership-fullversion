@@ -132,15 +132,6 @@ export default function Redeem() {
   };
 
   const handlePinSubmit = async () => {
-    // Jika point 0
-    if (user.memberInfoData.points === 0) {
-      setErrorMessageRedeemPoint(true);
-      setTimeout(() => {
-        setErrorMessageRedeemPoint(false);
-      }, 3000);
-      return;
-    }
-
     if (!pin || pin.length < 6) {
       setPinErrorMessage("PIN harus terdiri dari 6 digit.");
       return;
@@ -173,6 +164,8 @@ export default function Redeem() {
         setPinErrorMessage("PIN yang Anda masukkan salah.");
         setIsPinModalVisible(true);
         return;
+      } else {
+        setErrorMessageRedeemPoint(true);
       }
     } catch (error) {
       console.error(error);
