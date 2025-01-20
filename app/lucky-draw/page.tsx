@@ -2,6 +2,7 @@
 
 import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
+import Input from "@/components/Input";
 import SuccessMessage from "@/components/SuccessMessage";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
@@ -10,7 +11,7 @@ import { getLucky } from "@/redux/thunks/luckyThunks";
 import formatToIDR from "@/utils/formatToIDR";
 import axios from "axios";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
 
@@ -47,6 +48,10 @@ export default function Page() {
     token: "",
   });
 
+  const [isPinModalVisible, setIsPinModalVisible] = useState(false);
+  const [pin, setPin] = useState("");
+  const [pinErrorMessage, setPinErrorMessage] = useState<string | null>(null);
+
   const [errorMessageRedeem, setErrorMessageRedeem] = useState(false);
   const [successMessageRedeem, setSuccessMessageRedeem] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -65,7 +70,21 @@ export default function Page() {
     }
   }, [dispatch]);
 
-  const handleRedeem = async () => {
+  const handleInputPinChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPin(e.target.value);
+    setPinErrorMessage(null);
+  };
+
+  const handleSubmit = () => {
+    setIsPinModalVisible(true);
+  };
+
+  const handlePinSubmit = async () => {
+    if (!pin || pin.length < 6) {
+      setPinErrorMessage("PIN harus terdiri dari 6 digit.");
+      return;
+    }
+
     setIsLoading(true);
     try {
       const token = localStorage.getItem("token");
@@ -75,6 +94,7 @@ export default function Page() {
           memberID: redeem.memberID,
           voucher_code: data.voucherData.voucherCode,
           ip_address: redeem.ip_address,
+          pin: pin,
         },
         {
           headers: {
@@ -89,15 +109,20 @@ export default function Page() {
         setTimeout(() => {
           setSuccessMessageRedeem(false);
         }, 3000);
-      } else if (response.data.responseCode === "4002500") {
-        setErrorMessageRedeem(true);
-        setTimeout(() => {
-          setErrorMessageRedeem(false);
-        }, 3000);
+        setIsPinModalVisible(false);
+      } else if (response.data.responseCode === "4002501") {
+        setPinErrorMessage("PIN yang Anda masukkan salah.");
+        setIsPinModalVisible(true);
+        return;
+      } else {
+        setPinErrorMessage("Poin anda tidak mencukupi.");
+        setIsPinModalVisible(true);
+        return;
       }
     } catch (error) {
       console.error(error);
     } finally {
+      setPin("");
       setIsLoading(false);
     }
   };
@@ -177,7 +202,7 @@ export default function Page() {
               <div className="flex justify-center">
                 <Button
                   label="TUKAR KUPON"
-                  onClick={handleRedeem}
+                  onClick={handleSubmit}
                   type="button"
                   className="bg-base-accent text-white"
                   loading={isLoading}
@@ -254,6 +279,53 @@ export default function Page() {
           </div>
         )}
       </div>
+
+      {/* Modal input PIN */}
+      {isPinModalVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
+          <div className="bg-white w-full max-w-md shadow-lg p-6 rounded-t-2xl">
+            <div className="flex justify-end items-center mb-4">
+              <button
+                onClick={() => {
+                  setIsPinModalVisible(false),
+                    setPinErrorMessage(""),
+                    setPin("");
+                }}
+                className="text-black"
+              >
+                &#10005;
+              </button>
+            </div>
+            <h2 className="text-center text-lg mb-5">Masukkan PIN</h2>
+            {/* Pesan Error */}
+            {pinErrorMessage && (
+              <div className="text-red-500 text-sm text-center mb-4 fontMon">
+                {pinErrorMessage}
+              </div>
+            )}
+            <Input
+              type="password"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              name="pin"
+              value={pin}
+              maxLength={6}
+              onChange={handleInputPinChange}
+              className="pb-10 w-2/3 mx-auto text-center"
+              placeholder="6-digit PIN"
+            />
+            <div className="flex justify-center">
+              <Button
+                type="submit"
+                label="Submit"
+                onClick={handlePinSubmit}
+                className="bg-base-accent text-white"
+                loading={isLoading}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
