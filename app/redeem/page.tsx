@@ -166,6 +166,7 @@ export default function Redeem() {
         return;
       } else {
         setErrorMessageRedeemPoint(true);
+        setIsPinModalVisible(false);
       }
     } catch (error) {
       console.error(error);
