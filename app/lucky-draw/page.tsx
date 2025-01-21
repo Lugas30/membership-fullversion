@@ -110,6 +110,8 @@ export default function Page() {
           setSuccessMessageRedeem(false);
         }, 3000);
         setIsPinModalVisible(false);
+        // panggil ulang data lucky list
+        dispatch(getLuckyList());
       } else if (response.data.responseCode === "4002501") {
         setPinErrorMessage("PIN yang Anda masukkan salah.");
         setIsPinModalVisible(true);
@@ -298,11 +300,11 @@ export default function Page() {
             </div>
             <h2 className="text-center text-lg mb-5">Masukkan PIN</h2>
             {/* Pesan Error */}
-            {pinErrorMessage && (
-              <div className="text-red-500 text-sm text-center mb-4 fontMon">
-                {pinErrorMessage}
-              </div>
-            )}
+            {pinErrorMessage && <ErrorMessage message={pinErrorMessage} />}
+
+            <p className="text-gray-600 my-4 text-center text-xs fontMon">
+              Masukkan 6 digit angka PIN anda
+            </p>
             <Input
               type="password"
               inputMode="numeric"
@@ -312,7 +314,6 @@ export default function Page() {
               maxLength={6}
               onChange={handleInputPinChange}
               className="pb-10 w-2/3 mx-auto text-center"
-              placeholder="6-digit PIN"
             />
             <div className="flex justify-center">
               <Button

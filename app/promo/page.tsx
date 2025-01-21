@@ -205,10 +205,8 @@ export default function Promo() {
                           className="w-full h-auto rounded-t-lg"
                         />
                         <div className="p-4">
-                          <h2 className="font-bold text-sm">
-                            {item.promoTitle}
-                          </h2>
-                          <p className="text-xs text-gray-600">
+                          <h2 className="text-sm mb-1">{item.promoTitle}</h2>
+                          <p className="text-[10px] text-gray-600 fontMon">
                             {item.promoLocation} |{" "}
                             {formatDate(item.promoStartDate)} -{" "}
                             {formatDate(item.promoEndDate)}
@@ -226,8 +224,8 @@ export default function Promo() {
                         className="w-full h-auto rounded-t-lg"
                       />
                       <div className="p-4">
-                        <h2 className="font-bold text-sm">{item.promoTitle}</h2>
-                        <p className="text-xs text-gray-600">
+                        <h2 className="text-sm mb-1">{item.promoTitle}</h2>
+                        <p className="text-[10px] text-gray-600 fontMon">
                           {item.promoLocation} |{" "}
                           {formatDate(item.promoStartDate)} -{" "}
                           {formatDate(item.promoEndDate)}
@@ -263,10 +261,8 @@ export default function Promo() {
                   className="logo"
                 />
 
-                <div className="p-4">
-                  <h2 className="font-bold text-center my-3">
-                    {detail?.promoTitle}
-                  </h2>
+                <div className="p-6">
+                  <h2 className="text-center my-3">{detail?.promoTitle}</h2>
 
                   {/* Daftar produk */}
                   <div className="my-6">
@@ -287,44 +283,58 @@ export default function Promo() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
               <div className="bg-white w-full max-w-md shadow-lg rounded-lg">
                 <div className="flex justify-between items-center p-4">
-                  <span>Filter Promo</span>
+                  <span className="text-[10px] uppercase tracking-wider fontMon">
+                    Filter Promo
+                  </span>
                   <button onClick={closeFilterModal} className="text-black">
                     &#10005;
                   </button>
                 </div>
 
                 <form onSubmit={handleFilter} className="p-4">
-                  <span className="text-xs">Brand</span>
-                  <div className="flex flex-wrap items-center gap-2 justify-between mt-2 mb-4">
-                    {brand.brandData.map((item: Brand) => (
-                      <div key={item.id} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="brand"
-                          value={item.brand}
-                          onChange={(e) => handleCheckboxChange(e, "brand")}
-                        />
-                        <span className="text-xs ml-1">{item.brand}</span>
+                  <div className="flex flex-row gap-10">
+                    <div className="">
+                      <span className="text-xs">Brand</span>
+                      <div className="flex flex-col gap-2 mt-3">
+                        {brand.brandData.map((item: Brand) => (
+                          <div key={item.id} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              name="brand"
+                              value={item.brand}
+                              onChange={(e) => handleCheckboxChange(e, "brand")}
+                            />
+                            <span className="text-xs ml-1">{item.brand}</span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                  <span className="text-xs">Kategori</span>
-                  <div className="flex flex-wrap items-center gap-2 mt-2">
-                    {category.categoryPromoData.map((item: CategoryPromo) => (
-                      <div key={item.id} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="category"
-                          value={item.category}
-                          onChange={(e) => handleCheckboxChange(e, "category")}
-                        />
-                        <span className="text-xs ml-1">
-                          {capitalizeWords(item.category)}
-                        </span>
+                    </div>
+
+                    <div className="">
+                      <span className="text-xs">Kategori</span>
+                      <div className="flex flex-col gap-2 mt-3">
+                        {category.categoryPromoData.map(
+                          (item: CategoryPromo) => (
+                            <div key={item.id} className="flex items-center">
+                              <input
+                                type="checkbox"
+                                name="category"
+                                value={item.category}
+                                onChange={(e) =>
+                                  handleCheckboxChange(e, "category")
+                                }
+                              />
+                              <span className="text-xs ml-1">
+                                {capitalizeWords(item.category)}
+                              </span>
+                            </div>
+                          )
+                        )}
                       </div>
-                    ))}
+                    </div>
                   </div>
-                  <div className="flex justify-center p-4">
+
+                  <div className="flex justify-center py-5">
                     <Button
                       label="Terapkan"
                       className="bg-base-accent text-white"

@@ -161,7 +161,9 @@ export default function HistoryTier() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
               <div className="bg-white w-full max-w-md shadow-lg rounded-lg">
                 <div className="flex justify-between items-center p-4">
-                  <span>Filter Tier</span>
+                  <span className="text-[10px] fontMon uppercase tracking-wider">
+                    Filter Tier
+                  </span>
                   <button onClick={closeFilterModal} className="text-black">
                     &#10005;
                   </button>
@@ -170,11 +172,11 @@ export default function HistoryTier() {
                 <form onSubmit={handleFilter}>
                   <div className="p-4">
                     <div className="flex flex-col gap-2 mb-4">
-                      <label className="text-sm font-medium text-gray-700">
+                      <label className="text-sm font-medium text-gray-700 mb-2">
                         Status Tier
                       </label>
                       <div className="flex gap-4 justify-evenly mb-4">
-                        <label className="flex items-center gap-2 cursor-pointer">
+                        <label className="flex text-sm uppercase items-center gap-2 cursor-pointer">
                           <input
                             type="radio"
                             name="status"
@@ -184,7 +186,7 @@ export default function HistoryTier() {
                           />
                           <span>All</span>
                         </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
+                        <label className="flex text-sm uppercase items-center gap-2 cursor-pointer">
                           <input
                             type="radio"
                             name="status"
@@ -194,7 +196,7 @@ export default function HistoryTier() {
                           />
                           <span>Naik</span>
                         </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
+                        <label className="flex text-sm uppercase items-center gap-2 cursor-pointer">
                           <input
                             type="radio"
                             name="status"

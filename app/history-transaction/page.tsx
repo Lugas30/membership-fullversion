@@ -359,7 +359,9 @@ export default function HistoryTransaction() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
               <div className="bg-white w-full max-w-md shadow-lg rounded-lg">
                 <div className="flex justify-between items-center p-4">
-                  <span>Filter Transaksi</span>
+                  <span className="text-[10px] fontMon uppercase tracking-wider">
+                    Filter Transaksi
+                  </span>
                   <button onClick={closeModalFilter} className="text-black">
                     &#10005;
                   </button>

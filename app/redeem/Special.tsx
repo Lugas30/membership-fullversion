@@ -35,7 +35,7 @@ const Special: FC<Voucher> = ({
         {data.map((voucher: VoucherData) => (
           <div
             key={voucher.id}
-            className={`px-4 py-2 border cursor-pointer text-center text-xs ${
+            className={`p-5 rounded-xl border cursor-pointer text-center text-xs ${
               selectedVoucher === voucher.voucherCode
                 ? "bg-base-accent text-white"
                 : "hover:bg-gray-100"
@@ -49,7 +49,13 @@ const Special: FC<Voucher> = ({
                   Rp {formatToIDR(voucher.nominal)}
                 </span>
               </div>
-              <span> {formatToIDR(voucher.pointVoucher)} Poin</span>
+              <span className="text-sm">
+                {" "}
+                {formatToIDR(voucher.pointVoucher)}{" "}
+                <span className="fontMon uppercase text-[8px] tracking-widest">
+                  Poin
+                </span>
+              </span>
             </div>
           </div>
         ))}

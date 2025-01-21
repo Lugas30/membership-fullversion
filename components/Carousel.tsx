@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
+// import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/redux/hooks";
@@ -48,9 +48,9 @@ const Carousel: React.FC = () => {
               <Image
                 src={`https://web.amscorp.id:3060/imagestorage/promo/${item.imageUrl}`}
                 alt={`Image ${item.id}`}
-                className="w-full h-auto rounded-lg"
-                width={500}
-                height={500}
+                className="w-full h-auto rounded-lg min-h-[183px] max-h-[184px]"
+                width={400}
+                height={184}
               />
             </SwiperSlide>
           ))}

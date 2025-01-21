@@ -100,7 +100,7 @@ export default function Page() {
                 alt={`${user.memberInfoData.tierInfo.cardImage}`}
                 width={500}
                 height={500}
-                className="logo shadow w-full h-auto"
+                className="logo shadow w-full h-auto min-h-[236px]"
               />
               <div className="absolute inset-0 flex flex-col items-start justify-start z-10 p-4">
                 <span className="text-sm text-white mb-1 normal-case">

@@ -103,7 +103,7 @@ export default function Page() {
           ) : (
             <></>
           )}
-          <div className="flex justify-between items-center p-8">
+          <div className="flex justify-between items-center px-8 pt-8 pb-5">
             <span className="text-lg text-white normal-case">
               {toNormalCase(user.memberInfoData.fullName)}
             </span>

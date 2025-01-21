@@ -249,16 +249,16 @@ export default function Store() {
                   ></div>
 
                   <div className="flex flex-col items-center justify-center mb-4">
-                    <span className="text-sm font-semibold">Alamat</span>
-                    <p className="text-xs text-center my-2">
+                    <span className="text-sm">Alamat</span>
+                    <p className="text-[10px] fontMon text-center my-2">
                       {detail?.storeAddress}
                     </p>
                   </div>
 
                   <div className="flex flex-col items-center justify-center mb-6">
-                    <span className="text-sm font-semibold mb-2">Jam Toko</span>
-                    <p className="text-xs">Senin - Sabtu</p>
-                    <p className="text-xs">10.00 - 22.00</p>
+                    <span className="text-sm mb-2">Jam Toko</span>
+                    <p className="text-[10px] fontMon">Senin - Sabtu</p>
+                    <p className="text-[10px] fontMon">10.00 - 22.00</p>
                   </div>
 
                   <Button
@@ -276,14 +276,16 @@ export default function Store() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
               <div className="bg-white w-full max-w-md shadow-lg rounded-lg">
                 <div className="flex justify-between items-center p-5">
-                  <span>Filter Brand</span>
+                  <span className="text-[10px] fontMon uppercase tracking-wider">
+                    Filter Brand
+                  </span>
                   <button onClick={closeFilterModal} className="text-black">
                     &#10005;
                   </button>
                 </div>
 
                 <form onSubmit={handleFilter}>
-                  <div className="p-5">
+                  <div className="px-5 pb-5">
                     {brand.brandData.map((item: Brand) => (
                       <div key={item.id} className="flex items-center mb-2">
                         <div className="flex items-center">

@@ -35,3 +35,19 @@ body {
 select {
   background: white;
 }
+
+/* Ubah ukuran bullet */
+.swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+}
+
+/* Ubah warna bullet */
+.swiper-pagination-bullet {
+  background-color: #000000; /* Warna default bullet */
+}
+
+/* Ubah warna bullet saat aktif */
+.swiper-pagination-bullet-active {
+  background-color: #ff4500; /* Warna bullet aktif */
+}
