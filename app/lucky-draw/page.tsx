@@ -143,8 +143,8 @@ export default function Page() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg">
+    <div className="flex justify-center items-center">
+      <div className="flex flex-col items-center w-full max-w-md min-h-screen bg-white md:rounded-lg">
         {data && data.voucherData ? (
           <div className="bg-white w-full max-w-md shadow-lg relative">
             {/* Header */}
@@ -170,29 +170,34 @@ export default function Page() {
             />
 
             {/* Content Section */}
-            <div className="p-4">
+            <div className="p-6">
               <h2 className="font-bold text-center my-3">
                 {data.voucherData.voucherTitle}
               </h2>
 
               {/* Description */}
               <div className="my-6">
-                <p className="text-xs text-center">
-                  {data.voucherData.voucherDetail}
-                </p>
+                <div
+                  className="text-xs leading-5"
+                  dangerouslySetInnerHTML={{
+                    __html: decodeURIComponent(data.voucherData.voucherDetail),
+                  }}
+                />
               </div>
 
               {/* Terms & Conditions */}
-              <div className="flex flex-col items-center justify-center my-4">
-                <span className="text-sm font-semibold">Terms & Condition</span>
-                <ol className="text-xs my-2 text-center list-decimal list-inside">
-                  <li>Lorem ipsum dolloret sit amet bla bla..</li>
-                  <li>Voucher discount hanya dapat digunakan satu kali</li>
-                  <li>Voucher discount hanya dapat digunakan satu kali</li>
-                  <li>Voucher discount hanya dapat digunakan satu kali</li>
-                  <li>Voucher discount hanya dapat digunakan satu kali</li>
-                </ol>
-              </div>
+              {/* <div className="flex flex-col items-center justify-center my-4">
+                  <span className="text-sm font-semibold">
+                    Terms & Condition
+                  </span>
+                  <ol className="text-xs my-2 text-center list-decimal list-inside">
+                    <li>Lorem ipsum dolloret sit amet bla bla..</li>
+                    <li>Voucher discount hanya dapat digunakan satu kali</li>
+                    <li>Voucher discount hanya dapat digunakan satu kali</li>
+                    <li>Voucher discount hanya dapat digunakan satu kali</li>
+                    <li>Voucher discount hanya dapat digunakan satu kali</li>
+                  </ol>
+                </div> */}
 
               {/* Points Section */}
               <div className="flex justify-center items-center mb-4">

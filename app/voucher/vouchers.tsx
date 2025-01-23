@@ -55,84 +55,98 @@ export default function Vouchers() {
     return <p>Error: {error}</p>;
   }
 
+  // Function to check if the voucher has expired
+  const isVoucherExpired = (expiryDate: string) => {
+    const today = new Date();
+    const expiry = new Date(expiryDate.split("/").reverse().join("-"));
+    return expiry < today;
+  };
+
   return (
     <>
       {/* Card */}
       {data && data.voucherData ? (
         data.voucherData.length > 0 &&
-        data.voucherData.map((item: Voucher) => (
-          <div
-            className={`${
-              item.category == "VCR"
-                ? "bg-[#E0DDD4]"
-                : "bg-[#131010] text-white"
-            } w-full max-w-md rounded-lg p-6 flex flex-col justify-between space-y-4 shadow-md mb-4 cursor-pointer`}
-            key={item.id}
-            onClick={() => handleShowVoucher(item.noVoucher)}
-          >
-            <div className="flex justify-between items-start">
-              <div className="flex flex-col">
-                <span className="text-sm">
-                  {item.category == "VCR" ? "Voucher" : "Voucher Special"}
-                </span>
-                <div className="">
-                  <span
-                    className={`text-sm ${
-                      item.category == "VCR" ? "text-[#131010]" : "text-white"
-                    }`}
-                  >
-                    Code :{" "}
+        data.voucherData.map((item: Voucher) => {
+          const expired = isVoucherExpired(item.tanggalExpired);
+          return (
+            <div
+              className={`${
+                expired
+                  ? "bg-[#131010] text-white opacity-50 disabled cursor-not-allowed" // Disabled card styles
+                  : item.category == "VCR"
+                  ? "bg-[#E0DDD4]"
+                  : "bg-[#131010] text-white"
+              } w-full max-w-md rounded-lg p-6 flex flex-col justify-between space-y-4 shadow-md mb-4 cursor-pointer`}
+              key={item.id}
+              onClick={() => !expired && handleShowVoucher(item.noVoucher)} // Disable click if expired
+            >
+              <div className="flex justify-between items-start">
+                <div className="flex flex-col">
+                  <span className="text-sm">
+                    {item.category == "VCR" ? "Voucher" : "Voucher Special"}
                   </span>
-                  <span className="text-sm">{item.noVoucher}</span>
+                  <div className="">
+                    <span
+                      className={`text-sm ${
+                        item.category == "VCR" ? "text-[#131010]" : "text-white"
+                      }`}
+                    >
+                      Code :{" "}
+                    </span>
+                    <span className="text-sm">{item.noVoucher}</span>
+                  </div>
                 </div>
+                {item.category == "VCR" ? (
+                  <Image
+                    src="/images/logo.svg"
+                    width={50}
+                    height={50}
+                    alt="logo"
+                  />
+                ) : (
+                  <Image
+                    src="/images/logo-white.svg"
+                    width={50}
+                    height={50}
+                    alt="logo"
+                  />
+                )}
               </div>
-              {item.category == "VCR" ? (
-                <Image
-                  src="/images/logo.svg"
-                  width={50}
-                  height={50}
-                  alt="logo"
-                />
-              ) : (
-                <Image
-                  src="/images/logo-white.svg"
-                  width={50}
-                  height={50}
-                  alt="logo"
-                />
-              )}
-            </div>
 
-            <div className="flex justify-end">
-              <h1
-                className={`text-xl font-bold ${
-                  item.category == "VCR" ? "text-[#131010]" : "text-white"
-                }`}
-              >
-                Rp {formatToIDR(item.nominal)}
-              </h1>
-            </div>
+              <div className="flex justify-end">
+                <h1
+                  className={`text-xl font-bold ${
+                    item.category == "VCR" ? "text-[#131010]" : "text-white"
+                  }`}
+                >
+                  Rp {formatToIDR(item.nominal)}
+                </h1>
+              </div>
 
-            <div className="flex justify-between items-center">
-              <span
-                className={`text-xs ${
-                  item.category == "VCR" ? "text-[#131010]" : "text-white"
-                }`}
-              >
-                <Countdown targetDate={item.tanggalExpired} />
-              </span>
-              <Barcode
-                value={item.noVoucher}
-                displayValue={false}
-                height={20}
-                margin={0}
-                width={1}
-                lineColor={`${item.category == "VCR" ? "#131010" : "#F8FAFC"}`}
-                background="transparent"
-              />
+              <div className="flex justify-between items-center">
+                <span
+                  className={`text-xs ${
+                    item.category == "VCR" ? "text-[#131010]" : "text-white"
+                  }`}
+                >
+                  <Countdown targetDate={item.tanggalExpired} />
+                </span>
+                <Barcode
+                  value={item.noVoucher}
+                  displayValue={false}
+                  height={20}
+                  margin={0}
+                  width={1}
+                  lineColor={`${
+                    item.category == "VCR" ? "#131010" : "#F8FAFC"
+                  }`}
+                  background="transparent"
+                />
+              </div>
             </div>
-          </div>
-        ))
+          );
+        })
       ) : (
         <p className="text-center text-gray-500">Belum memiliki voucher.</p>
       )}

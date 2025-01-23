@@ -102,6 +102,7 @@ export default function Redeem() {
           isLoading={isLoading}
           selectedVoucher={selectedVoucher}
           data={filterData}
+          userPoints={user.memberInfoData.points}
         />
       );
     }

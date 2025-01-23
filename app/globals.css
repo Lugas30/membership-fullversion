@@ -51,3 +51,9 @@ select {
 .swiper-pagination-bullet-active {
   background-color: #ff4500; /* Warna bullet aktif */
 }
+
+ol,
+li {
+  list-style-type: decimal;
+  list-style-position: inside;
+}

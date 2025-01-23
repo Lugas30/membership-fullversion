@@ -54,7 +54,8 @@ export default function Page() {
   }
 
   const handlePopUpQr = () => {
-    setIsModalVisible(true);
+    // setIsModalVisible(true);
+    setIsShowQr(true);
   };
 
   const closeModal = () => {
