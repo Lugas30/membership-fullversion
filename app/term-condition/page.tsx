@@ -30,12 +30,15 @@ export default function TermCondition() {
               Harap membaca dengan seksama dan memahami syarat dan ketentuan AMS
               Membership
             </p>
+            <p className="text-[10px] text-center tracking-wider fontMon leading-relaxed">
+              Terakhir diupdate: 23 Januari 2025
+            </p>
           </div>
 
           {/* content */}
           <div className="p-8">
             {/* content */}
-            <h2 className="text-lg font-bold mb-5">SYARAT DAN KETENTUAN</h2>
+            <h2 className="text-base mb-5">SYARAT DAN KETENTUAN MEMBERSHIP</h2>
             <div className="text-[10px] fontMon">
               Selamat datang di AMS Membership, layanan resmi untuk Member AMS,
               yaitu program membership dari PT Aditya Mandiri Sejahtera yang
@@ -43,116 +46,169 @@ export default function TermCondition() {
               Misssissippi Ladies, dan Queensland. Harap membaca dan memahami
               syarat dan ketentuan AMS Membership ini karena syarat dan
               ketentuan ini mengatur penggunaan Anda atas program dan layanan
-              sebagai Member AMS. Layanan kami memungkinkan Anda dalam membuat
-              akun, menautkannya, dan menyediakan informasi, teks, grafik, atau
-              lainnya tertentu. Setelah mendaftar sebagai member AMS, Anda
-              menyetujui ketentuan sebagai kontrak yang mengikat secara hukum.
-              Harap baca ketentuan ini dengan cermat sebelum menggunakan Layanan
-              AMS Membership. Akses dan penggunaan Layanan bergantung pada
-              penerimaan dan kepatuhan Anda terhadap ketentuan ini. Ketentuan
-              ini berlaku untuk semua pengunjung, pengguna, dan pihak lain yang
-              mengakses atau menggunakan Layanan. Keputusan untuk tidak
-              menyetujui ketentuan ini akan berdampak pada pemutusan layanan
-              yang kami berikan kepada Anda. Integritas Data Semua data dan
-              informasi yang Anda sampaikan kepada kami melalui Platform, kami
-              anggap sebagai data dan informasi yang benar serta akurat. Oleh
-              karenanya Anda bertanggung jawab untuk membarui atau mengoreksi
-              informasi dan data tersebut jika terdapat perubahan. Ketentuan
-              Dasar • Untuk menggunakan aplikasi ini, Anda wajib berumur 17
-              tahun ke atas. • Keanggotaan Anda tidak dapat dipindahtangankan. •
-              Tidak disarankan untuk membagikan nama pengguna dan kata sandi
-              kepada orang lain, atau mengizinkan orang lain untuk mengakses
-              Layanan menggunakan nama pengguna dan kata sandi Anda. • Anda
-              bertanggung jawab atas setiap penggunaan Layanan yang terjadi
-              sehubungan dengan nomor anggota dan kata sandi atau PIN. • Silakan
-              informasikan kepada kami apabila melihat adanya penggunaan tidak
-              sah atas nomor keanggotaan atau kata sandi/PIN Anda. • Tidak
-              diperbolehkan menggunakan aplikasi untuk tujuan ilegal atau tidak
-              sah. • Dalam menggunakan Layanan ini, Anda tidak diperbolehkan
-              menggunakan alamat email palsu, meniru identitas orang lain, atau
-              menggambarkan afiliasi palsu dengan pihak lain. • Dilarang
-              memodifikasi, mengadaptasi, atau meretas Aplikasi/Website AMS
-              (“App”), atau memodifikasi aplikasi lain untuk memberikan kesan
-              palsu bahwa aplikasi tersebut berkaitan dengan AMS. • Tidak
-              diperbolehkan mengakses AMS Membership dengan cara apa pun selain
-              Aplikasi/Website resmi yang telah disediakan. • Tidak
-              diperbolehkan untuk mencoba mengganggu atau mengubah operasi
-              Aplikasi/Website dengan cara apa pun (misalnya: menyerang server,
-              memasukkan virus, bom waktu, trojan horse, worm, cancelbot, atau
-              rutinitas komputer lainnya yang bersifat merusak). • Tidak
-              diperbolehkan memposting foto yang mempromosikan rasisme,
-              pornografi, atau yang mendiskreditkan orang atau institusi mana
-              pun sebagai foto profil. • Tidak diperbolehkan menggunakan
-              Aplikasi atau Layanan dengan cara yang melanggar hukum yang
-              berlaku, melanggar kekayaan intelektual pihak ketiga atau hak
-              lainnya, atau dengan cara yang menipu, tidak senonoh, menyinggung,
-              atau memfitnah. • PT Aditya Mandiri Sejahtera tidak bertanggung
-              jawab atas kerugian yang dihasilkan dari segala bentuk pelanggaran
-              dari ketentuan yang telah disebutkan pada Syarat dan Ketentuan
-              ini. • Pelanggaran terhadap perjanjian ini akan mengakibatkan
-              penghentian akun AMS Membership. • Dalam hal kami menghentikan
-              keanggotaan karena alasan apa pun, semua Poin AMS Membership akan
-              hangus. Kondisi umum • Kami berhak untuk mengubah atau
-              menghentikan Layanan dengan alasan apa pun, tanpa pemberitahuan
-              kapan pun. • Kami berhak mengubah ketentuan penggunaan ini kapan
-              saja. Jika hal tersebut merupakan perubahan material, kami akan
-              memberitahu melalui alamat email atau nomor telepon yang tercantum
-              pada profil Anda. Apa yang dimaksud dengan "perubahan material"
-              akan ditentukan berdasarkan kebijakan kami sendiri, dengan itikad
-              baik, dan menggunakan akal sehat serta penilaian yang masuk akal.
-              • Kami berhak untuk menolak Layanan kepada siapa pun dan kapan
-              pun, apabila ditemukan indikasi yang akan membawa dampak buruk
-              terhadap setiap pihak. • Kami berhak untuk memaksa pencabutan
-              keanggotaan apa pun yang menjadi tidak aktif, melanggar ketentuan
-              kami, atau dapat menyesatkan anggota lain. Ganti Rugi Anda
-              bertanggung jawab dan akan mengganti kerugian serta melepaskan
-              kami dari segala denda, hukuman, kewajiban, dan kerugian lainnya
-              terhadap segala klaim yang timbul dari: a. Pelanggaran Anda
-              terhadap syarat dan ketentuan ini; b. Kesalahan atau penipuan atau
-              kelalaian Anda; atau c. Pelanggaran Anda terhadap hak pihak ketiga
-              mana pun. Komunikasi Elektronik Anda setuju bahwa segala
-              perjanjian, pemberitahuan dan komunikasi lain yang dikirimkan
-              kepada Anda secara elektronik adalah sah secara hukum dan dianggap
-              telah dikirim dan diterima oleh Anda saat dikirim ke Saluran
-              Komunikasi yang Anda berikan kepada kami. Kami dapat berkomunikasi
-              dengan Anda melalui surat, email, telepon, SMS, Platform, layanan
-              obrolan Over the Top (OTT) antara lain WhatsApp, Signal, Telegram,
-              dan lain-lain, atau melalui media sosial dan/atau saluran internet
-              digital (“Saluran Komunikasi”). Kami dapat menggunakan
-              sarana-sarana Saluran Komunikasi tersebut untuk menginformasikan
-              status akun Anggota Anda, memberitahukan Anda apabila memenuhi
-              syarat untuk program berhadiah, menginformasikan perubahan
-              program, menawarkan promosi khusus, informasi serta penawaran yang
-              kami anggap mungkin menarik untuk Anda, dan informasi lain apa pun
-              yang kami anggap perlu untuk diinformasikan kepada Anda. Kami akan
-              senantiasa menjaga data Anda sesuai dengan peraturan yang berlaku
-              di Indonesia. Ketersediaan Penggunaan Aplikasi dan Layanan
-              Aplikasi ini biasanya tersedia 24 jam sehari, tujuh hari seminggu.
-              Namun, kami mungkin perlu menghentikan atau menangguhkan akses ke
-              Layanan karena alasan pemeliharaan, teknis, atau lainnya. Saat
-              mengakses dan menggunakan Layanan, Anda diwajibkan untuk mematuhi
-              arahan, instruksi, atau protokol yang dipublikasikan di
-              Aplikasi/Website. Kami dengan senang hati menawarkan berbagai
-              Layanan di Aplikasi/Website, yang ingin kami kembangkan dan
-              tingkatkan secara berkala. Layanan dapat diperbarui, diubah, atau
-              dihapus sesuai kebijakan kami, sehingga kami tidak dapat menjamin
-              bahwa Layanan tertentu akan selalu tersedia di Aplikasi/Website.
-              Mengaktifkan dan Menonaktifkan Lokasi Kami membutuhkan Anda untuk
-              mengaktifkan lokasi guna mengidentifikasi toko terdekat dengan
-              dan/atau mengirimi materi promosi terkait toko terdekat. Informasi
-              ini bersifat opsional, dan Anda dapat memilih untuk menonaktifkan
-              lokasi. Penghasilan Poin Layanan ini berfungsi sebagai sarana
-              tanpa batasan, memantau saldo poin atau menggunakan poin melalui
-              penukaran poin. Untuk memproses perolehan poin apa pun, Anda harus
-              menginformasikan nomor keanggotaan Anda kepada penanggung jawab
-              transaksi, biasanya kasir di toko. Ketentuan Penghasilan Poin: a.
-              Anggota harus memberitahukan nomor ponsel yang aktif dan terdaftar
-              dalam Program ke kasir di toko sebelum transaksi pembelian untuk
-              mendapatkan Poin AMS Membership. b. Anggota akan memperoleh Poin
-              MAPCLUB dalam jumlah yang akan ditentukan dari waktu ke waktu
-              untuk setiap pembelanjaan di toko. Poin AMS Membership diberikan
-              berdasarkan harga bersih di luar pajak dan biaya layanan. c. Waktu
-              yang dibutuhkan untuk mengupdate saldo poin adalah 1 (satu) hari
+              sebagai Member AMS.
+              <br />
+              <br />
+              Layanan kami memungkinkan Anda dalam membuat akun, menautkannya,
+              dan menyediakan informasi, teks, grafik, atau lainnya tertentu.
+              Setelah mendaftar sebagai member AMS, Anda menyetujui ketentuan
+              sebagai kontrak yang mengikat secara hukum. Harap baca ketentuan
+              ini dengan cermat sebelum menggunakan Layanan AMS Membership.
+              <br />
+              <br />
+              Akses dan penggunaan Layanan bergantung pada penerimaan dan
+              kepatuhan Anda terhadap ketentuan ini. Ketentuan ini berlaku untuk
+              semua pengunjung, pengguna, dan pihak lain yang mengakses atau
+              menggunakan Layanan. Keputusan untuk tidak menyetujui ketentuan
+              ini akan berdampak pada pemutusan layanan yang kami berikan kepada
+              Anda.
+              <br />
+              <br />
+              <h2 className="text-sm my-5">Integritas Data </h2>
+              Semua data dan informasi yang Anda sampaikan kepada kami melalui
+              Platform, kami anggap sebagai data dan informasi yang benar serta
+              akurat. Oleh karenanya Anda bertanggung jawab untuk membarui atau
+              mengoreksi informasi dan data tersebut jika terdapat perubahan.
+              <br />
+              <br />
+              <h2 className="text-sm my-5">Ketentuan Dasar</h2>
+              <br />
+              <ul>
+                <li>
+                  • Untuk menggunakan aplikasi ini, Anda wajib berumur 17 tahun
+                  ke atas.
+                </li>
+                <li>• Keanggotaan Anda tidak dapat dipindahtangankan.</li>
+                <li>
+                  • Tidak disarankan untuk membagikan nama pengguna dan kata
+                  sandi kepada orang lain, atau mengizinkan orang lain untuk
+                  mengakses Layanan menggunakan nama pengguna dan kata sandi
+                  Anda.
+                </li>
+                <li>
+                  • Anda bertanggung jawab atas setiap penggunaan Layanan yang
+                  terjadi sehubungan dengan nomor anggota dan kata sandi atau
+                  PIN.
+                </li>
+                <li>
+                  • Silakan informasikan kepada kami apabila melihat adanya
+                  penggunaan tidak sah atas nomor keanggotaan atau kata
+                  sandi/PIN Anda.
+                </li>
+                <li>
+                  • Tidak diperbolehkan menggunakan aplikasi untuk tujuan ilegal
+                  atau tidak sah.
+                </li>
+                <li>
+                  • Dalam menggunakan Layanan ini, Anda tidak diperbolehkan
+                  menggunakan alamat email palsu, meniru identitas orang lain,
+                  atau menggambarkan afiliasi palsu dengan pihak lain.
+                </li>
+                <li>
+                  • Dilarang memodifikasi, mengadaptasi, atau meretas
+                  Aplikasi/Website AMS (“App”), atau memodifikasi aplikasi lain
+                  untuk memberikan kesan palsu bahwa aplikasi tersebut berkaitan
+                  dengan AMS.
+                </li>
+                <li>
+                  • Tidak diperbolehkan mengakses AMS Membership dengan cara apa
+                  pun selain Aplikasi/Website resmi yang telah disediakan.
+                </li>
+                <li>
+                  • Tidak diperbolehkan untuk mencoba mengganggu atau mengubah
+                  operasi Aplikasi/Website dengan cara apa pun (misalnya:
+                  menyerang server, memasukkan virus, bom waktu, trojan horse,
+                  worm, cancelbot, atau rutinitas komputer lainnya yang bersifat
+                  merusak).
+                </li>
+                <li>
+                  • Tidak diperbolehkan memposting foto yang mempromosikan
+                  rasisme, pornografi, atau yang mendiskreditkan orang atau
+                  institusi mana pun sebagai foto profil.
+                </li>
+                <li>
+                  • Tidak diperbolehkan menggunakan Aplikasi atau Layanan dengan
+                  cara yang melanggar hukum yang berlaku, melanggar kekayaan
+                  intelektual pihak ketiga atau hak lainnya, atau dengan cara
+                  yang menipu, tidak senonoh, menyinggung, atau memfitnah.
+                </li>
+                <li>
+                  • PT Aditya Mandiri Sejahtera tidak bertanggung jawab atas
+                  kerugian yang dihasilkan dari segala bentuk pelanggaran dari
+                  ketentuan yang telah disebutkan pada Syarat dan Ketentuan ini.
+                </li>
+                <li>
+                  • Pelanggaran terhadap perjanjian ini akan mengakibatkan
+                  penghentian akun AMS Membership.
+                </li>
+                <li>
+                  • Dalam hal kami menghentikan keanggotaan karena alasan apa
+                  pun, semua Poin AMS Membership akan hangus.
+                </li>
+              </ul>{" "}
+              <br />
+              <h2 className="text-sm my-5">Kondisi umum</h2>• Kami berhak untuk
+              mengubah atau menghentikan Layanan dengan alasan apa pun, tanpa
+              pemberitahuan kapan pun. • Kami berhak mengubah ketentuan
+              penggunaan ini kapan saja. Jika hal tersebut merupakan perubahan
+              material, kami akan memberitahu melalui alamat email atau nomor
+              telepon yang tercantum pada profil Anda. Apa yang dimaksud dengan
+              "perubahan material" akan ditentukan berdasarkan kebijakan kami
+              sendiri, dengan itikad baik, dan menggunakan akal sehat serta
+              penilaian yang masuk akal. • Kami berhak untuk menolak Layanan
+              kepada siapa pun dan kapan pun, apabila ditemukan indikasi yang
+              akan membawa dampak buruk terhadap setiap pihak. • Kami berhak
+              untuk memaksa pencabutan keanggotaan apa pun yang menjadi tidak
+              aktif, melanggar ketentuan kami, atau dapat menyesatkan anggota
+              lain. Ganti Rugi Anda bertanggung jawab dan akan mengganti
+              kerugian serta melepaskan kami dari segala denda, hukuman,
+              kewajiban, dan kerugian lainnya terhadap segala klaim yang timbul
+              dari: a. Pelanggaran Anda terhadap syarat dan ketentuan ini; b.
+              Kesalahan atau penipuan atau kelalaian Anda; atau c. Pelanggaran
+              Anda terhadap hak pihak ketiga mana pun. Komunikasi Elektronik
+              Anda setuju bahwa segala perjanjian, pemberitahuan dan komunikasi
+              lain yang dikirimkan kepada Anda secara elektronik adalah sah
+              secara hukum dan dianggap telah dikirim dan diterima oleh Anda
+              saat dikirim ke Saluran Komunikasi yang Anda berikan kepada kami.
+              Kami dapat berkomunikasi dengan Anda melalui surat, email,
+              telepon, SMS, Platform, layanan obrolan Over the Top (OTT) antara
+              lain WhatsApp, Signal, Telegram, dan lain-lain, atau melalui media
+              sosial dan/atau saluran internet digital (“Saluran Komunikasi”).
+              Kami dapat menggunakan sarana-sarana Saluran Komunikasi tersebut
+              untuk menginformasikan status akun Anggota Anda, memberitahukan
+              Anda apabila memenuhi syarat untuk program berhadiah,
+              menginformasikan perubahan program, menawarkan promosi khusus,
+              informasi serta penawaran yang kami anggap mungkin menarik untuk
+              Anda, dan informasi lain apa pun yang kami anggap perlu untuk
+              diinformasikan kepada Anda. Kami akan senantiasa menjaga data Anda
+              sesuai dengan peraturan yang berlaku di Indonesia. Ketersediaan
+              Penggunaan Aplikasi dan Layanan Aplikasi ini biasanya tersedia 24
+              jam sehari, tujuh hari seminggu. Namun, kami mungkin perlu
+              menghentikan atau menangguhkan akses ke Layanan karena alasan
+              pemeliharaan, teknis, atau lainnya. Saat mengakses dan menggunakan
+              Layanan, Anda diwajibkan untuk mematuhi arahan, instruksi, atau
+              protokol yang dipublikasikan di Aplikasi/Website. Kami dengan
+              senang hati menawarkan berbagai Layanan di Aplikasi/Website, yang
+              ingin kami kembangkan dan tingkatkan secara berkala. Layanan dapat
+              diperbarui, diubah, atau dihapus sesuai kebijakan kami, sehingga
+              kami tidak dapat menjamin bahwa Layanan tertentu akan selalu
+              tersedia di Aplikasi/Website. Mengaktifkan dan Menonaktifkan
+              Lokasi Kami membutuhkan Anda untuk mengaktifkan lokasi guna
+              mengidentifikasi toko terdekat dengan dan/atau mengirimi materi
+              promosi terkait toko terdekat. Informasi ini bersifat opsional,
+              dan Anda dapat memilih untuk menonaktifkan lokasi. Penghasilan
+              Poin Layanan ini berfungsi sebagai sarana tanpa batasan, memantau
+              saldo poin atau menggunakan poin melalui penukaran poin. Untuk
+              memproses perolehan poin apa pun, Anda harus menginformasikan
+              nomor keanggotaan Anda kepada penanggung jawab transaksi, biasanya
+              kasir di toko. Ketentuan Penghasilan Poin: a. Anggota harus
+              memberitahukan nomor ponsel yang aktif dan terdaftar dalam Program
+              ke kasir di toko sebelum transaksi pembelian untuk mendapatkan
+              Poin AMS Membership. b. Anggota akan memperoleh Poin MAPCLUB dalam
+              jumlah yang akan ditentukan dari waktu ke waktu untuk setiap
+              pembelanjaan di toko. Poin AMS Membership diberikan berdasarkan
+              harga bersih di luar pajak dan biaya layanan. c. Waktu yang
+              dibutuhkan untuk mengupdate saldo poin adalah 1 (satu) hari
               setelah tanggal transaksi. Namun, pada anomali tertentu, kami
               berhak menentukan waktu yang tepat untuk memperbarui saldo poin
               sesuai dengan sifat transaksi. Penukaran Poin Ketentuan Penukaran
