@@ -48,7 +48,8 @@ const Carousel: React.FC = () => {
               <Image
                 src={`https://web.amscorp.id:3060/imagestorage/promo/${item.imageUrl}`}
                 alt={`Image ${item.id}`}
-                className="w-full max-h-48 object-cover rounded-lg min-h-48"
+                // className="w-full max-h-48 object-cover rounded-lg min-h-48"
+                className="w-full h-40 sm:h-48 object-cover rounded-lg"
                 width={400}
                 height={200}
               />
