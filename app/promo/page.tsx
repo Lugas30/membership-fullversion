@@ -201,8 +201,8 @@ export default function Promo() {
                           src={`https://web.amscorp.id:3060/imagestorage/promo/${item.imageUrl}`}
                           alt="reward"
                           width={1240}
-                          height={1240}
-                          className="w-full h-auto rounded-t-lg"
+                          height={200}
+                          className="w-full max-h-52 object-cover rounded-t-lg"
                         />
                         <div className="p-4">
                           <h2 className="text-sm mb-1">{item.promoTitle}</h2>
@@ -221,7 +221,7 @@ export default function Promo() {
                         alt="reward"
                         width={1240}
                         height={1240}
-                        className="w-full h-auto rounded-t-lg"
+                        className="w-full max-h-52 object-cover rounded-t-lg"
                       />
                       <div className="p-4">
                         <h2 className="text-sm mb-1">{item.promoTitle}</h2>

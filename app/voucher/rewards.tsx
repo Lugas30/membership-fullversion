@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/Button";
 import Countdown from "@/components/Countdown";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
@@ -14,7 +15,7 @@ interface Rewards {
   title: string;
   voucherCode: string;
   expiredDate: string;
-  used_at: string;
+  storeAaddress: string;
   image: string;
   termsCondition: string;
   nominal: number;
@@ -105,7 +106,7 @@ export default function Rewards() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
           <div className="bg-white w-full max-w-md min-h-screen shadow-lg">
             <div className="flex justify-between items-center p-6">
-              <span className="text-xs">REWARD</span>
+              <span className="text-[10px] fontMon tracking-wider">REWARD</span>
               <button onClick={closeModal} className="text-black">
                 &#10005;
               </button>
@@ -120,24 +121,33 @@ export default function Rewards() {
             />
 
             <div className="p-4">
-              <h2 className="font-bold text-center my-3">{detail?.title}</h2>
+              <h2 className="text-center my-3">{detail?.title}</h2>
 
               {/* Daftar produk */}
               <div className="my-6">
-                <div className="border border-gray-300 p-4 rounded-lg mb-4">
+                <div className="border border-gray-300 p-4 rounded-lg">
                   <div className="flex flex-col mb-4">
-                    <span className="text-xs text-zinc-400">Voucher Code</span>
-                    <span className="text-sm">{detail?.voucherCode}</span>
+                    <span className="text-sm mb-1">Voucher Code</span>
+                    <span className="text-[10px] fontMon">
+                      {detail?.voucherCode}
+                    </span>
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm">Voucher berlaku:</span>
-                    <span className="text-xs">{detail?.used_at}</span>
+                  <div className="flex flex-col mb-4">
+                    <span className="text-sm mb-1">Voucher berlaku:</span>
+                    <span className="text-[10px] fontMon">
+                      {detail?.storeAaddress}
+                    </span>
+                  </div>
+                  <div className="flex justify-center mb-4 pt-4">
+                    <Button
+                      label="Tampilkan QR"
+                      className="bg-base-accent text-white"
+                      // onClick={}
+                    />
                   </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold">
-                    Terms & Condition
-                  </span>
+                <div className="flex flex-col m-4">
+                  <span className="text-sm mb-5">Terms & Condition</span>
                   <span className="text-xs">{detail?.termsCondition}</span>
                 </div>
               </div>
@@ -145,6 +155,8 @@ export default function Rewards() {
           </div>
         </div>
       )}
+
+      {/* Modal QR code */}
     </>
   );
 }
