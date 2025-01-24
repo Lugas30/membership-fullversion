@@ -39,7 +39,7 @@ export default function TermCondition() {
           <div className="p-8">
             {/* content */}
             <h2 className="text-base mb-5">SYARAT DAN KETENTUAN MEMBERSHIP</h2>
-            <div className="text-[10px] fontMon leading-10">
+            <div className="text-[10px] fontMon leading-5">
               Selamat datang di AMS Membership, layanan resmi untuk Member AMS,
               yaitu program membership dari PT Aditya Mandiri Sejahtera yang
               menaungi 4 brand fashion ready to wear; Celcius, Celcius Woman,
@@ -175,87 +175,120 @@ export default function TermCondition() {
               </ul>
               <br />
               <h2 className="text-sm my-5">Ganti Rugi</h2>
-              Anda bertanggung jawab dan akan mengganti kerugian serta
-              melepaskan kami dari segala denda, hukuman, kewajiban, dan
-              kerugian lainnya terhadap segala klaim yang timbul dari: a.
-              Pelanggaran Anda terhadap syarat dan ketentuan ini; b. Kesalahan
-              atau penipuan atau kelalaian Anda; atau c. Pelanggaran Anda
-              terhadap hak pihak ketiga mana pun. Komunikasi Elektronik Anda
-              setuju bahwa segala perjanjian, pemberitahuan dan komunikasi lain
-              yang dikirimkan kepada Anda secara elektronik adalah sah secara
-              hukum dan dianggap telah dikirim dan diterima oleh Anda saat
-              dikirim ke Saluran Komunikasi yang Anda berikan kepada kami. Kami
-              dapat berkomunikasi dengan Anda melalui surat, email, telepon,
-              SMS, Platform, layanan obrolan Over the Top (OTT) antara lain
-              WhatsApp, Signal, Telegram, dan lain-lain, atau melalui media
-              sosial dan/atau saluran internet digital (“Saluran Komunikasi”).
-              Kami dapat menggunakan sarana-sarana Saluran Komunikasi tersebut
-              untuk menginformasikan status akun Anggota Anda, memberitahukan
-              Anda apabila memenuhi syarat untuk program berhadiah,
-              menginformasikan perubahan program, menawarkan promosi khusus,
-              informasi serta penawaran yang kami anggap mungkin menarik untuk
-              Anda, dan informasi lain apa pun yang kami anggap perlu untuk
-              diinformasikan kepada Anda. Kami akan senantiasa menjaga data Anda
-              sesuai dengan peraturan yang berlaku di Indonesia. Ketersediaan
-              Penggunaan Aplikasi dan Layanan Aplikasi ini biasanya tersedia 24
-              jam sehari, tujuh hari seminggu. Namun, kami mungkin perlu
-              menghentikan atau menangguhkan akses ke Layanan karena alasan
-              pemeliharaan, teknis, atau lainnya. Saat mengakses dan menggunakan
-              Layanan, Anda diwajibkan untuk mematuhi arahan, instruksi, atau
-              protokol yang dipublikasikan di Aplikasi/Website. Kami dengan
-              senang hati menawarkan berbagai Layanan di Aplikasi/Website, yang
-              ingin kami kembangkan dan tingkatkan secara berkala. Layanan dapat
-              diperbarui, diubah, atau dihapus sesuai kebijakan kami, sehingga
-              kami tidak dapat menjamin bahwa Layanan tertentu akan selalu
-              tersedia di Aplikasi/Website. Mengaktifkan dan Menonaktifkan
-              Lokasi Kami membutuhkan Anda untuk mengaktifkan lokasi guna
+              <p>
+                Anda bertanggung jawab dan akan mengganti kerugian serta
+                melepaskan kami dari segala denda, hukuman, kewajiban, dan
+                kerugian lainnya terhadap segala klaim yang timbul dari:
+              </p>
+              <br />
+              <ul>
+                <li>a. Pelanggaran Anda terhadap syarat dan ketentuan ini;</li>
+                <li>b. Kesalahan atau penipuan atau kelalaian Anda; atau</li>
+                <li>c. Pelanggaran Anda terhadap hak pihak ketiga mana pun.</li>
+              </ul>
+              <br />
+              <h2 className="text-sm my-5">Komunikasi Elektronik</h2>
+              <p>
+                Anda setuju bahwa segala perjanjian, pemberitahuan dan
+                komunikasi lain yang dikirimkan kepada Anda secara elektronik
+                adalah sah secara hukum dan dianggap telah dikirim dan diterima
+                oleh Anda saat dikirim ke Saluran Komunikasi yang Anda berikan
+                kepada kami.
+              </p>
+              <br />
+              <p>
+                Kami dapat berkomunikasi dengan Anda melalui surat, email,
+                telepon, SMS, Platform, layanan obrolan Over the Top (OTT)
+                antara lain WhatsApp, Signal, Telegram, dan lain-lain, atau
+                melalui media sosial dan/atau saluran internet digital (“Saluran
+                Komunikasi”). Kami dapat menggunakan sarana-sarana Saluran
+                Komunikasi tersebut untuk menginformasikan status akun Anggota
+                Anda, memberitahukan Anda apabila memenuhi syarat untuk program
+                berhadiah, menginformasikan perubahan program, menawarkan
+                promosi khusus, informasi serta penawaran yang kami anggap
+                mungkin menarik untuk Anda, dan informasi lain apa pun yang kami
+                anggap perlu untuk diinformasikan kepada Anda. Kami akan
+                senantiasa menjaga data Anda sesuai dengan peraturan yang
+                berlaku di Indonesia.
+              </p>
+              <br />
+              <h2 className="text-sm my-5">
+                Ketersediaan Penggunaan Aplikasi dan Layanan
+              </h2>
+              Aplikasi ini biasanya tersedia 24 jam sehari, tujuh hari seminggu.
+              Namun, kami mungkin perlu menghentikan atau menangguhkan akses ke
+              Layanan karena alasan pemeliharaan, teknis, atau lainnya.
+              <br />
+              <br />
+              Saat mengakses dan menggunakan Layanan, Anda diwajibkan untuk
+              mematuhi arahan, instruksi, atau protokol yang dipublikasikan di
+              Aplikasi/Website.
+              <br />
+              <br />
+              Kami dengan senang hati menawarkan berbagai Layanan di
+              Aplikasi/Website, yang ingin kami kembangkan dan tingkatkan secara
+              berkala. Layanan dapat diperbarui, diubah, atau dihapus sesuai
+              kebijakan kami, sehingga kami tidak dapat menjamin bahwa Layanan
+              tertentu akan selalu tersedia di Aplikasi/Website.
+              <br />
+              <br />
+              <h2 className="text-sm my-5">
+                Mengaktifkan dan Menonaktifkan Lokasi
+              </h2>
+              Kami membutuhkan Anda untuk mengaktifkan lokasi guna
               mengidentifikasi toko terdekat dengan dan/atau mengirimi materi
               promosi terkait toko terdekat. Informasi ini bersifat opsional,
-              dan Anda dapat memilih untuk menonaktifkan lokasi. Penghasilan
-              Poin Layanan ini berfungsi sebagai sarana tanpa batasan, memantau
-              saldo poin atau menggunakan poin melalui penukaran poin. Untuk
-              memproses perolehan poin apa pun, Anda harus menginformasikan
-              nomor keanggotaan Anda kepada penanggung jawab transaksi, biasanya
-              kasir di toko. Ketentuan Penghasilan Poin: a. Anggota harus
-              memberitahukan nomor ponsel yang aktif dan terdaftar dalam Program
-              ke kasir di toko sebelum transaksi pembelian untuk mendapatkan
-              Poin AMS Membership. b. Anggota akan memperoleh Poin MAPCLUB dalam
-              jumlah yang akan ditentukan dari waktu ke waktu untuk setiap
-              pembelanjaan di toko. Poin AMS Membership diberikan berdasarkan
-              harga bersih di luar pajak dan biaya layanan. c. Waktu yang
-              dibutuhkan untuk mengupdate saldo poin adalah 1 (satu) hari
-              setelah tanggal transaksi. Namun, pada anomali tertentu, kami
-              berhak menentukan waktu yang tepat untuk memperbarui saldo poin
-              sesuai dengan sifat transaksi. Penukaran Poin Ketentuan Penukaran
-              Poin: a. Anda dapat menggunakan poin yang diperoleh untuk
-              menukarkan produk atau layanan apa pun yang tersedia melalui
-              Layanan ("Penukaran/Redeem"). b. Poin AMS Membership tidak dapat
-              ditukar dengan uang tunai dan tidak dapat dialihkan. c. Poin AMS
-              Membership yang dimiliki oleh lebih dari satu Anggota tidak dapat
-              digabungkan untuk membayar satu transaksi. d. Setelah digunakan,
-              Poin AMS Membership akan segera dipotong dari akun Anda. Walaupun
-              kami bertujuan untuk memastikan bahwa poin AMS Anda tidak akan
-              ditukarkan tanpa izin dan persetujuan, Anda juga harus memastikan
-              bahwa informasi AMS Membership, seperti nomor ID AMS, PIN, atau
-              kode penukaran, aman, dan hanya tersedia untuk Anda. Voucher a.
-              Voucher hanya bisa digunakan pada store offline yang di naungi
-              oleh PT Aditya Mandiri Sejahtera. b. Voucher mempunyai batas waktu
-              (periode kadaluwarsa) sesuai dengan ketentuan yang sudah ada pada
-              syarat dan ketentuan voucher. c. Kode Voucher hanya dapat
-              digunakan untuk satu kali transaksi, kecuali dinyatakan sebaliknya
-              pada syarat dan ketentuan khusus Voucher. d. Apabila Anda
-              menggunakan kode Voucher yang sama lebih dari satu kali dalam satu
-              hari, maka kode Voucher akan otomatis dibatalkan. e. Voucher tidak
-              dapat digunakan bersamaan dengan promosi atau diskon lainnya. f.
-              Voucher tidak dapat ditukar dengan uang atau diuangkan. g. Kami
-              berhak untuk merubah ketentuan penggunaan Voucher ini atau
-              membatalkan setiap promosi sewaktu-waktu tanpa pemberitahuan.
-              Kontak / Call Center Untuk semua pertanyaan, keluhan, saran,
-              kritik, dan klaim mengenai Layanan ini harap hubungi: PT Aditya
-              Mandiri Sejahtera Jalan Kebayunan No.18, RT.02/RW.20, Tapos, Kec.
-              Tapos, Kota Depok, Jawa Barat 16457 Email Customer Relationship
-              Management: crm@amscorp.id Nomor Customer Relationship Management:
-              +62 811-1331-0569
+              dan Anda dapat memilih untuk menonaktifkan lokasi.
+              <br />
+              <br />
+              <h2 className="text-sm my-5">Penghasilan Poin</h2>
+              Layanan ini berfungsi sebagai sarana tanpa batasan, memantau saldo
+              poin atau menggunakan poin melalui penukaran poin. Untuk memproses
+              perolehan poin apa pun, Anda harus menginformasikan nomor
+              keanggotaan Anda kepada penanggung jawab transaksi, biasanya kasir
+              di toko.
+              <br />
+              <br />
+              <h2 className="text-sm my-5">Ketentuan Penghasilan Poin:</h2>
+              a. Anggota harus memberitahukan nomor ponsel yang aktif dan
+              terdaftar dalam Program ke kasir di toko sebelum transaksi
+              pembelian untuk mendapatkan Poin AMS Membership. b. Anggota akan
+              memperoleh Poin MAPCLUB dalam jumlah yang akan ditentukan dari
+              waktu ke waktu untuk setiap pembelanjaan di toko. Poin AMS
+              Membership diberikan berdasarkan harga bersih di luar pajak dan
+              biaya layanan. c. Waktu yang dibutuhkan untuk mengupdate saldo
+              poin adalah 1 (satu) hari setelah tanggal transaksi. Namun, pada
+              anomali tertentu, kami berhak menentukan waktu yang tepat untuk
+              memperbarui saldo poin sesuai dengan sifat transaksi. Penukaran
+              Poin Ketentuan Penukaran Poin: a. Anda dapat menggunakan poin yang
+              diperoleh untuk menukarkan produk atau layanan apa pun yang
+              tersedia melalui Layanan ("Penukaran/Redeem"). b. Poin AMS
+              Membership tidak dapat ditukar dengan uang tunai dan tidak dapat
+              dialihkan. c. Poin AMS Membership yang dimiliki oleh lebih dari
+              satu Anggota tidak dapat digabungkan untuk membayar satu
+              transaksi. d. Setelah digunakan, Poin AMS Membership akan segera
+              dipotong dari akun Anda. Walaupun kami bertujuan untuk memastikan
+              bahwa poin AMS Anda tidak akan ditukarkan tanpa izin dan
+              persetujuan, Anda juga harus memastikan bahwa informasi AMS
+              Membership, seperti nomor ID AMS, PIN, atau kode penukaran, aman,
+              dan hanya tersedia untuk Anda. Voucher a. Voucher hanya bisa
+              digunakan pada store offline yang di naungi oleh PT Aditya Mandiri
+              Sejahtera. b. Voucher mempunyai batas waktu (periode kadaluwarsa)
+              sesuai dengan ketentuan yang sudah ada pada syarat dan ketentuan
+              voucher. c. Kode Voucher hanya dapat digunakan untuk satu kali
+              transaksi, kecuali dinyatakan sebaliknya pada syarat dan ketentuan
+              khusus Voucher. d. Apabila Anda menggunakan kode Voucher yang sama
+              lebih dari satu kali dalam satu hari, maka kode Voucher akan
+              otomatis dibatalkan. e. Voucher tidak dapat digunakan bersamaan
+              dengan promosi atau diskon lainnya. f. Voucher tidak dapat ditukar
+              dengan uang atau diuangkan. g. Kami berhak untuk merubah ketentuan
+              penggunaan Voucher ini atau membatalkan setiap promosi
+              sewaktu-waktu tanpa pemberitahuan. Kontak / Call Center Untuk
+              semua pertanyaan, keluhan, saran, kritik, dan klaim mengenai
+              Layanan ini harap hubungi: PT Aditya Mandiri Sejahtera Jalan
+              Kebayunan No.18, RT.02/RW.20, Tapos, Kec. Tapos, Kota Depok, Jawa
+              Barat 16457 Email Customer Relationship Management: crm@amscorp.id
+              Nomor Customer Relationship Management: +62 811-1331-0569
             </div>
           </div>
         </div>
