@@ -39,7 +39,7 @@ export default function TermCondition() {
           <div className="p-8">
             {/* content */}
             <h2 className="text-base mb-5">SYARAT DAN KETENTUAN MEMBERSHIP</h2>
-            <div className="text-[10px] fontMon">
+            <div className="text-[10px] fontMon leading-10">
               Selamat datang di AMS Membership, layanan resmi untuk Member AMS,
               yaitu program membership dari PT Aditya Mandiri Sejahtera yang
               menaungi 4 brand fashion ready to wear; Celcius, Celcius Woman,
@@ -147,32 +147,47 @@ export default function TermCondition() {
                 </li>
               </ul>{" "}
               <br />
-              <h2 className="text-sm my-5">Kondisi umum</h2>• Kami berhak untuk
-              mengubah atau menghentikan Layanan dengan alasan apa pun, tanpa
-              pemberitahuan kapan pun. • Kami berhak mengubah ketentuan
-              penggunaan ini kapan saja. Jika hal tersebut merupakan perubahan
-              material, kami akan memberitahu melalui alamat email atau nomor
-              telepon yang tercantum pada profil Anda. Apa yang dimaksud dengan
-              "perubahan material" akan ditentukan berdasarkan kebijakan kami
-              sendiri, dengan itikad baik, dan menggunakan akal sehat serta
-              penilaian yang masuk akal. • Kami berhak untuk menolak Layanan
-              kepada siapa pun dan kapan pun, apabila ditemukan indikasi yang
-              akan membawa dampak buruk terhadap setiap pihak. • Kami berhak
-              untuk memaksa pencabutan keanggotaan apa pun yang menjadi tidak
-              aktif, melanggar ketentuan kami, atau dapat menyesatkan anggota
-              lain. Ganti Rugi Anda bertanggung jawab dan akan mengganti
-              kerugian serta melepaskan kami dari segala denda, hukuman,
-              kewajiban, dan kerugian lainnya terhadap segala klaim yang timbul
-              dari: a. Pelanggaran Anda terhadap syarat dan ketentuan ini; b.
-              Kesalahan atau penipuan atau kelalaian Anda; atau c. Pelanggaran
-              Anda terhadap hak pihak ketiga mana pun. Komunikasi Elektronik
-              Anda setuju bahwa segala perjanjian, pemberitahuan dan komunikasi
-              lain yang dikirimkan kepada Anda secara elektronik adalah sah
-              secara hukum dan dianggap telah dikirim dan diterima oleh Anda
-              saat dikirim ke Saluran Komunikasi yang Anda berikan kepada kami.
-              Kami dapat berkomunikasi dengan Anda melalui surat, email,
-              telepon, SMS, Platform, layanan obrolan Over the Top (OTT) antara
-              lain WhatsApp, Signal, Telegram, dan lain-lain, atau melalui media
+              <h2 className="text-sm my-5">Kondisi umum</h2>
+              <ul>
+                <li>
+                  • Kami berhak untuk mengubah atau menghentikan Layanan dengan
+                  alasan apa pun, tanpa pemberitahuan kapan pun.
+                </li>
+                <li>
+                  • Kami berhak mengubah ketentuan penggunaan ini kapan saja.
+                  Jika hal tersebut merupakan perubahan material, kami akan
+                  memberitahu melalui alamat email atau nomor telepon yang
+                  tercantum pada profil Anda. Apa yang dimaksud dengan
+                  "perubahan material" akan ditentukan berdasarkan kebijakan
+                  kami sendiri, dengan itikad baik, dan menggunakan akal sehat
+                  serta penilaian yang masuk akal.
+                </li>
+                <li>
+                  • Kami berhak untuk menolak Layanan kepada siapa pun dan kapan
+                  pun, apabila ditemukan indikasi yang akan membawa dampak buruk
+                  terhadap setiap pihak.
+                </li>
+                <li>
+                  • Kami berhak untuk memaksa pencabutan keanggotaan apa pun
+                  yang menjadi tidak aktif, melanggar ketentuan kami, atau dapat
+                  menyesatkan anggota lain.
+                </li>
+              </ul>
+              <br />
+              <h2 className="text-sm my-5">Ganti Rugi</h2>
+              Anda bertanggung jawab dan akan mengganti kerugian serta
+              melepaskan kami dari segala denda, hukuman, kewajiban, dan
+              kerugian lainnya terhadap segala klaim yang timbul dari: a.
+              Pelanggaran Anda terhadap syarat dan ketentuan ini; b. Kesalahan
+              atau penipuan atau kelalaian Anda; atau c. Pelanggaran Anda
+              terhadap hak pihak ketiga mana pun. Komunikasi Elektronik Anda
+              setuju bahwa segala perjanjian, pemberitahuan dan komunikasi lain
+              yang dikirimkan kepada Anda secara elektronik adalah sah secara
+              hukum dan dianggap telah dikirim dan diterima oleh Anda saat
+              dikirim ke Saluran Komunikasi yang Anda berikan kepada kami. Kami
+              dapat berkomunikasi dengan Anda melalui surat, email, telepon,
+              SMS, Platform, layanan obrolan Over the Top (OTT) antara lain
+              WhatsApp, Signal, Telegram, dan lain-lain, atau melalui media
               sosial dan/atau saluran internet digital (“Saluran Komunikasi”).
               Kami dapat menggunakan sarana-sarana Saluran Komunikasi tersebut
               untuk menginformasikan status akun Anggota Anda, memberitahukan
