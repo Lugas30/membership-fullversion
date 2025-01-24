@@ -252,43 +252,89 @@ export default function TermCondition() {
               <h2 className="text-sm my-5">Ketentuan Penghasilan Poin:</h2>
               a. Anggota harus memberitahukan nomor ponsel yang aktif dan
               terdaftar dalam Program ke kasir di toko sebelum transaksi
-              pembelian untuk mendapatkan Poin AMS Membership. b. Anggota akan
-              memperoleh Poin MAPCLUB dalam jumlah yang akan ditentukan dari
-              waktu ke waktu untuk setiap pembelanjaan di toko. Poin AMS
-              Membership diberikan berdasarkan harga bersih di luar pajak dan
-              biaya layanan. c. Waktu yang dibutuhkan untuk mengupdate saldo
-              poin adalah 1 (satu) hari setelah tanggal transaksi. Namun, pada
-              anomali tertentu, kami berhak menentukan waktu yang tepat untuk
-              memperbarui saldo poin sesuai dengan sifat transaksi. Penukaran
-              Poin Ketentuan Penukaran Poin: a. Anda dapat menggunakan poin yang
-              diperoleh untuk menukarkan produk atau layanan apa pun yang
-              tersedia melalui Layanan ("Penukaran/Redeem"). b. Poin AMS
-              Membership tidak dapat ditukar dengan uang tunai dan tidak dapat
-              dialihkan. c. Poin AMS Membership yang dimiliki oleh lebih dari
-              satu Anggota tidak dapat digabungkan untuk membayar satu
-              transaksi. d. Setelah digunakan, Poin AMS Membership akan segera
-              dipotong dari akun Anda. Walaupun kami bertujuan untuk memastikan
-              bahwa poin AMS Anda tidak akan ditukarkan tanpa izin dan
-              persetujuan, Anda juga harus memastikan bahwa informasi AMS
-              Membership, seperti nomor ID AMS, PIN, atau kode penukaran, aman,
-              dan hanya tersedia untuk Anda. Voucher a. Voucher hanya bisa
-              digunakan pada store offline yang di naungi oleh PT Aditya Mandiri
-              Sejahtera. b. Voucher mempunyai batas waktu (periode kadaluwarsa)
-              sesuai dengan ketentuan yang sudah ada pada syarat dan ketentuan
-              voucher. c. Kode Voucher hanya dapat digunakan untuk satu kali
-              transaksi, kecuali dinyatakan sebaliknya pada syarat dan ketentuan
-              khusus Voucher. d. Apabila Anda menggunakan kode Voucher yang sama
-              lebih dari satu kali dalam satu hari, maka kode Voucher akan
-              otomatis dibatalkan. e. Voucher tidak dapat digunakan bersamaan
-              dengan promosi atau diskon lainnya. f. Voucher tidak dapat ditukar
-              dengan uang atau diuangkan. g. Kami berhak untuk merubah ketentuan
-              penggunaan Voucher ini atau membatalkan setiap promosi
-              sewaktu-waktu tanpa pemberitahuan. Kontak / Call Center Untuk
-              semua pertanyaan, keluhan, saran, kritik, dan klaim mengenai
-              Layanan ini harap hubungi: PT Aditya Mandiri Sejahtera Jalan
-              Kebayunan No.18, RT.02/RW.20, Tapos, Kec. Tapos, Kota Depok, Jawa
-              Barat 16457 Email Customer Relationship Management: crm@amscorp.id
-              Nomor Customer Relationship Management: +62 811-1331-0569
+              pembelian untuk mendapatkan Poin AMS Membership.
+              <br />
+              <br />
+              b. Anggota akan memperoleh Poin MAPCLUB dalam jumlah yang akan
+              ditentukan dari waktu ke waktu untuk setiap pembelanjaan di toko.
+              Poin AMS Membership diberikan berdasarkan harga bersih di luar
+              pajak dan biaya layanan.
+              <br />
+              <br />
+              c. Waktu yang dibutuhkan untuk mengupdate saldo poin adalah 1
+              (satu) hari setelah tanggal transaksi. Namun, pada anomali
+              tertentu, kami berhak menentukan waktu yang tepat untuk
+              memperbarui saldo poin sesuai dengan sifat transaksi.
+              <br />
+              <br />
+              <h2 className="text-sm my-5">Penukaran Poin</h2>
+              <h2 className="text-sm my-5">Ketentuan Penukaran Poin:</h2>
+              a. Anda dapat menggunakan poin yang diperoleh untuk menukarkan
+              produk atau layanan apa pun yang tersedia melalui Layanan
+              ("Penukaran/Redeem").
+              <br />
+              <br />
+              b. Poin AMS Membership tidak dapat ditukar dengan uang tunai dan
+              tidak dapat dialihkan.
+              <br />
+              <br />
+              c. Poin AMS Membership yang dimiliki oleh lebih dari satu Anggota
+              tidak dapat digabungkan untuk membayar satu transaksi.
+              <br />
+              <br />
+              d. Setelah digunakan, Poin AMS Membership akan segera dipotong
+              dari akun Anda. Walaupun kami bertujuan untuk memastikan bahwa
+              poin AMS Anda tidak akan ditukarkan tanpa izin dan persetujuan,
+              Anda juga harus memastikan bahwa informasi AMS Membership, seperti
+              nomor ID AMS, PIN, atau kode penukaran, aman, dan hanya tersedia
+              untuk Anda.
+              <br />
+              <br />
+              <h2 className="text-sm my-5">Voucher</h2>
+              a. Voucher hanya bisa digunakan pada store offline yang di naungi
+              oleh PT Aditya Mandiri Sejahtera.
+              <br />
+              <br />
+              b. Voucher mempunyai batas waktu (periode kadaluwarsa) sesuai
+              dengan ketentuan yang sudah ada pada syarat dan ketentuan voucher.
+              <br />
+              <br />
+              c. Kode Voucher hanya dapat digunakan untuk satu kali transaksi,
+              kecuali dinyatakan sebaliknya pada syarat dan ketentuan khusus
+              Voucher.
+              <br />
+              <br />
+              d. Apabila Anda menggunakan kode Voucher yang sama lebih dari satu
+              kali dalam satu hari, maka kode Voucher akan otomatis dibatalkan.
+              <br />
+              <br />
+              e. Voucher tidak dapat digunakan bersamaan dengan promosi atau
+              diskon lainnya.
+              <br />
+              <br />
+              f. Voucher tidak dapat ditukar dengan uang atau diuangkan.
+              <br />
+              <br />
+              g. Kami berhak untuk merubah ketentuan penggunaan Voucher ini atau
+              membatalkan setiap promosi sewaktu-waktu tanpa pemberitahuan.
+              <br />
+              <br />
+              <h2 className="text-sm my-5">Kontak / Call Center</h2>
+              Untuk semua pertanyaan, keluhan, saran, kritik, dan klaim mengenai
+              Layanan ini harap hubungi:
+              <br />
+              <br />
+              PT Aditya Mandiri Sejahtera
+              <br />
+              <br />
+              Jalan Kebayunan No.18, RT.02/RW.20, Tapos, Kec. Tapos, Kota Depok,
+              Jawa Barat 16457
+              <br />
+              <br />
+              Email Customer Relationship Management: crm@amscorp.id Nomor
+              <br />
+              <br />
+              Customer Relationship Management: +62 811-1331-0569
             </div>
           </div>
         </div>
