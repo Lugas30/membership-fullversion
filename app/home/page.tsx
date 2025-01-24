@@ -98,7 +98,7 @@ export default function Page() {
           />
           {/* notif verif email */}
           {user.memberInfoData.emailStatus == "email not verified" ? (
-            <div className="bg-red-600 w-full text-center py-2">
+            <div className="bg-red-600 w-full text-center py-2 sticky">
               <p className="text-[10px] text-white fontMon">
                 Anda belum verifkasi email.{" "}
                 <Link
