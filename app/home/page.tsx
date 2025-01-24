@@ -19,6 +19,7 @@ import Misi from "@/public/images/CRM-Mission.svg";
 import Lucky from "@/public/images/CRM-Lucky draw.svg";
 import Referral from "@/public/images/CRM-Referral.svg";
 import Promo from "@/public/images/CRM-Promo.svg";
+import Background from "@/public/images/ams-bg.svg";
 
 export default function Page() {
   const router = useRouter();
@@ -87,7 +88,14 @@ export default function Page() {
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
-        <div className="bg-base-accent w-full">
+        <div className="bg-base-accent w-full relative overflow-hidden">
+          <Image
+            src={Background}
+            width={480}
+            height={200}
+            alt="background"
+            className="absolute p-2 -right-32"
+          />
           {/* notif verif email */}
           {user.memberInfoData.emailStatus == "email not verified" ? (
             <div className="bg-red-600 w-full text-center py-2">
@@ -190,14 +198,14 @@ export default function Page() {
             <div className="flex flex-col justify-center items-center gap-2 w-16">
               <Link
                 href="/comingsoon"
-                className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[4px_4px_2px_rgba(0,0,0,0.20)]"
+                className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
               >
                 <Image
                   src={Misi}
                   width={50}
                   height={50}
                   alt="Misi"
-                  className="w-auto h-full rounded-md bg-gray-200"
+                  className="w-auto h-full rounded-md bg-white"
                 />
               </Link>
 
@@ -205,18 +213,18 @@ export default function Page() {
             </div>
             <Link
               href="/lucky-draw"
-              className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[4px_4px_2px_rgba(0,0,0,0.20)]"
+              className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
             >
               <Image
                 src={Lucky}
                 width={50}
                 height={50}
                 alt="Lucky Draw"
-                className="w-auto h-full rounded-md bg-gray-200"
+                className="w-auto h-full rounded-md bg-white"
               />
               <span className="text-[10px]">Lucky Draw</span>
             </Link>
-            <div className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[4px_4px_2px_rgba(0,0,0,0.20)]">
+            <div className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]">
               <Link
                 href="/comingsoon"
                 className="flex flex-col justify-center items-center gap-2 w-16"
@@ -226,7 +234,7 @@ export default function Page() {
                   width={50}
                   height={50}
                   alt="Referral"
-                  className="w-auto h-full rounded-md bg-gray-200"
+                  className="w-auto h-full rounded-md bg-white"
                 />
               </Link>
 
@@ -234,14 +242,14 @@ export default function Page() {
             </div>
             <Link
               href="/promo"
-              className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[4px_4px_2px_rgba(0,0,0,0.20)]"
+              className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
             >
               <Image
                 src={Promo}
                 width={50}
                 height={50}
                 alt="Promo"
-                className="w-auto h-full rounded-md bg-gray-200"
+                className="w-auto h-full rounded-md bg-white"
               />
               <span className="text-[10px]">Promo</span>
             </Link>
