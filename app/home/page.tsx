@@ -190,7 +190,7 @@ export default function Page() {
             <div className="flex flex-col justify-center items-center gap-2 w-16">
               <Link
                 href="/comingsoon"
-                className="flex flex-col justify-center items-center gap-2 w-16"
+                className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[4px_4px_2px_rgba(0,0,0,0.20)]"
               >
                 <Image
                   src={Misi}
@@ -205,7 +205,7 @@ export default function Page() {
             </div>
             <Link
               href="/lucky-draw"
-              className="flex flex-col justify-center items-center gap-2 w-16"
+              className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[4px_4px_2px_rgba(0,0,0,0.20)]"
             >
               <Image
                 src={Lucky}
@@ -216,7 +216,7 @@ export default function Page() {
               />
               <span className="text-[10px]">Lucky Draw</span>
             </Link>
-            <div className="flex flex-col justify-center items-center gap-2 w-16">
+            <div className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[4px_4px_2px_rgba(0,0,0,0.20)]">
               <Link
                 href="/comingsoon"
                 className="flex flex-col justify-center items-center gap-2 w-16"
@@ -234,7 +234,7 @@ export default function Page() {
             </div>
             <Link
               href="/promo"
-              className="flex flex-col justify-center items-center gap-2 w-16"
+              className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[4px_4px_2px_rgba(0,0,0,0.20)]"
             >
               <Image
                 src={Promo}

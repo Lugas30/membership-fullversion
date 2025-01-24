@@ -2,6 +2,7 @@
 
 import Button from "@/components/Button";
 import Countdown from "@/components/Countdown";
+import ModalQRReward from "@/components/ModalQrReward";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getRewards } from "@/redux/thunks/rewardsThunks";
@@ -33,6 +34,7 @@ export default function Rewards() {
   }, [dispatch]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalQr, setModalQr] = useState(false);
 
   const showModal = (id: number) => {
     data.rewardData.find((item: Rewards) => {
@@ -44,8 +46,21 @@ export default function Rewards() {
     setIsModalVisible(true);
   };
 
+  const showModalQr = (id: number) => {
+    data.rewardData.find((item: Rewards) => {
+      if (item.id === id) {
+        setDetail(item);
+        return true;
+      }
+    });
+    setModalQr(true);
+  };
+
   const closeModal = () => {
     setIsModalVisible(false);
+  };
+  const handleCloseQrModal = () => {
+    setModalQr(false);
   };
 
   if (data == null) {
@@ -142,7 +157,7 @@ export default function Rewards() {
                     <Button
                       label="Tampilkan QR"
                       className="bg-base-accent text-white"
-                      // onClick={}
+                      onClick={() => showModalQr(detail?.id || 0)}
                     />
                   </div>
                 </div>
@@ -157,6 +172,9 @@ export default function Rewards() {
       )}
 
       {/* Modal QR code */}
+      {modalQr && (
+        <ModalQRReward data={detail} closeModal={handleCloseQrModal} />
+      )}
     </>
   );
 }

@@ -4,12 +4,14 @@ import QRCode from "react-qr-code";
 type ModalQRRewardProps = {
   data: {
     id: number;
-    noVoucher: string;
+    title: string;
+    voucherCode: string;
+    expiredDate: string;
+    storeAaddress: string;
+    image: string;
+    termsCondition: string;
     nominal: number;
-    category: string;
-    pointVoucher: number;
-    tanggalExpired: string;
-    statusPenggunaan: string;
+    status: string;
   } | null;
   closeModal: () => void;
 };
@@ -28,13 +30,13 @@ const ModalQRReward: React.FC<ModalQRRewardProps> = ({ data, closeModal }) => {
           <div className="flex justify-center items-center my-2 px-16 ">
             <QRCode
               style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-              value={data?.noVoucher || ""}
+              value={data?.voucherCode || ""}
             />
           </div>
 
           <div className="flex flex-col justify-center items-center my-4 py-2 gap-1 w-full">
             <span className="text-xs text-zinc-400">Kode Voucher</span>
-            <span className="text-sm tracking-wider">{data?.noVoucher}</span>
+            <span className="text-sm tracking-wider">{data?.voucherCode}</span>
           </div>
           <span className="text-xs mb-6">
             Perlihatkan kode voucher kepada kasir
