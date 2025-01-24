@@ -42,16 +42,6 @@ select {
   height: 16px;
 }
 
-/* Ubah warna bullet */
-.swiper-pagination-bullet {
-  background-color: #000000; /* Warna default bullet */
-}
-
-/* Ubah warna bullet saat aktif */
-.swiper-pagination-bullet-active {
-  background-color: #ff4500; /* Warna bullet aktif */
-}
-
 ol,
 li {
   list-style-type: decimal;
