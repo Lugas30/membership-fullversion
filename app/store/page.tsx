@@ -6,88 +6,31 @@ import Input from "@/components/Input";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getBrand } from "@/redux/thunks/brandThunks";
-import { getStore } from "@/redux/thunks/storeThunks";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
 
-type Store = {
-  brand: string;
-  storeID: string;
-  kota: string;
-  storeAddress: string;
-  noTelpon: string;
-  mapStoreUrl: string; //iframe map
-  mapLink: string;
-};
-
-type Brand = {
+interface Brand {
   id: number;
   brand: string;
-};
+  brandImage: string;
+}
 
 export default function Store() {
+  const navigate = useRouter();
+
   const dispatch = useAppDispatch();
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [detail, setDetail] = useState<Store | null>(null);
-  const [search, setSearch] = useState("");
-  const [filteredData, setFilteredData] = useState<Store[]>([]);
-
-  const { error, data } = useSelector((state: RootState) => state.store);
-
-  const { data: brand } = useSelector((state: RootState) => state.brand);
-
-  const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
+  const { data, error } = useSelector((state: RootState) => state.brand);
+  const [filteredData, setFilteredData] = useState<Brand[]>([]);
 
   useEffect(() => {
-    dispatch(getStore());
     dispatch(getBrand());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (selectedBrand) {
-      setFilteredData(
-        data?.storeLocationData?.filter(
-          (location: Store) => location.brand === selectedBrand
-        ) || []
-      );
-    }
-  }, [selectedBrand, data]);
-
-  const showModal = ({ storeID }: { storeID: string }) => {
-    data.storeLocationData?.find((item: Store) => {
-      if (item.storeID === storeID) {
-        setIsModalVisible(true);
-        setDetail(item);
-        return true;
-      }
-    });
-  };
-
-  const closeModal = () => setIsModalVisible(false);
-
-  // untuk modal dan fungsi search
-  const [isSearchModalVisible, setIsSearchModalVisible] = useState(false);
-  const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
-  const showSearchModal = () => setIsSearchModalVisible(true);
-  const closeSearchModal = () => setIsSearchModalVisible(false);
-
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFilteredData(
-      data.storeLocationData.filter((location: Store) => {
-        const searchLower = search.toLowerCase();
-        const combinedString =
-          `${location.brand} ${location.kota}`.toLowerCase(); // Gabungkan brand dan kota
-        return combinedString.includes(searchLower); // Cek apakah pencarian cocok
-      })
-    );
-    setIsSearchModalVisible(false);
-    setSearch("");
-  };
-
   // untuk modal dan fungsi filter
+  const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
   const showFilterModal = () => {
     setIsFilterModalVisible(true);
   };
@@ -105,41 +48,22 @@ export default function Store() {
   const handleFilter = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFilteredData(
-      data.storeLocationData.filter((location: Store) => {
-        return filterData.includes(location.brand);
+      data.brandData.filter((brands: Brand) => {
+        return filterData.includes(brands.brand);
       })
     );
     setIsFilterModalVisible(false);
     setFilterData([]);
   };
 
-  // Fungsi untuk mendekode HTML entities
-  const decodeHTMLEntities = (html: string) => {
-    const txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
+  // fungsi untuk membuat slug untuk brand
+  const generateSlug = (text: string) => {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, "") // Hapus karakter spesial
+      .replace(/\s+/g, "-"); // Ganti spasi dengan "-"
   };
-
-  if (!selectedBrand) {
-    return (
-      <div className="flex justify-center items-center">
-        <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
-          <h2 className="text-lg font-bold mb-4">Pilih Brand</h2>
-          <div className="flex flex-col gap-2">
-            {brand?.brandData?.map((item: Brand) => (
-              <button
-                key={item.id}
-                className="px-4 py-2 bg-blue-500 text-white rounded"
-                onClick={() => setSelectedBrand(item.brand)}
-              >
-                {item.brand}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   if (data == null) {
     return (
@@ -148,10 +72,12 @@ export default function Store() {
         <FadeLoader color="#101E2B" width={5} />
       </div>
     );
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
+  } else if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>Error: {error}</p>
+      </div>
+    );
   }
 
   return (
@@ -165,14 +91,6 @@ export default function Store() {
               </span>
               <div className="flex items-center justify-center gap-2 cursor-pointer">
                 <Image
-                  src="/images/search.svg"
-                  alt="Search"
-                  width={100}
-                  height={100}
-                  className="w-auto h-auto cursor-pointer"
-                  onClick={showSearchModal}
-                />
-                <Image
                   src="/images/filter.svg"
                   alt="Filter"
                   width={100}
@@ -184,125 +102,30 @@ export default function Store() {
             </div>
           </Header>
 
-          {/* search open */}
-          {isSearchModalVisible && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start z-50">
-              <div className="bg-white w-full max-w-md shadow-lg p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs">
-                    Masukan brand atau kota yang anda cari
-                  </span>
-                  <button onClick={closeSearchModal} className="text-black">
-                    &#10005;
-                  </button>
-                </div>
-                <form onSubmit={handleSearch}>
-                  <div className="flex items-center justify-center mt-2 border border-gray-300">
-                    <input
-                      type="text"
-                      name="search"
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                      className="w-full px-2 py-1 focus:outline outline-none text-sm"
-                    />
-                    <Image
-                      src="/images/search.svg"
-                      alt="Search"
-                      width={100}
-                      height={100}
-                      className="w-auto h-auto"
-                      typeof="button"
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
-
-          <div className="flex flex-col items-center justify-center p-4">
-            {(filteredData && filteredData.length > 0
-              ? filteredData
-              : data.storeLocationData
-            ).map((location: Store) => (
-              <div
-                key={location.storeID}
-                className="bg-white px-4 py-6 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
-                onClick={() => showModal({ storeID: location.storeID })}
-              >
-                <span className="text-sm">
-                  {location?.brand &&
-                    location.brand.charAt(0).toUpperCase() +
-                      location.brand.slice(1).toLowerCase()}{" "}
-                  {location?.kota &&
-                    location.kota.charAt(0).toUpperCase() +
-                      location.kota.slice(1).toLowerCase()}
-                </span>
-                <Image
-                  src="/images/location.svg"
-                  alt="location"
-                  width={100}
-                  height={100}
-                  className="w-auto h-auto cursor-pointer"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* modal detail location */}
-          {isModalVisible && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
-              <div className="bg-white w-full max-w-md min-h-screen shadow-lg p-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] tracking-widest fontMon">
-                    LOKASI TOKO
-                  </span>
-                  <button onClick={closeModal} className="text-black">
-                    &#10005;
-                  </button>
-                </div>
-
-                <div className="flex flex-col items-center justify-center my-6">
-                  <h2 className="text-base">
-                    {detail?.brand &&
-                      detail.brand.charAt(0).toUpperCase() +
-                        detail.brand.slice(1).toLowerCase()}{" "}
-                    {detail?.kota &&
-                      detail.kota.charAt(0).toUpperCase() +
-                        detail.kota.slice(1).toLowerCase()}
-                  </h2>
-
-                  <div
-                    className="p-4 my-2"
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        detail && detail.mapStoreUrl
-                          ? decodeHTMLEntities(detail.mapStoreUrl)
-                          : "",
-                    }}
-                  ></div>
-
-                  <div className="flex flex-col items-center justify-center mb-4">
-                    <span className="text-sm">Alamat</span>
-                    <p className="text-[10px] fontMon text-center my-2">
-                      {detail?.storeAddress}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col items-center justify-center mb-6">
-                    <span className="text-sm mb-2">Jam Toko</span>
-                    <p className="text-[10px] fontMon">Senin - Sabtu</p>
-                    <p className="text-[10px] fontMon">10.00 - 22.00</p>
-                  </div>
-
-                  <Button
-                    label="BUKA MAP"
-                    onClick={() => window.open(detail?.mapLink, "_blank")}
-                    className="bg-base-accent text-white"
+          <div className="p-4 flex flex-col gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-4">
+              {(filteredData && filteredData.length > 0
+                ? filteredData
+                : data.brandData
+              ).map((brand: Brand) => (
+                <div
+                  className="bg-gray-200 rounded-md flex justify-center cursor-pointer"
+                  key={brand.id}
+                  onClick={() => {
+                    navigate.push(`/store/${generateSlug(brand.brand)}`);
+                  }}
+                >
+                  <Image
+                    src={`https://amscorp.id/brand/${brand.brandImage}`}
+                    width={250}
+                    height={100}
+                    alt={brand.brand}
+                    className="w-auto h-auto rounded-md "
                   />
                 </div>
-              </div>
+              ))}
             </div>
-          )}
+          </div>
 
           {/* modal filter */}
           {isFilterModalVisible && (
@@ -319,7 +142,7 @@ export default function Store() {
 
                 <form onSubmit={handleFilter}>
                   <div className="px-5 pb-5">
-                    {brand.brandData.map((item: Brand) => (
+                    {data.brandData.map((item: Brand) => (
                       <div key={item.id} className="flex items-center mb-2">
                         <div className="flex items-center">
                           <Input
