@@ -38,10 +38,22 @@ export default function Store() {
 
   const { data: brand } = useSelector((state: RootState) => state.brand);
 
+  const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
+
   useEffect(() => {
     dispatch(getStore());
     dispatch(getBrand());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (selectedBrand) {
+      setFilteredData(
+        data?.storeLocationData?.filter(
+          (location: Store) => location.brand === selectedBrand
+        ) || []
+      );
+    }
+  }, [selectedBrand, data]);
 
   const showModal = ({ storeID }: { storeID: string }) => {
     data.storeLocationData?.find((item: Store) => {
@@ -107,6 +119,27 @@ export default function Store() {
     txt.innerHTML = html;
     return txt.value;
   };
+
+  if (!selectedBrand) {
+    return (
+      <div className="flex justify-center items-center">
+        <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
+          <h2 className="text-lg font-bold mb-4">Pilih Brand</h2>
+          <div className="flex flex-col gap-2">
+            {brand?.brandData?.map((item: Brand) => (
+              <button
+                key={item.id}
+                className="px-4 py-2 bg-blue-500 text-white rounded"
+                onClick={() => setSelectedBrand(item.brand)}
+              >
+                {item.brand}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (data == null) {
     return (

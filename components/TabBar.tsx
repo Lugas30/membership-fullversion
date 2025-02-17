@@ -4,7 +4,7 @@ import React from "react";
 
 export default function TabBar() {
   return (
-    <div className="flex justify-between items-center px-8 py-5 bg-white fixed bottom-0 w-full border-t-2 border-t-slate-300 fontMon tracking-wide">
+    <div className="flex justify-between items-center px-8 py-5 bg-white fixed bottom-0 w-full border-t-2 border-t-slate-300 fontMon tracking-wide z-10">
       <Link href={"/redeem"} className="flex flex-col items-center w-20">
         <Image
           src="/images/rewards.svg"

@@ -29,6 +29,7 @@ export default function Page() {
   const [pin, setPin] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
   const { error, user } = useSelector((state: RootState) => state.users);
+  const [year, setYear] = useState<string | null>(null);
 
   // Memuat data user saat komponen dirender
   useEffect(() => {
@@ -40,6 +41,11 @@ export default function Page() {
       dispatch(getUsers()); // Panggil thunk dengan token
     }
   }, [dispatch, router]);
+
+  useEffect(() => {
+    const currentYear = user?.memberInfoData.joinDate.slice(0, 4);
+    setYear(currentYear || "");
+  }, [user]);
 
   if (user == null) {
     return (
@@ -138,7 +144,7 @@ export default function Page() {
           </div>
 
           {/* promo carousel */}
-          <div className="px-8 flex flex-col items-end z-10 relative">
+          {/* <div className="px-8 flex flex-col items-end z-10 relative">
             <div className="w-full h-full rounded-lg">
               <Carousel />
             </div>
@@ -148,20 +154,156 @@ export default function Page() {
             >
               LIHAT SEMUA
             </Link>
-          </div>
+          </div> */}
           {/* promo carousel */}
 
+          {/* Card tier */}
+          <div className="flex justify-center items-center z-10 relative w-full">
+            <div className="relative">
+              <Image
+                src={`https://amscorp.id/card/${user.memberInfoData.tierInfo.cardImage}`}
+                alt={`${user.memberInfoData.tierInfo.cardImage}`}
+                width={500}
+                height={500}
+                className="w-full h-[210px] sm:h-[220px] md:h-[230px] lg:h-[230] rounded-xl"
+              />
+              <div className="absolute inset-0 flex flex-row items-start justify-between z-10 p-4">
+                <div className="flex flex-col">
+                  <span className="text-sm text-white mb-1 normal-case">
+                    {toNormalCase(user.memberInfoData.fullName)}
+                  </span>
+                  <span className="text-[7px] fontMon text-white tracking-widest">
+                    MEMBER SEJAK {year}
+                  </span>
+                </div>
+
+                {/* Poin */}
+                <div className="flex flex-col">
+                  <span className="font-medium text-white text-right mb-1">
+                    {formatToIDR(user.memberInfoData.points || 0)}
+                  </span>
+                  <span className="text-[7px] text-white tracking-widest text-right fontMon">
+                    TOTAL POIN
+                  </span>
+                </div>
+              </div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                <span className="text-sm fontMon uppercase tracking-widest text-white mb-1">
+                  {user.memberInfoData.tierInfo.tier_name}
+                </span>
+                <span className="text-[8px] fontMon tracking-widest text-white">
+                  TIER
+                </span>
+              </div>
+              <div className="absolute inset-0 flex items-end justify-between z-10 p-4">
+                <Link
+                  href="/history-tier"
+                  className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
+                >
+                  <Image
+                    src="/images/graf-up.svg"
+                    alt="Grafik"
+                    width={10}
+                    height={12}
+                    className="logo shadow"
+                  />
+                  <span className="text-[8px] fontMon tracking-widest">
+                    RIWAYAT TIER
+                  </span>
+                </Link>
+                <div
+                  className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
+                  onClick={handlePopUpQr}
+                >
+                  <Image
+                    src="/images/qr.svg"
+                    alt="Barcode"
+                    width={10}
+                    height={12}
+                    className="logo shadow"
+                  />
+                  <span className="text-[8px] fontMon tracking-widest">
+                    TAMPILKAN ID
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Card tier */}
+
           <div className="flex flex-col bg-white p-8 pt-28 rounded-t-3xl -top-24 relative">
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col items-start">
+            <div className="">
+              {/* Menu Activation */}
+              <div className="flex justify-between items-center gap-2 bg-white relative">
+                <div className="flex flex-col justify-center items-center gap-2 w-16">
+                  <Link
+                    href="/comingsoon"
+                    className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
+                  >
+                    <Image
+                      src={Misi}
+                      width={50}
+                      height={50}
+                      alt="Misi"
+                      className="w-auto h-full rounded-md bg-white"
+                    />
+                  </Link>
+
+                  <span className="text-[10px]">Misi</span>
+                </div>
+                <Link
+                  href="/lucky-draw"
+                  className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
+                >
+                  <Image
+                    src={Lucky}
+                    width={50}
+                    height={50}
+                    alt="Lucky Draw"
+                    className="w-auto h-full rounded-md bg-white"
+                  />
+                  <span className="text-[10px]">Lucky Draw</span>
+                </Link>
+                <div className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]">
+                  <Link
+                    href="/comingsoon"
+                    className="flex flex-col justify-center items-center gap-2 w-16"
+                  >
+                    <Image
+                      src={Referral}
+                      width={50}
+                      height={50}
+                      alt="Referral"
+                      className="w-auto h-full rounded-md bg-white"
+                    />
+                  </Link>
+
+                  <span className="text-[10px]">Referral</span>
+                </div>
+                <Link
+                  href="/promo"
+                  className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
+                >
+                  <Image
+                    src={Promo}
+                    width={50}
+                    height={50}
+                    alt="Promo"
+                    className="w-auto h-full rounded-md bg-white"
+                  />
+                  <span className="text-[10px]">Promo</span>
+                </Link>
+              </div>
+              {/* Menu Activation */}
+              {/* <div className="flex flex-col items-start">
                 <span className="text-[8px] tracking-wider fontMon">
                   TOTAL POIN
                 </span>
                 <span className="font-medium">
                   Rp {formatToIDR(user.memberInfoData.points || 0)}
                 </span>
-              </div>
-              <div
+              </div> */}
+              {/* <div
                 className="flex items-center justify-center border border-base-accent rounded-lg p-2 gap-2 cursor-pointer"
                 onClick={handlePopUpQr}
               >
@@ -173,7 +315,7 @@ export default function Page() {
                   alt="qr"
                   className="w-auto h-auto"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -194,67 +336,20 @@ export default function Page() {
             <ModalQRCode data={user.memberInfoData} closeModal={closeModal} />
           )}
 
-          <div className="flex justify-between items-center px-8 pt-8 gap-2 bg-white -top-20 relative">
-            <div className="flex flex-col justify-center items-center gap-2 w-16">
-              <Link
-                href="/comingsoon"
-                className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
-              >
-                <Image
-                  src={Misi}
-                  width={50}
-                  height={50}
-                  alt="Misi"
-                  className="w-auto h-full rounded-md bg-white"
-                />
-              </Link>
-
-              <span className="text-[10px]">Misi</span>
-            </div>
-            <Link
-              href="/lucky-draw"
-              className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
-            >
-              <Image
-                src={Lucky}
-                width={50}
-                height={50}
-                alt="Lucky Draw"
-                className="w-auto h-full rounded-md bg-white"
-              />
-              <span className="text-[10px]">Lucky Draw</span>
-            </Link>
-            <div className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]">
-              <Link
-                href="/comingsoon"
-                className="flex flex-col justify-center items-center gap-2 w-16"
-              >
-                <Image
-                  src={Referral}
-                  width={50}
-                  height={50}
-                  alt="Referral"
-                  className="w-auto h-full rounded-md bg-white"
-                />
-              </Link>
-
-              <span className="text-[10px]">Referral</span>
-            </div>
-            <Link
-              href="/promo"
-              className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
-            >
-              <Image
-                src={Promo}
-                width={50}
-                height={50}
-                alt="Promo"
-                className="w-auto h-full rounded-md bg-white"
-              />
-              <span className="text-[10px]">Promo</span>
-            </Link>
-          </div>
           <div className="flex flex-col p-8 gap-2 bg-white -top-20 relative">
+            {/* promo carousel */}
+            <div className=" flex flex-col items-end relative">
+              <div className="w-full h-full rounded-lg">
+                <Carousel />
+              </div>
+              <Link
+                href={"/promo"}
+                className="text-[8px] tracking-wider mt-2 fontMon"
+              >
+                LIHAT SEMUA
+              </Link>
+            </div>
+            {/* promo carousel */}
             <h2 className="text-lg mb-4">Brand Kami</h2>
             <Brand />
           </div>

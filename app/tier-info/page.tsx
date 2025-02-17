@@ -1,26 +1,20 @@
 "use client";
 
-import Select from "@/components/Select";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getTier } from "@/redux/thunks/tierThunks";
-import { getTierInfo } from "@/redux/thunks/tierInfoSementara";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
 import formatToIDR from "@/utils/formatToIDR";
-
-interface BenefitData {
-  point_1: string;
-  point_2: string;
-  point_3: string;
-  point_4: string;
-  point_5: string;
-  point_6: string;
-  point_7: string;
-  point_8: string;
-}
+import checklist from "@/public/images/circle_check.svg";
+import locked from "@/public/images/circle_lock.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface Tier {
   id: number;
@@ -29,67 +23,19 @@ interface Tier {
   amountUpTo: number;
   amountPoint: number;
   tier_image: string;
-  benefitData: BenefitData;
-  cardImage: string;
+  benefitData: string;
+  status: string;
 }
 
 export default function TierInfo() {
   const dispatch = useAppDispatch();
-  const [selectedTier, setSelectedTier] = useState<Tier | null>(null);
 
   const { error, data } = useSelector((state: RootState) => state.tier);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     dispatch(getTier());
-    dispatch(getTierInfo()); //Gak jadi dipake nanti dihapus
   }, [dispatch]);
-
-  const options = data
-    ? data.tierData.map((tier: Tier) => ({
-        id: tier.id.toString(),
-        label: tier.tier,
-      }))
-    : [];
-
-  // Kondisi sementara buat point per tier
-  const getAmountPoint = (tierId: number | undefined) => {
-    if (tierId === undefined) return 0;
-    switch (tierId) {
-      case 0:
-        return 0;
-      case 1:
-        return 100;
-      case 2:
-        return 150;
-      case 3:
-        return 200;
-      case 4:
-        return 250;
-      case 5:
-        return 300;
-      case 6:
-        return 400;
-      case 7:
-        return 500;
-      default:
-        return 0;
-    }
-  };
-
-  const amountPoint = getAmountPoint(selectedTier?.id);
-
-  useEffect(() => {
-    if (data && data.tierData.length > 0) {
-      setSelectedTier(data.tierData[0] || null);
-    }
-  }, [data]);
-
-  const handleChangeTier = (value: string) => {
-    const selected = data.tierData?.find(
-      (tier: Tier) => tier.id === parseInt(value)
-    );
-    setSelectedTier(selected || null);
-  };
 
   if (data == null) {
     return (
@@ -104,10 +50,12 @@ export default function TierInfo() {
     return <p>Error: {error}</p>;
   }
 
+  const activeTier = data.tierData[activeIndex] || data.tierData[0];
+
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
-        <div className="min-h-screen bg-base-accent">
+        <div className="min-h-screen">
           <div className="flex flex-col bg-white rounded-b-3xl p-8">
             <div className="flex items-center">
               <Image
@@ -127,62 +75,98 @@ export default function TierInfo() {
               tingkatan tier memiliki benefit yang berbeda seperti penambahan
               nilai poin dan akses benefit lainnya
             </p>
-            <Select
-              labelSelect="Pilih Tier"
-              options={options}
-              labelOption="Pilih Tier"
-              value={selectedTier?.id.toString() || ""}
-              onChange={(e) => handleChangeTier(e.target.value)}
-            />
           </div>
+          <div className="relative">
+            <div className="absolute w-full bg-white">
+              <Swiper
+                slidesPerView={2}
+                spaceBetween={260}
+                centeredSlides={true}
+                // pagination={{ clickable: true }}
+                modules={[Pagination]}
+                onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+                className="w-full"
+              >
+                {data.tierData.map((tier: Tier, index: number) => (
+                  <SwiperSlide key={tier.id}>
+                    <div className="flex flex-col items-center text-center w-full">
+                      <div className="flex flex-col items-center text-center justify-center w-80">
+                        <Image
+                          src={`https://amscorp.id/card/${tier.tier_image}`}
+                          alt={tier.tier}
+                          width={800}
+                          height={400}
+                          className="mb-3 rounded-xl drop-shadow-[3px_3px_3px_rgba(0,0,0,0.20)]"
+                        />
+                        <div className="absolute z-10">
+                          <span className="text-sm text-white mb-1 uppercase fontMon tracking-widest">
+                            {tier.tier}
+                          </span>
+                        </div>
+                      </div>
 
-          {selectedTier && (
-            <div className="flex flex-col justify-center items-center p-8">
-              <div className="flex flex-col justify-center items-center bg-white w-full p-4 rounded-lg">
-                <div className="flex justify-center items-center relative p-4">
-                  <div className="relative">
-                    <Image
-                      src={`https://amscorp.id/card/${selectedTier.cardImage}`}
-                      alt={selectedTier.tier}
-                      width={500}
-                      height={500}
-                      className="shadow w-full h-auto"
-                    />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                      <span className="text-xs text-white">
-                        {selectedTier.tier}
-                      </span>
-                      <span className="text-[8px] text-white">TIER</span>
+                      {/* <p className="text-gray-600">{tier.status}</p> */}
+                      {/* jika tier status = Passed , maka tampilkan text "Anda telah mencapai tier ini". jika Active, maka tampilkan "Tier anda saat ini". jika Locked, maka tampilkan "Tier anda terkunci" */}
+                      <div className="bg-gray-200 w-[320px] rounded-xl">
+                        <div className="text-[10px] p-3 w-full tracking-wider">
+                          {tier.status === "Passed" && (
+                            <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 rounded-xl tracking-wider">
+                              <Image
+                                src={checklist}
+                                alt="checklist"
+                                width={20}
+                                height={20}
+                                className=""
+                              />
+                              <span>Anda telah mencapai tier ini.</span>
+                            </div>
+                          )}
+                          {tier.status === "Active" && "Tier anda saat ini"}
+                          {tier.status === "Locked" && (
+                            <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 p-3 rounded-xl tracking-wider">
+                              <Image
+                                src={locked}
+                                alt="locked"
+                                width={20}
+                                height={20}
+                                className=""
+                              />
+                              <span>
+                                Belanja hingga Rp $
+                                {formatToIDR(tier.amountUpTo || 0)} untuk
+                                membuka tier ini
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
 
-                <h2 className="font-semibold">{selectedTier.tier}</h2>
-                <div className="flex self-start">
-                  <span className="text-sm font-medium my-4">
-                    Rp {formatToIDR(selectedTier.amountStartingFrom)} - Rp{" "}
-                    {formatToIDR(selectedTier.amountUpTo)}
-                  </span>
-                </div>
-                <div className="flex flex-col w-full mt-2">
-                  <span className="text-sm font-semibold">Penambahan Poin</span>
-                  <span className="text-[10px]">
-                    Setiap pembelian Rp 10.000 = {amountPoint} Poin
-                  </span>
-                </div>
-                <div className="flex flex-col w-full mt-2">
-                  <span className="text-sm font-semibold">Benefit</span>
-                  <ol className="text-[10px] list-decimal list-inside">
-                    {Object.values(selectedTier.benefitData).map(
-                      (benefit, index) => (
-                        <li key={index}>{benefit}</li>
-                      )
-                    )}
-                  </ol>
+              <div className="p-8">
+                <h1 className="text-2xl text-center">{activeTier.tier}</h1>
+                <div>
+                  <div className="p-6 w-full min-h-80">
+                    <h2>Penambahan point</h2>
+                    <span className="text-[10px] fontMon tracking-wider">
+                      Every purchase Rp 10.000 = {activeTier.amountPoint} poin
+                      (rupiah)
+                    </span>
+
+                    <h2 className="mb-2 mt-5">Benefit</h2>
+                    <div
+                      className="text-gray-700 text-[10px] fontMon tracking-wider"
+                      dangerouslySetInnerHTML={{
+                        __html: activeTier.benefitData,
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@
 
 import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
-import Header from "@/components/Header";
 import Input from "@/components/Input";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
@@ -13,6 +12,19 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
+import Link from "next/link";
+import ProgressBar from "@/components/PrgressBar";
+import checklist from "@/public/images/circle_check.svg";
+import locked from "@/public/images/circle_lock.svg";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+import TabBar from "@/components/TabBar";
+import ModalQRCode from "@/components/ModalQrCode";
 
 interface Transaction {
   id: number;
@@ -40,6 +52,17 @@ interface Filter {
   endDate: string;
 }
 
+interface Tier {
+  id: number;
+  tier: string;
+  amountStartingFrom: number;
+  amountUpTo: number;
+  amountPoint: number;
+  tier_image: string;
+  benefitData: string;
+  status: string;
+}
+
 export default function HistoryTransaction() {
   const dispatch = useAppDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -58,6 +81,11 @@ export default function HistoryTransaction() {
 
   const { error, data } = useSelector((state: RootState) => state.transaction);
 
+  const [year, setYear] = useState<string>("");
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isShowQr, setIsShowQr] = useState(false);
+
   useEffect(() => {
     dispatch(getTransaction());
   }, [dispatch]);
@@ -68,15 +96,34 @@ export default function HistoryTransaction() {
     }
   }, [data?.transactionData]);
 
-  // const showModal = ({ id }: { id: number }) => {
-  //   data.transactionData.find((item: Transaction) => {
-  //     if (item.id === id) {
-  //       setIsModalVisible(true);
-  //       setDetail(item);
-  //       return true;
-  //     }
-  //   });
-  // };
+  useEffect(() => {
+    if (data?.memberInfoData.length > 0) {
+      setFilteredData(data.memberInfoData);
+    }
+  }, [data?.memberInfoData]);
+
+  useEffect(() => {
+    const currentYear = data?.memberInfoData.joinDate.slice(0, 4);
+    setYear(currentYear || "");
+  }, [data]);
+
+  useEffect(() => {
+    if (data?.memberInfoData?.tierData?.length) {
+      const activeTierIndex = data.memberInfoData.tierData.findIndex(
+        (tier: any) => tier.status === "Active"
+      );
+      if (activeTierIndex !== -1) {
+        setActiveIndex(activeTierIndex);
+      }
+    }
+  }, [data]);
+
+  function toNormalCase(str: string) {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
 
   const showModal = ({ id }: { id: number }) => {
     const foundItem = data?.transactionData?.find(
@@ -88,9 +135,9 @@ export default function HistoryTransaction() {
     }
   };
 
-  const closeModal = () => {
-    setIsModalVisible(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalVisible(false);
+  // };
 
   // modal untuk filter
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,12 +153,6 @@ export default function HistoryTransaction() {
     const [day, month, year] = date.split("/");
     return `${year}-${month}-${day}`;
   };
-
-  // Konversi tanggal ke format yyyy-mm-dd
-  // const convertedData = data?.transactionData.map((item: Transaction) => ({
-  //   ...item,
-  //   tanggalTransksi: convertToYYYYMMDD(item.tanggalTransksi),
-  // }));
 
   const convertedData = data?.transactionData
     ? data.transactionData.map((item: Transaction) => ({
@@ -173,6 +214,17 @@ export default function HistoryTransaction() {
     setShowModalFilter(false);
   };
 
+  // QR Modal
+  const handlePopUpQr = () => {
+    // setIsModalVisible(true);
+    setIsShowQr(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+    setIsShowQr(false);
+  };
+
   if (data == null) {
     return (
       <div className="flex flex-col gap-4 justify-center items-center h-screen">
@@ -186,32 +238,272 @@ export default function HistoryTransaction() {
     return <p>Error: {error}</p>;
   }
 
+  // const activeTier =
+  //   data.memberInfoData.tierData[activeIndex] ||
+  //   data.memberInfoData.tierData[0];
+
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
-        <div className="bg-base-accent min-h-screen w-full">
-          <Header>
-            <div className="flex items-center justify-between mt-8">
-              <span className="text-[10px] fontMon tracking-widest">
-                RIWAYAT BELANJA
-              </span>
-              <div
-                className="flex items-center justify-center gap-2 cursor-pointer"
-                onClick={showFilterModal}
-              >
-                <Image
-                  src="/images/filter.svg"
-                  alt="Filter"
-                  width={100}
-                  height={100}
-                  className="w-auto h-auto cursor-pointer"
-                />
-                <span className="text-[10px] fontMon tracking-widest">
-                  FILTER
+        <div className="w-full">
+          {/* Header info */}
+          <div className="flex flex-col bg-base-accent rounded-b-3xl py-8 justify-center items-center relative w-full">
+            <Swiper
+              key={activeIndex}
+              initialSlide={activeIndex}
+              slidesPerView={2}
+              spaceBetween={360}
+              centeredSlides={true}
+              // pagination={{ clickable: true }}
+
+              modules={[Pagination]}
+              // onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+              className="w-full z-20"
+            >
+              {data.memberInfoData.tierData.map((tier: Tier, index: number) => (
+                <SwiperSlide key={tier.id}>
+                  <div className="flex flex-col items-center text-center w-full">
+                    <div className="flex flex-col items-center text-center justify-center w-96 mb-3 relative">
+                      <Image
+                        src={`https://amscorp.id/card/${tier.tier_image}`}
+                        alt={tier.tier}
+                        width={800}
+                        height={400}
+                        className="mb-3 rounded-xl drop-shadow-[3px_3px_3px_rgba(0,0,0,0.20)]"
+                      />
+                      {tier.status === "Active" && (
+                        // <div className="absolute top-0 left-0 bottom-3 w-full p-4">
+                        //   <div className="relative inset-0 top-0 flex flex-col items-start justify-start z-10">
+                        //     <span className="text-sm text-white mb-1 normal-case">
+                        //       {toNormalCase(data.memberInfoData.fullName)}
+                        //     </span>
+                        //     <span className="text-[8px] fontMon text-white tracking-widest">
+                        //       MEMBER SEJAK {year}
+                        //     </span>
+                        //   </div>
+                        //   <div className="flex flex-col items-center justify-center z-10 ">
+                        //     <span className="text-sm fontMon uppercase tracking-widest text-white mb-1">
+                        //       {data.memberInfoData.tierInfo.tier_name}
+                        //     </span>
+                        //     <span className="text-[8px] fontMon tracking-widest text-white">
+                        //       TIER
+                        //     </span>
+                        //   </div>
+                        //   <div className="flex items-end justify-between z-10">
+                        //     <Link
+                        //       href="/history-tier"
+                        //       className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
+                        //     >
+                        //       <Image
+                        //         src="/images/graf-up.svg"
+                        //         alt="Grafik"
+                        //         width={10}
+                        //         height={12}
+                        //         className="logo shadow"
+                        //       />
+                        //       <span className="text-[8px] fontMon tracking-widest">
+                        //         RIWAYAT TIER
+                        //       </span>
+                        //     </Link>
+                        //     <div
+                        //       className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
+                        //       // onClick={handlePopUpQr}
+                        //     >
+                        //       <Image
+                        //         src="/images/qr.svg"
+                        //         alt="Barcode"
+                        //         width={10}
+                        //         height={12}
+                        //         className="logo shadow"
+                        //       />
+                        //       <span className="text-[8px] fontMon tracking-widest">
+                        //         TAMPILKAN ID
+                        //       </span>
+                        //     </div>
+                        //   </div>
+                        // </div>
+                        <div className="absolute top-0 left-0 bottom-3 w-full">
+                          <div className="absolute inset-0 flex flex-row items-start justify-between z-10 p-4">
+                            <div className="flex flex-col">
+                              <span className="text-sm text-white mb-1 normal-case">
+                                {toNormalCase(data.memberInfoData.fullName)}
+                              </span>
+                              <span className="text-[7px] fontMon text-white tracking-widest">
+                                MEMBER SEJAK {year}
+                              </span>
+                            </div>
+
+                            {/* Poin */}
+                            <div className="flex flex-col">
+                              <span className="font-medium text-white text-right mb-1">
+                                {formatToIDR(data.memberInfoData.points || 0)}
+                              </span>
+                              <span className="text-[7px] text-white tracking-widest text-right fontMon">
+                                TOTAL POIN
+                              </span>
+                            </div>
+                          </div>
+                          <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                            <span className="text-sm fontMon uppercase tracking-widest text-white mb-1">
+                              {data.memberInfoData.tierInfo.tier_name}
+                            </span>
+                            <span className="text-[8px] fontMon tracking-widest text-white">
+                              TIER
+                            </span>
+                          </div>
+                          <div className="absolute inset-0 flex items-end justify-between z-20 p-4">
+                            <Link
+                              href="/history-tier"
+                              className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
+                            >
+                              <Image
+                                src="/images/graf-up.svg"
+                                alt="Grafik"
+                                width={10}
+                                height={12}
+                                className="logo shadow"
+                              />
+                              <span className="text-[8px] fontMon tracking-widest">
+                                RIWAYAT TIER
+                              </span>
+                            </Link>
+                            <div
+                              className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
+                              onClick={handlePopUpQr}
+                            >
+                              <Image
+                                src="/images/qr.svg"
+                                alt="Barcode"
+                                width={10}
+                                height={12}
+                                className="logo shadow"
+                              />
+                              <span className="text-[8px] fontMon tracking-widest">
+                                TAMPILKAN ID
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                        {tier.status !== "Active" && (
+                          <span className="flex flex-col justify-center items-center text-sm text-white mb-1 uppercase fontMon tracking-widest">
+                            {tier.tier}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="w-96 rounded-xl h-16">
+                      {tier.status === "Passed" && (
+                        <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 p-3 rounded-xl tracking-wider">
+                          <Image
+                            src={checklist}
+                            alt="checklist"
+                            width={20}
+                            height={20}
+                            className=""
+                          />
+                          <span>Anda telah mencapai tier ini.</span>
+                        </div>
+                      )}
+                      {tier.status === "Locked" && (
+                        <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 p-3 rounded-xl tracking-wider">
+                          <Image
+                            src={locked}
+                            alt="locked"
+                            width={20}
+                            height={20}
+                            className=""
+                          />
+                          <span>
+                            Belanja hingga Rp $
+                            {formatToIDR(tier.amountUpTo || 0)} untuk membuka
+                            tier ini
+                          </span>
+                        </div>
+                      )}
+                      {tier.status === "Active" && (
+                        <>
+                          {data.memberInfoData.tierInfo.tierName ===
+                          "Maestro" ? (
+                            <div className="">
+                              <div className="flex justify-between items-center w-full">
+                                <small className="text-white text-[10px] tracking-wider fontMon">
+                                  Kamu telah mencapai tier tertinggi.
+                                </small>
+                                <small className="text-white">100%</small>
+                              </div>
+                              <ProgressBar currentValue={100} maxValue={100} />
+                            </div>
+                          ) : (
+                            <div className="">
+                              <div className="flex justify-between items-center w-full">
+                                <small className="text-white text-[10px] tracking-wider fontMon">
+                                  Rp{" "}
+                                  {formatToIDR(
+                                    data.memberInfoData.tierInfo
+                                      .amountForNextTier || 0
+                                  )}{" "}
+                                  untuk tier selanjutnya
+                                </small>
+                                <small className="text-white">
+                                  {data.memberInfoData.tierInfo
+                                    .memberPersentase || 0}
+                                  %
+                                </small>
+                              </div>
+                              <ProgressBar
+                                currentValue={
+                                  data.memberInfoData.tierInfo
+                                    .memberPersentase || 0
+                                }
+                                maxValue={100}
+                              />
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Total Poin */}
+
+            <div className="w-full px-8">
+              <div className="flex justify-between items-center w-full">
+                <small className="text-white text-[9px] fontMon tracking-wider">
+                  TOTAL POIN
+                </small>
+                {data.memberInfoData.expiredPoint !== 0 ? (
+                  <small className="text-white text-[9px] tracking-wider fontMon">
+                    {data.memberInfoData.expiredPoint} Poin kedaluwarsa pada{" "}
+                    {formatDate(data.memberInfoData.expiredPointDate)}
+                  </small>
+                ) : (
+                  <></>
+                )}
+              </div>
+
+              <div className="flex justify-between items-center w-full">
+                <span className="text-amber-200 text-lg">
+                  {formatToIDR(data.memberInfoData.points || 0)}
                 </span>
+                <Link
+                  href="/history-point"
+                  className="text-white text-[10px] tracking-wider underline underline-offset-8"
+                >
+                  Riwayat Poin
+                </Link>
               </div>
             </div>
-          </Header>
+          </div>
+
+          <div className="flex justify-center text-[8px] fontMon items-center p-4 mt-5 mb-1 bg-gray-200 uppercase tracking-widest">
+            Riwayat Transaksi
+          </div>
 
           <div className="flex flex-col items-center justify-center p-4">
             {filteredData && filteredData.length > 0 ? (
@@ -410,6 +702,12 @@ export default function HistoryTransaction() {
             </div>
           )}
         </div>
+        {/* Modal for QR code */}
+        {isShowQr && (
+          <ModalQRCode data={data.memberInfoData} closeModal={closeModal} />
+        )}
+
+        <TabBar />
       </div>
     </div>
   );

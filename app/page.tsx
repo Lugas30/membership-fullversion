@@ -54,7 +54,7 @@ export default function Auth() {
             <hr className="w-full border-gray-300 my-4" />
 
             <p className="text-[9px] text-center fontMon">
-              Program khusus member yang telah terdaftar
+              Member yang sudah terdaftar
             </p>
 
             <Button

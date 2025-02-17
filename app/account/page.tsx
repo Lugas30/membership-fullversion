@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import React, { FormEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
+import tiergroup from "../../public/images/tiergroup.svg";
 
 export default function Page() {
   const router = useRouter();
@@ -94,7 +95,33 @@ export default function Page() {
     <div className="flex flex-col justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <div className="flex flex-col items-center p-8 bg-base-accent rounded-b-3xl w-full">
-          <div className="flex justify-center items-center relative w-full">
+          {/* Header info */}
+          <div className="flex justify-between items-center pb-5 relative w-full">
+            <span className="text-lg text-white normal-case">
+              {toNormalCase(user.memberInfoData.fullName)}
+            </span>
+            <Link href="/account" className="text-white">
+              <div className="flex justify-center items-center gap-2">
+                <div className="flex flex-col items-end">
+                  <span className="text-[7px] fontMon uppercase tracking-widest text-white">
+                    Tier
+                  </span>
+                  <span className="text-sm text-white">
+                    {user.memberInfoData.tierInfo.tier_name}
+                  </span>
+                </div>
+                <Image
+                  src={`https://amscorp.id/card/${user.memberInfoData.tierInfo.profileImage}`}
+                  width={50}
+                  height={50}
+                  alt={`${user.memberInfoData.tierInfo.profileImage}`}
+                  className="h-10 w-10 rounded-full"
+                />
+              </div>
+            </Link>
+          </div>
+          {/* Header info */}
+          {/* <div className="flex justify-center items-center relative w-full">
             <div className="relative">
               <Image
                 src={`https://amscorp.id/card/${user.memberInfoData.tierInfo.cardImage}`}
@@ -152,11 +179,11 @@ export default function Page() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <h2 className="text-white text-lg my-4 self-start normal-case">
+          {/* <h2 className="text-white text-lg my-4 self-start normal-case">
             {toNormalCase(user.memberInfoData.fullName)}
-          </h2>
+          </h2> */}
 
           {/* <div className="flex justify-between items-center w-full text-pretty">
             <small className="text-white text-[10px] tracking-wider fontMon">
@@ -169,45 +196,7 @@ export default function Page() {
             </small>
           </div> */}
 
-          {/* Progress Bar */}
-          {user.memberInfoData.tierInfo.tier_name === "Maestro" ? (
-            <>
-              <div className="flex justify-between items-center w-full text-pretty">
-                <small className="text-white text-[10px] tracking-wider fontMon">
-                  Kamu telah mencapai tier tertinggi.
-                </small>
-                <small className="text-white">{100}%</small>
-              </div>
-
-              {/* Progress Bar */}
-              <ProgressBar currentValue={100} maxValue={100} />
-            </>
-          ) : (
-            <>
-              <div className="flex justify-between items-center w-full text-pretty">
-                <small className="text-white text-[10px] tracking-wider fontMon">
-                  Rp{" "}
-                  {formatToIDR(
-                    user.memberInfoData.tierInfo.amountForNextTier || 0
-                  )}{" "}
-                  untuk tier selanjutnya
-                </small>
-                <small className="text-white">
-                  {user.memberInfoData.tierInfo.memberPersentase || 0}%
-                </small>
-              </div>
-
-              {/* Progress Bar */}
-              <ProgressBar
-                currentValue={
-                  user.memberInfoData.tierInfo.memberPersentase || 0
-                }
-                maxValue={100}
-              />
-            </>
-          )}
-
-          <div className="flex justify-between items-center w-full my-2">
+          {/* <div className="flex justify-between items-center w-full my-2">
             <small className="text-white text-[9px] fontMon tracking-wider">
               TOTAL POIN
             </small>
@@ -219,9 +208,23 @@ export default function Page() {
             ) : (
               <></>
             )}
-          </div>
+          </div> */}
 
-          <div className="flex justify-between items-center w-full">
+          {/* <div className="flex justify-between items-center w-full my-2">
+            <small className="text-white text-[9px] fontMon tracking-wider">
+              TOTAL POIN
+            </small>
+            {user.memberInfoData.expiredPoint !== 0 ? (
+              <small className="text-white text-[9px] tracking-wider fontMon">
+                {user.memberInfoData.expiredPoint} Poin kedaluwarsa pada{" "}
+                {formatDate(user.memberInfoData.expiredPointDate)}
+              </small>
+            ) : (
+              <></>
+            )}
+          </div> */}
+
+          {/* <div className="flex justify-between items-center w-full">
             <span className="text-amber-200 text-lg">
               Rp {formatToIDR(user.memberInfoData.points || 0)}
             </span>
@@ -231,7 +234,80 @@ export default function Page() {
             >
               Riwayat Poin
             </Link>
+          </div> */}
+
+          {/* Member Info Island */}
+          <div className="bg-white w-full rounded-xl flex justify-between p-4">
+            <div className="flex flex-col">
+              <small className=" text-[9px] fontMon tracking-wider">
+                TOTAL POIN
+              </small>
+              <span className=" text-lg">
+                {formatToIDR(user.memberInfoData.points || 0)}
+              </span>
+              <Link
+                href="/history-point"
+                className="text-[8px] tracking-wider fontMon"
+              >
+                Lihat Riwayat
+              </Link>
+            </div>
+            <div className="flex flex-col">
+              <small className=" text-[9px] fontMon tracking-wider">
+                TOTAL VOUCHER
+              </small>
+              <span className=" text-lg">
+                {user.memberInfoData.totalVoucher}
+              </span>
+              <Link
+                href="/history-point"
+                className="text-[8px] tracking-wider fontMon"
+              >
+                Lihat Voucher
+              </Link>
+            </div>
+            <div className="my-auto">
+              <div
+                className="flex items-center justify-center border border-base-accent rounded-lg p-2 gap-2 cursor-pointer"
+                onClick={handlePopUpQr}
+              >
+                <span className="text-[9px] tracking-wider">Show ID</span>
+                <Image
+                  src="/images/qr.svg"
+                  width={50}
+                  height={50}
+                  alt="qr"
+                  className="w-auto h-auto"
+                />
+              </div>
+            </div>
           </div>
+
+          {/* Member Benefit */}
+          <Link
+            href="/tier-info"
+            className="bg-white w-full rounded-xl flex justify-between p-4 mt-2"
+          >
+            <div className="flex">
+              <Image
+                src={tiergroup}
+                width={50}
+                height={50}
+                alt="qr"
+                className="w-auto h-auto"
+              />
+              <span className="text-[10px] ml-2 w-[100px] my-auto">
+                Lihat benefit tier
+              </span>
+            </div>
+            <Image
+              src="/images/arrow-right.svg"
+              width={30}
+              height={30}
+              alt="arrow"
+              className="w-auto h-auto"
+            />
+          </Link>
         </div>
 
         {/* Modal for Input PIN */}
