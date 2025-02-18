@@ -544,10 +544,10 @@ export default function HistoryTransaction() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-white">
+              <p className="text-center text-black">
                 {data?.transactionData
-                  ? "Tidak ada transaksi."
-                  : "Tidak ada transaksi."}
+                  ? "Belum ada transaksi."
+                  : "Belum ada transaksi."}
               </p>
             )}
           </div>
