@@ -80,9 +80,8 @@ export default function TierInfo() {
             <div className="absolute w-full bg-white">
               <Swiper
                 slidesPerView={2}
-                spaceBetween={260}
+                spaceBetween={280}
                 centeredSlides={true}
-                // pagination={{ clickable: true }}
                 modules={[Pagination]}
                 onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
                 className="w-full"
@@ -108,9 +107,9 @@ export default function TierInfo() {
                       {/* <p className="text-gray-600">{tier.status}</p> */}
                       {/* jika tier status = Passed , maka tampilkan text "Anda telah mencapai tier ini". jika Active, maka tampilkan "Tier anda saat ini". jika Locked, maka tampilkan "Tier anda terkunci" */}
                       <div className="bg-gray-200 w-[320px] rounded-xl">
-                        <div className="text-[10px] p-3 w-full tracking-wider">
+                        <div className="text-[10px] w-full tracking-wider">
                           {tier.status === "Passed" && (
-                            <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 rounded-xl tracking-wider">
+                            <div className="flex flex-row justify-center gap-2 items-center text-[10px] p-3 bg-gray-200 rounded-xl tracking-wider">
                               <Image
                                 src={checklist}
                                 alt="checklist"
@@ -121,7 +120,11 @@ export default function TierInfo() {
                               <span>Anda telah mencapai tier ini.</span>
                             </div>
                           )}
-                          {tier.status === "Active" && "Tier anda saat ini"}
+                          {tier.status === "Active" && (
+                            <div className="p-3 min-h-[44px] flex flex-col justify-center">
+                              <span>Tier anda saat ini</span>
+                            </div>
+                          )}
                           {tier.status === "Locked" && (
                             <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 p-3 rounded-xl tracking-wider">
                               <Image
@@ -132,9 +135,9 @@ export default function TierInfo() {
                                 className=""
                               />
                               <span>
-                                Belanja hingga Rp $
-                                {formatToIDR(tier.amountUpTo || 0)} untuk
-                                membuka tier ini
+                                Belanja hingga Rp
+                                {formatToIDR(tier.amountStartingFrom || 0)}{" "}
+                                untuk membuka tier ini
                               </span>
                             </div>
                           )}

@@ -11,6 +11,7 @@ export default function MenuAccount() {
     { label: "Lokasi Toko", link: "/store" },
     { label: "Syarat & Ketentuan", link: "/term-condition" },
     { label: "Bantuan", link: "/help" },
+    { label: "FAQ", link: "/faq" },
   ];
 
   return (

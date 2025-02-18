@@ -286,7 +286,7 @@ export default function Page() {
           {/* Member Benefit */}
           <Link
             href="/tier-info"
-            className="bg-white w-full rounded-xl flex justify-between p-4 mt-2"
+            className="bg-white w-full rounded-xl flex justify-between p-4 mt-2 h-14"
           >
             <div className="flex">
               <Image

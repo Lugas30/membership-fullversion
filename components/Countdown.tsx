@@ -9,16 +9,15 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   const [remainingTime, setRemainingTime] = useState<string>("");
 
   const formatDate = (dateString: string): Date | null => {
-    // Coba parse dengan beberapa format
     const formats = ["dd/MM/yyyy", "yyyy-MM-dd"];
     for (const fmt of formats) {
       try {
         return parse(dateString, fmt, new Date());
       } catch {
-        continue; // Lanjut ke format berikutnya
+        continue;
       }
     }
-    return null; // Jika parsing gagal untuk semua format
+    return null;
   };
 
   useEffect(() => {
@@ -29,21 +28,28 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
         return;
       }
 
-      const target = parsedDate;
+      const target = new Date(
+        parsedDate.getFullYear(),
+        parsedDate.getMonth(),
+        parsedDate.getDate()
+      );
       const now = new Date();
-      const difference = target.getTime() - now.getTime();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-      if (difference <= 0) {
-        setRemainingTime("Waktu telah habis!");
-        return;
+      const difference = target.getTime() - today.getTime();
+      const days = difference / (1000 * 3600 * 24);
+
+      if (days === 0) {
+        setRemainingTime("Akan kedaluwarsa!");
+      } else if (days > 0) {
+        setRemainingTime(`${days} Hari lagi`);
+      } else {
+        setRemainingTime("Voucher Kedaluwarsa!");
       }
-
-      const days = Math.floor(difference / (1000 * 3600 * 24));
-      setRemainingTime(`${days} Hari lagi`);
     };
 
     const timer = setInterval(calculateTimeLeft, 1000);
-    calculateTimeLeft(); // Jalankan langsung untuk menghindari delay
+    calculateTimeLeft();
 
     return () => clearInterval(timer);
   }, [targetDate]);

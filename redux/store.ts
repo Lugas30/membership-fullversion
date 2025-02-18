@@ -17,6 +17,7 @@ import luckyListReducer from "./slices/luckyListSlice";
 import categoryPromoReducer from "./slices/categoryPromoSlice";
 import tierInfoSementara from "./slices/tierInfoSementara";
 import contact from "./slices/contactSlice";
+import faqReducer from "./slices/faqSlice";
 
 const store = configureStore({
   reducer: {
@@ -38,6 +39,7 @@ const store = configureStore({
     categoryPromo: categoryPromoReducer,
     tierInfoSementara: tierInfoSementara,
     contact: contact,
+    faq: faqReducer,
   },
   devTools: process.env.NEXT_PUBLIC_NODE_ENV !== "production",
 });

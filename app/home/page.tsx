@@ -95,13 +95,13 @@ export default function Page() {
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <div className="bg-base-accent w-full relative overflow-hidden">
-          <Image
+          {/* <Image
             src={Background}
             width={480}
             height={200}
             alt="background"
             className="absolute p-2 -right-32"
-          />
+          /> */}
           {/* notif verif email */}
           {user.memberInfoData.emailStatus == "email not verified" ? (
             <div className="bg-red-600 w-full text-center py-2 sticky">
