@@ -545,9 +545,10 @@ export default function HistoryTransaction() {
               ))
             ) : (
               <p className="text-center text-black">
-                {data?.transactionData
+                {/* {data?.transactionData
                   ? "Belum ada transaksi."
-                  : "kocak ada transaksi."}
+                  : "kocak ada transaksi."} */}
+                Belum ada transaksi.
               </p>
             )}
           </div>
