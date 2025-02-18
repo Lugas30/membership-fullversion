@@ -507,8 +507,8 @@ export default function HistoryTransaction() {
           </div>
 
           <div className="flex flex-col items-center justify-center px-4 pt-4 pb-24">
-            {data && data.transactionData.length > 0 ? (
-              data.transactionData.map((item: Transaction) => (
+            {filteredData && filteredData.length > 0 ? (
+              filteredData.map((item: Transaction) => (
                 <div
                   key={item.id}
                   className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
@@ -545,10 +545,9 @@ export default function HistoryTransaction() {
               ))
             ) : (
               <p className="text-center text-black">
-                {/* {data?.transactionData
+                {data?.transactionData
                   ? "Belum ada transaksi."
-                  : "kocak ada transaksi."} */}
-                Belum ada transaksi.
+                  : "Belum ada transaksi."}
               </p>
             )}
           </div>
