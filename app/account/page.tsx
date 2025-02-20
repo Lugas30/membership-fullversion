@@ -100,7 +100,7 @@ export default function Page() {
             <span className="text-lg text-white normal-case">
               {toNormalCase(user.memberInfoData.fullName)}
             </span>
-            <Link href="/account" className="text-white">
+            <Link href="/history-transaction" className="text-white">
               <div className="flex justify-center items-center gap-2">
                 <div className="flex flex-col items-end">
                   <span className="text-[7px] fontMon uppercase tracking-widest text-white">

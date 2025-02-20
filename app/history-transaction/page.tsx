@@ -90,11 +90,11 @@ export default function HistoryTransaction() {
     dispatch(getTransaction());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (data?.transactionData.length > 0) {
-      setFilteredData(data.transactionData);
-    }
-  }, [data?.transactionData]);
+  // useEffect(() => {
+  //   if (data?.transactionData.length > 0) {
+  //     setFilteredData(data.transactionData);
+  //   }
+  // }, [data?.transactionData]);
 
   useEffect(() => {
     if (data?.memberInfoData.length > 0) {
@@ -238,6 +238,10 @@ export default function HistoryTransaction() {
     return <p>Error: {error}</p>;
   }
 
+  // const activeTier =
+  //   data.memberInfoData.tierData[activeIndex] ||
+  //   data.memberInfoData.tierData[0];
+
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
@@ -248,29 +252,24 @@ export default function HistoryTransaction() {
               key={activeIndex}
               initialSlide={activeIndex}
               slidesPerView={2}
-              centeredSlides={true}
-              modules={[Pagination]}
-              breakpoints={{
-                340: {
-                  spaceBetween: 300, // Untuk perangkat kecil seperti ponsel
-                },
-                640: {
-                  spaceBetween: 360, // Untuk desktop
-                },
-              }}
               spaceBetween={360}
+              centeredSlides={true}
+              // pagination={{ clickable: true }}
+
+              modules={[Pagination]}
+              // onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
               className="w-full z-20"
             >
               {data.memberInfoData.tierData.map((tier: Tier, index: number) => (
                 <SwiperSlide key={tier.id}>
-                  <div className="flex flex-col items-center text-center w-full mb-2">
+                  <div className="flex flex-col items-center text-center w-full">
                     <div className="flex flex-col items-center text-center justify-center w-96 mb-3 relative">
                       <Image
                         src={`https://amscorp.id/card/${tier.tier_image}`}
                         alt={tier.tier}
                         width={800}
                         height={400}
-                        className="mb-3 w-[340px] sm:w-[340px] md:w-[750px] lg:w-full rounded-xl drop-shadow-[3px_3px_3px_rgba(0,0,0,0.20)]"
+                        className="mb-3 rounded-xl drop-shadow-[3px_3px_3px_rgba(0,0,0,0.20)]"
                       />
                       {tier.status === "Active" && (
                         // <div className="absolute top-0 left-0 bottom-3 w-full p-4">
@@ -324,7 +323,7 @@ export default function HistoryTransaction() {
                         //   </div>
                         // </div>
                         <div className="absolute top-0 left-0 bottom-3 w-full">
-                          <div className="absolute inset-0 flex flex-row justify-between z-10 p-4 mx-6 md:mx-0">
+                          <div className="absolute inset-0 flex flex-row items-start justify-between z-10 p-4">
                             <div className="flex flex-col">
                               <span className="text-sm text-white mb-1 normal-case">
                                 {toNormalCase(data.memberInfoData.fullName)}
@@ -352,7 +351,7 @@ export default function HistoryTransaction() {
                               TIER
                             </span>
                           </div>
-                          <div className="absolute inset-0 flex items-end justify-between z-20 p-4 mx-6 md:mx-0">
+                          <div className="absolute inset-0 flex items-end justify-between z-20 p-4">
                             <Link
                               href="/history-tier"
                               className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
@@ -388,14 +387,19 @@ export default function HistoryTransaction() {
                       )}
                       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
                         {tier.status !== "Active" && (
-                          <span className="flex flex-col justify-center items-center text-sm text-white mb-1 uppercase fontMon tracking-widest">
+                          <span
+                            className="flex flex-col justify-center items-center text-sm text-white mb-1 uppercase fontMon tracking-widest"
+                            style={{
+                              textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+                            }}
+                          >
                             {tier.tier}
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <div className="rounded-xl w-80 sm:w-80 md:w-96">
+                    <div className="w-96 rounded-xl h-16">
                       {tier.status === "Passed" && (
                         <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 p-3 rounded-xl tracking-wider">
                           <Image
@@ -418,9 +422,9 @@ export default function HistoryTransaction() {
                             className=""
                           />
                           <span>
-                            Belanja hingga Rp
-                            {formatToIDR(tier.amountStartingFrom || 0)} untuk
-                            membuka tier ini
+                            Belanja hingga Rp $
+                            {formatToIDR(tier.amountUpTo || 0)} untuk membuka
+                            tier ini
                           </span>
                         </div>
                       )}
@@ -428,7 +432,7 @@ export default function HistoryTransaction() {
                         <>
                           {data.memberInfoData.tierInfo.tierName ===
                           "Maestro" ? (
-                            <div className="relative w-full">
+                            <div className="">
                               <div className="flex justify-between items-center w-full">
                                 <small className="text-white text-[10px] tracking-wider fontMon">
                                   Kamu telah mencapai tier tertinggi.
@@ -438,7 +442,7 @@ export default function HistoryTransaction() {
                               <ProgressBar currentValue={100} maxValue={100} />
                             </div>
                           ) : (
-                            <div className="relative w-full">
+                            <div className="">
                               <div className="flex justify-between items-center w-full">
                                 <small className="text-white text-[10px] tracking-wider fontMon">
                                   Rp{" "}
@@ -506,12 +510,12 @@ export default function HistoryTransaction() {
             Riwayat Transaksi
           </div>
 
-          <div className="flex flex-col items-center justify-center px-4 pt-4 pb-24">
-            {filteredData && filteredData.length > 0 ? (
-              filteredData.map((item: Transaction) => (
+          <div className="flex flex-col items-center justify-center p-4">
+            {data && data?.transactionData?.length > 0 ? (
+              data.transactionData.map((item: Transaction) => (
                 <div
                   key={item.id}
-                  className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
+                  className="bg-base-accent text-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between cursor-pointer mb-4"
                   onClick={() => showModal({ id: item.id })}
                 >
                   {/* Kolom kiri */}
@@ -544,11 +548,7 @@ export default function HistoryTransaction() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-black">
-                {data?.transactionData
-                  ? "Belum ada transaksi."
-                  : "Belum ada transaksi."}
-              </p>
+              <p className="text-center text-white">Tidak ada transaksi.</p>
             )}
           </div>
 

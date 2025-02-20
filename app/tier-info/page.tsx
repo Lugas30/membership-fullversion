@@ -98,7 +98,12 @@ export default function TierInfo() {
                           className="mb-3 rounded-xl drop-shadow-[3px_3px_3px_rgba(0,0,0,0.20)]"
                         />
                         <div className="absolute z-10">
-                          <span className="text-sm text-white mb-1 uppercase fontMon tracking-widest">
+                          <span
+                            className="text-sm text-white mb-1 uppercase fontMon tracking-widest"
+                            style={{
+                              textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+                            }}
+                          >
                             {tier.tier}
                           </span>
                         </div>

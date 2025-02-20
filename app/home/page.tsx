@@ -119,10 +119,11 @@ export default function Page() {
             <></>
           )}
           <div className="flex justify-between items-center px-8 pt-8 pb-5 relative">
-            <span className="text-lg text-white normal-case">
-              {toNormalCase(user.memberInfoData.fullName)}
+            <span className="text-sm text-white normal-case">
+              {/* {toNormalCase(user.memberInfoData.fullName)} */}
+              AMS Membership
             </span>
-            <Link href="/account" className="text-white">
+            <Link href="/history-transaction" className="text-white">
               <div className="flex justify-center items-center gap-2">
                 <div className="flex flex-col items-end">
                   <span className="text-[7px] fontMon uppercase tracking-widest text-white">
@@ -188,7 +189,12 @@ export default function Page() {
                 </div>
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                <span className="text-sm fontMon uppercase tracking-widest text-white mb-1">
+                <span
+                  className="text-sm fontMon uppercase tracking-widest text-white mb-1 shadow-sm"
+                  style={{
+                    textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+                  }}
+                >
                   {user.memberInfoData.tierInfo.tier_name}
                 </span>
                 <span className="text-[8px] fontMon tracking-widest text-white">
