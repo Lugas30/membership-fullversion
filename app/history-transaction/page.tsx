@@ -272,58 +272,13 @@ export default function HistoryTransaction() {
                         className="mb-3 rounded-xl drop-shadow-[3px_3px_3px_rgba(0,0,0,0.20)]"
                       />
                       {tier.status === "Active" && (
-                        // <div className="absolute top-0 left-0 bottom-3 w-full p-4">
-                        //   <div className="relative inset-0 top-0 flex flex-col items-start justify-start z-10">
-                        //     <span className="text-sm text-white mb-1 normal-case">
-                        //       {toNormalCase(data.memberInfoData.fullName)}
-                        //     </span>
-                        //     <span className="text-[8px] fontMon text-white tracking-widest">
-                        //       MEMBER SEJAK {year}
-                        //     </span>
-                        //   </div>
-                        //   <div className="flex flex-col items-center justify-center z-10 ">
-                        //     <span className="text-sm fontMon uppercase tracking-widest text-white mb-1">
-                        //       {data.memberInfoData.tierInfo.tier_name}
-                        //     </span>
-                        //     <span className="text-[8px] fontMon tracking-widest text-white">
-                        //       TIER
-                        //     </span>
-                        //   </div>
-                        //   <div className="flex items-end justify-between z-10">
-                        //     <Link
-                        //       href="/history-tier"
-                        //       className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
-                        //     >
-                        //       <Image
-                        //         src="/images/graf-up.svg"
-                        //         alt="Grafik"
-                        //         width={10}
-                        //         height={12}
-                        //         className="logo shadow"
-                        //       />
-                        //       <span className="text-[8px] fontMon tracking-widest">
-                        //         RIWAYAT TIER
-                        //       </span>
-                        //     </Link>
-                        //     <div
-                        //       className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
-                        //       // onClick={handlePopUpQr}
-                        //     >
-                        //       <Image
-                        //         src="/images/qr.svg"
-                        //         alt="Barcode"
-                        //         width={10}
-                        //         height={12}
-                        //         className="logo shadow"
-                        //       />
-                        //       <span className="text-[8px] fontMon tracking-widest">
-                        //         TAMPILKAN ID
-                        //       </span>
-                        //     </div>
-                        //   </div>
-                        // </div>
                         <div className="absolute top-0 left-0 bottom-3 w-full">
-                          <div className="absolute inset-0 flex flex-row items-start justify-between z-10 p-4">
+                          <div
+                            className="absolute inset-0 flex flex-row items-start justify-between z-10 p-4"
+                            style={{
+                              textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+                            }}
+                          >
                             <div className="flex flex-col">
                               <span className="text-sm text-white mb-1 normal-case">
                                 {toNormalCase(data.memberInfoData.fullName)}
@@ -343,7 +298,12 @@ export default function HistoryTransaction() {
                               </span>
                             </div>
                           </div>
-                          <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                          <div
+                            className="absolute inset-0 flex flex-col items-center justify-center z-10"
+                            style={{
+                              textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+                            }}
+                          >
                             <span className="text-sm fontMon uppercase tracking-widest text-white mb-1">
                               {data.memberInfoData.tierInfo.tier_name}
                             </span>
@@ -387,12 +347,7 @@ export default function HistoryTransaction() {
                       )}
                       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
                         {tier.status !== "Active" && (
-                          <span
-                            className="flex flex-col justify-center items-center text-sm text-white mb-1 uppercase fontMon tracking-widest"
-                            style={{
-                              textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
-                            }}
-                          >
+                          <span className="flex flex-col justify-center items-center text-sm text-white mb-1 uppercase fontMon tracking-widest">
                             {tier.tier}
                           </span>
                         )}

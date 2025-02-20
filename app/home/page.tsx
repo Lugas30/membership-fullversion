@@ -121,7 +121,7 @@ export default function Page() {
           <div className="flex justify-between items-center px-8 pt-8 pb-5 relative">
             <span className="text-sm text-white normal-case">
               {/* {toNormalCase(user.memberInfoData.fullName)} */}
-              Hi, AMS Membership!
+              Hi, AMS Member!
             </span>
             <Link href="/history-transaction" className="text-white">
               <div className="flex justify-center items-center gap-2">
@@ -168,7 +168,12 @@ export default function Page() {
                 height={500}
                 className="w-full h-[210px] sm:h-[220px] md:h-[230px] lg:h-[230] rounded-xl"
               />
-              <div className="absolute inset-0 flex flex-row items-start justify-between z-10 p-4">
+              <div
+                className="absolute inset-0 flex flex-row items-start justify-between z-10 p-4"
+                style={{
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+                }}
+              >
                 <div className="flex flex-col">
                   <span className="text-sm text-white mb-1 normal-case">
                     {toNormalCase(user.memberInfoData.fullName)}
@@ -190,7 +195,7 @@ export default function Page() {
               </div>
               <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
                 <span
-                  className="text-sm fontMon uppercase tracking-widest text-white mb-1 shadow-sm"
+                  className="text-sm fontMon uppercase tracking-widest text-white mb-1"
                   style={{
                     textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
                   }}
