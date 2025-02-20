@@ -99,7 +99,7 @@ export default function TierInfo() {
                         />
                         <div className="absolute z-10">
                           <span
-                            className="text-sm text-white mb-1 uppercase fontMon tracking-widest"
+                            className="text-[10px] text-white mb-1 uppercase fontMon tracking-widest"
                             style={{
                               textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
                             }}
