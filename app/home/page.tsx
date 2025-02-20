@@ -171,7 +171,7 @@ export default function Page() {
               <div
                 className="absolute inset-0 flex flex-row items-start justify-between z-10 p-4"
                 style={{
-                  textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+                  textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
                 }}
               >
                 <div className="flex flex-col">
@@ -193,13 +193,13 @@ export default function Page() {
                   </span>
                 </div>
               </div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                <span
-                  className="text-sm fontMon uppercase tracking-widest text-white mb-1"
-                  style={{
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
-                  }}
-                >
+              <div
+                className="absolute inset-0 flex flex-col items-center justify-center z-10"
+                style={{
+                  textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
+                }}
+              >
+                <span className="text-sm fontMon uppercase tracking-widest text-white mb-1">
                   {user.memberInfoData.tierInfo.tier_name}
                 </span>
                 <span className="text-[8px] fontMon tracking-widest text-white">
