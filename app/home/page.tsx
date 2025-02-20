@@ -121,7 +121,7 @@ export default function Page() {
           <div className="flex justify-between items-center px-8 pt-8 pb-5 relative">
             <span className="text-sm text-white normal-case">
               {/* {toNormalCase(user.memberInfoData.fullName)} */}
-              AMS Membership
+              Hi, AMS Membership!
             </span>
             <Link href="/history-transaction" className="text-white">
               <div className="flex justify-center items-center gap-2">
