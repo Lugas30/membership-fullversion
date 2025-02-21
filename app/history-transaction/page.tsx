@@ -279,7 +279,7 @@ export default function HistoryTransaction() {
                               textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
                             }}
                           >
-                            <div className="flex flex-col">
+                            <div className="flex flex-col items-start">
                               <span className="text-sm text-white mb-1 normal-case">
                                 {toNormalCase(data.memberInfoData.fullName)}
                               </span>
@@ -497,7 +497,7 @@ export default function HistoryTransaction() {
                       Total
                     </span>
                     <span className="text-xs">
-                      RP {formatToIDR(item.total)}
+                      Rp {formatToIDR(item.total)}
                     </span>
                   </div>
                 </div>

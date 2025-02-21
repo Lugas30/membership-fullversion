@@ -260,7 +260,7 @@ export default function Page() {
                 {user.memberInfoData.totalVoucher}
               </span>
               <Link
-                href="/history-point"
+                href="/voucher"
                 className="text-[8px] tracking-wider fontMon"
               >
                 Lihat Voucher

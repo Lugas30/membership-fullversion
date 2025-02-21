@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { FadeLoader } from "react-spinners";
 import chat from "../../public/images/chat.svg";
+import email from "../../public/images/email.svg";
+import instagram from "../../public/images/instagram.svg";
 
 export default function Help() {
   const dispatch = useAppDispatch();
@@ -65,12 +67,16 @@ export default function Help() {
           {/* content */}
           <div className="p-8">
             <div className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4">
-              <div className="flex justify-start items-center w-full gap-4">
+              <a
+                href={`https://wa.me/${data?.contactData.phoneNumber}`}
+                target="_blank"
+                className="flex justify-start items-center w-full gap-4"
+              >
                 <Image src={chat} alt="chat" width={22} height={22} />
                 <small className="text-[10px] uppercase tracking-widest fontMon">
                   {data?.contactData.phoneNumber} (Whatsapp)
                 </small>
-              </div>
+              </a>
             </div>
             <div className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4">
               <div className="flex justify-start items-center w-full gap-4">
@@ -99,9 +105,12 @@ export default function Help() {
                     </g>
                   </g>
                 </svg>
-                <small className="text-[10px] uppercase tracking-widest fontMon">
+                <a
+                  href={`mailto:${data?.contactData.email}}`}
+                  className="text-[10px] uppercase tracking-widest fontMon"
+                >
                   {data?.contactData.email}
-                </small>
+                </a>
               </div>
             </div>
             <div className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4">
@@ -130,9 +139,13 @@ export default function Help() {
                     fill="#0F0F0F"
                   />
                 </svg>
-                <small className="text-[10px] uppercase tracking-widest fontMon">
+                <a
+                  href={data?.contactData.instagram}
+                  target="_blank"
+                  className="text-[10px] uppercase tracking-widest fontMon"
+                >
                   {data?.contactData.instagram}
-                </small>
+                </a>
               </div>
             </div>
           </div>
