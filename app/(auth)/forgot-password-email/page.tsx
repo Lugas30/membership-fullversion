@@ -41,7 +41,7 @@ export default function ForgotPassword() {
 
     try {
       const response = await axios.post(
-        `https://golangapi-j5iu.onrender.com/send-wa-otp-forgot-password?userAccount=${data.userAccount}`
+        `https://golangapi-j5iu.onrender.com/send-email-otp-forgot-password?userAccount=${data.userAccount}`
       );
 
       if (response.data.responseCode === "2002500") {

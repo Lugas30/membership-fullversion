@@ -7,6 +7,7 @@ interface CountdownProps {
 
 const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   const [remainingTime, setRemainingTime] = useState<string>("");
+  const [isUrgent, setIsUrgent] = useState<boolean>(false); // Menentukan apakah harus berwarna merah
 
   const formatDate = (dateString: string): Date | null => {
     const formats = ["dd/MM/yyyy", "yyyy-MM-dd"];
@@ -25,26 +26,35 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
       const parsedDate = formatDate(targetDate);
       if (!parsedDate) {
         setRemainingTime("Format tanggal tidak valid!");
+        setIsUrgent(true);
         return;
       }
 
+      const now = new Date();
       const target = new Date(
         parsedDate.getFullYear(),
         parsedDate.getMonth(),
-        parsedDate.getDate()
+        parsedDate.getDate(),
+        23,
+        59,
+        59 // Set waktu menjadi akhir hari
       );
-      const now = new Date();
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-      const difference = target.getTime() - today.getTime();
-      const days = difference / (1000 * 3600 * 24);
+      const difference = target.getTime() - now.getTime();
 
-      if (days === 0) {
-        setRemainingTime("Akan kedaluwarsa!");
-      } else if (days > 0) {
+      if (difference > 24 * 3600 * 1000) {
+        const days = Math.floor(difference / (1000 * 3600 * 24));
         setRemainingTime(`${days} Hari lagi`);
+        setIsUrgent(false);
+      } else if (difference > 0) {
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        setRemainingTime(`${hours} : ${minutes} : ${seconds}`);
+        setIsUrgent(true);
       } else {
-        setRemainingTime("Voucher Kedaluwarsa!");
+        setRemainingTime("Expired");
+        setIsUrgent(true);
       }
     };
 
@@ -54,7 +64,11 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  return <span className="text-xs">{remainingTime}</span>;
+  return (
+    <span className={`text-xs ${isUrgent ? "text-red-500 font-bold" : ""}`}>
+      {remainingTime}
+    </span>
+  );
 };
 
 export default Countdown;

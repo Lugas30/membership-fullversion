@@ -56,10 +56,18 @@ export default function Vouchers() {
   }
 
   // Function to check if the voucher has expired
+  // const isVoucherExpired = (expiryDate: string) => {
+  //   const today = new Date();
+  //   const expiry = new Date(expiryDate.split("/").reverse().join("-"));
+  //   return expiry < today;
+  // };
+
   const isVoucherExpired = (expiryDate: string) => {
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset jam untuk membandingkan hanya tanggal
     const expiry = new Date(expiryDate.split("/").reverse().join("-"));
-    return expiry < today;
+
+    return expiry.getTime() < today.getTime(); // Expired jika lebih kecil dari hari ini
   };
 
   return (
@@ -71,15 +79,16 @@ export default function Vouchers() {
           const expired = isVoucherExpired(item.tanggalExpired);
           return (
             <div
-              className={`${
-                expired
-                  ? "bg-[#131010] text-white opacity-50 disabled cursor-not-allowed" // Disabled card styles
-                  : item.category == "VCR"
-                  ? "bg-[#E0DDD4]"
-                  : "bg-[#131010] text-white"
-              } w-full max-w-md rounded-lg p-6 flex flex-col justify-between space-y-4 shadow-md mb-4 cursor-pointer`}
+              className={`w-full max-w-md rounded-lg p-6 flex flex-col justify-between space-y-4 shadow-md mb-4 
+                ${
+                  item.category === "VCR"
+                    ? "bg-[#E0DDD4] text-black"
+                    : "bg-[#131010] text-white"
+                } 
+                ${expired ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+              `}
               key={item.id}
-              onClick={() => !expired && handleShowVoucher(item.noVoucher)} // Disable click if expired
+              onClick={() => !expired && handleShowVoucher(item.noVoucher)}
             >
               <div className="flex justify-between items-start">
                 <div className="flex flex-col">
