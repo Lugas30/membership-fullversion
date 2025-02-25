@@ -97,7 +97,7 @@ export default function TierInfo() {
                           height={400}
                           className="mb-3 rounded-xl drop-shadow-[3px_3px_3px_rgba(0,0,0,0.20)]"
                         />
-                        <div className="absolute z-10">
+                        <div className="absolute z-10 w-80">
                           <span
                             className="text-[10px] text-white mb-1 uppercase fontMon tracking-widest"
                             style={{

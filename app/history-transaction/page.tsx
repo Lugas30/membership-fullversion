@@ -378,8 +378,8 @@ export default function HistoryTransaction() {
                           />
                           <span>
                             Belanja hingga Rp
-                            {formatToIDR(tier.amountUpTo || 0)} untuk membuka
-                            tier ini
+                            {formatToIDR(tier.amountStartingFrom || 0)} untuk
+                            membuka tier ini
                           </span>
                         </div>
                       )}

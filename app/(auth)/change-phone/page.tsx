@@ -103,7 +103,7 @@ export default function ChangePhoneNumber() {
           <h1 className="text-xl">Ubah Nomor Telepon</h1>
           {error && <ErrorMessage message="No handphone tidak terdaftar" />}
           <p className="text-xs my-10 fontMon leading-relaxed">
-            Pastikan memasukkan nomor yang aktif. Kode OTP akan dikirimkan via
+            Masukkan nomor handphone baru. Kode OTP akan dikirimkan via
             WhatsApp.
           </p>
           <form action="" onSubmit={handleSend}>
