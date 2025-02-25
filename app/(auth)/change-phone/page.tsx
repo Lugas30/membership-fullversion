@@ -5,7 +5,7 @@ import ErrorMessage from "@/components/ErrorMessage";
 import Input from "@/components/Input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LogoHeader from "@/components/LogoHeader";
 
 export default function ChangePhoneNumber() {
@@ -14,9 +14,18 @@ export default function ChangePhoneNumber() {
   const [error, setError] = useState(false);
   const [inputError, setInputError] = useState<{ [key: string]: string }>({});
   const [data, setData] = useState({
-    memberID: localStorage.getItem("member"),
+    memberID: "",
     noTelepon: "",
   });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setData((prevData) => ({
+        ...prevData,
+        memberID: localStorage.getItem("member") || "",
+      }));
+    }
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -27,20 +36,18 @@ export default function ChangePhoneNumber() {
           ...prev,
           noTelepon: "Nomor handphone hanya boleh mengandung angka",
         }));
-        return; // Keluar agar tidak mengubah state `data`
+        return;
       }
     }
 
     setData((prevData) => ({ ...prevData, [name]: value }));
-
-    // Hapus pesan error untuk input yang valid
     setInputError((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateInputs = () => {
     const errors: { [key: string]: string } = {};
 
-    if (!data.noTelepon) errors.user = "No Handphone tidak boleh kosong";
+    if (!data.noTelepon) errors.noTelepon = "No Handphone tidak boleh kosong";
 
     setInputError(errors);
     return Object.keys(errors).length === 0;
@@ -54,7 +61,8 @@ export default function ChangePhoneNumber() {
     setLoading(true);
 
     try {
-      const token = localStorage.getItem("token");
+      const token =
+        typeof window !== "undefined" ? localStorage.getItem("token") : null;
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}change-p/send-otp`,
         data,
@@ -66,7 +74,9 @@ export default function ChangePhoneNumber() {
       );
 
       if (response.data.responseCode === "2002500") {
-        sessionStorage.setItem("phone", data.noTelepon);
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("phone", data.noTelepon);
+        }
         router.replace(`/otp-validasi-phone`);
       } else {
         setError(true);
@@ -75,10 +85,10 @@ export default function ChangePhoneNumber() {
       console.log("Error processing OTP:", error);
     } finally {
       setLoading(false);
-      setData({
-        memberID: localStorage.getItem("member"),
+      setData((prevData) => ({
+        ...prevData,
         noTelepon: "",
-      });
+      }));
       setTimeout(() => {
         setError(false);
       }, 3000);
