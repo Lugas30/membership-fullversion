@@ -5,6 +5,7 @@ import React from "react";
 export default function MenuAccount() {
   const menubars = [
     { label: "Profil Pribadi", link: "/profile" },
+    { label: "Ubah Nomor Telepon", link: "/change-phone" },
     { label: "Riwayat Pesanan", link: "/history-transaction" },
     { label: "Informasi Tier", link: "/tier-info" },
     { label: "Atur Password & PIN", link: "/password" },
