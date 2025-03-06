@@ -94,7 +94,7 @@ export default function Page() {
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
-        <div className="bg-base-accent w-full relative overflow-hidden">
+        <div className="bg-base-accent w-full relative overflow-hidden mb-20">
           {/* <Image
             src={Background}
             width={480}
@@ -119,17 +119,16 @@ export default function Page() {
             <></>
           )}
           <div className="flex justify-between items-center px-8 pt-8 pb-5 relative">
-            <span className="text-sm text-white normal-case">
-              {/* {toNormalCase(user.memberInfoData.fullName)} */}
-              Hi, AMS Member!
+            <span className="text-lg text-white normal-case tracking-wide">
+              Hi, {toNormalCase(user.memberInfoData.fullName.split(" ")[0])}!
             </span>
-            <Link href="/history-transaction" className="text-white">
+            <Link href="/transaction" className="text-white">
               <div className="flex justify-center items-center gap-2">
                 <div className="flex flex-col items-end">
                   <span className="text-[7px] fontMon uppercase tracking-widest text-white">
                     Tier
                   </span>
-                  <span className="text-sm text-white">
+                  <span className="text-sm text-white tracking-wide">
                     {user.memberInfoData.tierInfo.tier_name}
                   </span>
                 </div>
@@ -159,7 +158,7 @@ export default function Page() {
           {/* promo carousel */}
 
           {/* Card tier */}
-          <div className="flex justify-center items-center z-10 relative w-full">
+          <div className="flex justify-center items-center z-10 relative w-full mb-8">
             <div className="relative">
               <Image
                 src={`https://amscorp.id/card/${user.memberInfoData.tierInfo.cardImage}`}
@@ -242,7 +241,7 @@ export default function Page() {
           </div>
           {/* Card tier */}
 
-          <div className="flex flex-col bg-white p-8 pt-28 rounded-t-3xl -top-24 relative">
+          <div className="flex flex-col bg-white pt-8 px-8 rounded-t-3xl relative">
             <div className="">
               {/* Menu Activation */}
               <div className="flex justify-between items-center gap-2 bg-white relative">
@@ -347,7 +346,7 @@ export default function Page() {
             <ModalQRCode data={user.memberInfoData} closeModal={closeModal} />
           )}
 
-          <div className="flex flex-col p-8 gap-2 bg-white -top-20 relative">
+          <div className="flex flex-col p-8 gap-2 bg-white relative">
             {/* promo carousel */}
             <div className=" flex flex-col items-end relative">
               <div className="w-full h-full rounded-lg">

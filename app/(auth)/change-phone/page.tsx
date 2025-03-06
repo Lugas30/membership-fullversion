@@ -17,6 +17,7 @@ export default function ChangePhoneNumber() {
     memberID: "",
     noTelepon: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -64,7 +65,7 @@ export default function ChangePhoneNumber() {
       const token =
         typeof window !== "undefined" ? localStorage.getItem("token") : null;
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}change-p/send-otp`,
+        `${process.env.NEXT_PUBLIC_API_URL}change-p/send-otp-v2`,
         data,
         {
           headers: {
@@ -77,20 +78,32 @@ export default function ChangePhoneNumber() {
         if (typeof window !== "undefined") {
           sessionStorage.setItem("phone", data.noTelepon);
         }
-        router.replace(`/otp-validasi-phone`);
+        router.replace(`/otp-new-phone-number`);
+      } else if (response.data.responseCode === "4002501") {
+        setErrorMessage(
+          "Email belum terverifikasi, harap verifikasi terlebih dahulu."
+        );
+        setError(true);
+      } else if (response.data.responseCode === "4002500") {
+        setErrorMessage("Nomor handphone telah terdaftar");
+        setError(true);
       } else {
+        setErrorMessage("Terjadi kesalahan, silakan coba lagi.");
         setError(true);
       }
-    } catch (error) {
-      console.log("Error processing OTP:", error);
+    } catch (error: any) {
+      setErrorMessage("Terjadi kesalahan, silakan coba lagi.");
+      setError(true);
     } finally {
       setLoading(false);
       setData((prevData) => ({
         ...prevData,
         noTelepon: "",
       }));
+
       setTimeout(() => {
         setError(false);
+        setErrorMessage("");
       }, 3000);
     }
   };
@@ -101,14 +114,14 @@ export default function ChangePhoneNumber() {
         <LogoHeader className="m-12" />
         <div className="flex flex-col w-full p-8">
           <h1 className="text-xl">Ubah Nomor Telepon</h1>
-          {error && <ErrorMessage message="No handphone tidak terdaftar" />}
+          {error && <ErrorMessage message={errorMessage} />}
           <p className="text-xs my-10 fontMon leading-relaxed">
-            Masukkan nomor handphone baru. Kode OTP akan dikirimkan via
-            WhatsApp.
+            Masukkan nomor handphone baru. Kode OTP akan dikirimkan ke email
+            yang telah terdaftar dan terverifikasi.
           </p>
           <form action="" onSubmit={handleSend}>
             <Input
-              label="No. Handphone"
+              label="No. Handphone Baru"
               type="tel"
               name="noTelepon"
               value={data.noTelepon}
@@ -122,6 +135,7 @@ export default function ChangePhoneNumber() {
                 label="KIRIM"
                 className="bg-base-accent text-white"
                 loading={loading}
+                disabled={loading} // Tombol dinonaktifkan saat loading
               />
             </div>
           </form>

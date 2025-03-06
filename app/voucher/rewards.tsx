@@ -85,7 +85,11 @@ export default function Rewards() {
           data.rewardData.map((item: Rewards) => (
             <div
               className={`bg-white w-full rounded-lg border border-gray-300 flex flex-col items-center justify-between mb-4 ${
-                item.status === "inactive" ? "opacity-50" : "cursor-pointer"
+                item.status === "inactive"
+                  ? "opacity-50"
+                  : item.expiredDate < new Date().toLocaleDateString("id-ID")
+                  ? "opacity-50"
+                  : "cursor-pointer"
               }`}
               onClick={
                 item.status === "active" ? () => showModal(item.id) : () => {}

@@ -18,7 +18,6 @@ import ErrorMessage from "@/components/ErrorMessage";
 import Vouchers from "./Vouchers";
 import Special from "./Special";
 import Input from "@/components/Input";
-import { set } from "date-fns";
 
 interface Voucher {
   id: number;
@@ -103,6 +102,9 @@ export default function Redeem() {
           selectedVoucher={selectedVoucher}
           data={filterData}
           userPoints={user.memberInfoData.points}
+          handleMaxPoints={handleMaxPoints}
+          points={points}
+          handleChange={handleChange}
         />
       );
     }
@@ -141,34 +143,67 @@ export default function Redeem() {
     setIsLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}voucher/redeem`,
-        {
-          memberID: redeem.memberID,
-          voucher_code: redeem.voucher_code,
-          ip_address: redeem.ip_address,
-          pin,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
 
-      if (response.data.responseCode === "2002500") {
-        setVoucherRedeem(response.data.voucherData);
-        setIsModalVisible(true);
-        setIsPinModalVisible(false);
-        dispatch(getUsers());
-      } else if (response.data.responseCode === "4002501") {
-        setPinErrorMessage("PIN yang Anda masukkan salah.");
-        setIsPinModalVisible(true);
-        return;
+      if (points == "") {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}voucher/redeem`,
+          {
+            memberID: redeem.memberID,
+            voucher_code: redeem.voucher_code,
+            ip_address: redeem.ip_address,
+            pin,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.data.responseCode === "2002500") {
+          setVoucherRedeem(response.data.voucherData);
+          setIsModalVisible(true);
+          setIsPinModalVisible(false);
+          dispatch(getUsers());
+        } else if (response.data.responseCode === "4002501") {
+          setPinErrorMessage("PIN yang Anda masukkan salah.");
+          setIsPinModalVisible(true);
+          return;
+        } else {
+          setErrorMessageRedeemPoint(true);
+          setIsPinModalVisible(false);
+        }
       } else {
-        setErrorMessageRedeemPoint(true);
-        setIsPinModalVisible(false);
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}voucher/redeem/custom`,
+          {
+            memberID: redeem.memberID,
+            nominal: points,
+            ip_address: redeem.ip_address,
+            pin,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.data.responseCode === "2002500") {
+          setVoucherRedeem(response.data.voucherData);
+          setIsModalVisible(true);
+          setIsPinModalVisible(false);
+          dispatch(getUsers());
+        } else if (response.data.responseCode === "4002501") {
+          setPinErrorMessage("PIN yang Anda masukkan salah.");
+          setIsPinModalVisible(true);
+          return;
+        } else {
+          setErrorMessageRedeemPoint(true);
+          setIsPinModalVisible(false);
+        }
       }
     } catch (error) {
       console.error(error);
@@ -178,13 +213,26 @@ export default function Redeem() {
     }
   };
 
+  const [points, setPoints] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setPoints(value);
+  };
+
+  const handleMaxPoints = () => {
+    if (user?.memberInfoData?.points !== undefined) {
+      setPoints(user.memberInfoData.points);
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedVoucher) {
-      setErrorMessage(true);
-      setTimeout(() => setErrorMessage(false), 3000);
-      return;
-    }
+    // if (!selectedVoucher || points == "") {
+    //   setErrorMessage(true);
+    //   setTimeout(() => setErrorMessage(false), 3000);
+    //   return;
+    // }
     setIsPinModalVisible(true);
   };
 

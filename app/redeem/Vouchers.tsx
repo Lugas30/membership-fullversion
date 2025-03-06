@@ -20,6 +20,9 @@ type Voucher = {
   isLoading: boolean;
   data: VoucherData[];
   userPoints: number;
+  handleMaxPoints: () => void;
+  points: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const Vouchers: FC<Voucher> = ({
@@ -29,6 +32,9 @@ const Vouchers: FC<Voucher> = ({
   isLoading,
   data,
   userPoints,
+  handleMaxPoints,
+  points,
+  handleChange,
 }) => {
   return (
     <form onSubmit={handleSubmit} className="w-full mt-4">
@@ -59,6 +65,32 @@ const Vouchers: FC<Voucher> = ({
             </div>
           );
         })}
+      </div>
+
+      <div className="flex flex-col justify-between items-center my-5 gap-2 w-full">
+        <div className="">
+          <span className="text-xs">Nominal poin custom</span>
+        </div>
+        <div className="flex gap-2">
+          <div>
+            <input
+              type="text"
+              className="w-full p-3 rounded text-[10px] text-gray-700 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-black focus:border-black fontMon"
+              placeholder="Masukan jumlah poin"
+              value={points}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <button
+              type="button"
+              className="bg-base-accent text-white p-3 rounded text-[10px] w-full"
+              onClick={handleMaxPoints}
+            >
+              MAX
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="mt-8 flex justify-center">

@@ -35,10 +35,7 @@ export default function TabBar() {
         />
         <span className="text-[9px]">Beranda</span>
       </Link>
-      <Link
-        href={"/history-transaction"}
-        className="flex flex-col items-center w-20"
-      >
+      <Link href={"/transaction"} className="flex flex-col items-center w-20">
         <Image
           src="/images/history.svg"
           width={30}
