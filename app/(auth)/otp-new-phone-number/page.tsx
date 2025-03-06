@@ -82,8 +82,9 @@ export default function Otp() {
         {
           memberID: localStorage.getItem("member"),
           noTelepon: sessionStorage.getItem("phone"),
-          otpWa: otpWaValues.join(""),
-          otpEmail: otpEmailValues.join(""),
+          email: localStorage.getItem("email"),
+          otp_wa: otpWaValues.join(""),
+          otp_email: otpEmailValues.join(""),
         },
         {
           headers: {

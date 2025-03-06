@@ -77,6 +77,8 @@ export default function ChangePhoneNumber() {
       if (response.data.responseCode === "2002500") {
         if (typeof window !== "undefined") {
           sessionStorage.setItem("phone", data.noTelepon);
+          localStorage.setItem("memberID", response.data.loginData.memberID);
+          localStorage.setItem("email", response.data.loginData.email);
         }
         router.replace(`/otp-new-phone-number`);
       } else if (response.data.responseCode === "4002501") {
