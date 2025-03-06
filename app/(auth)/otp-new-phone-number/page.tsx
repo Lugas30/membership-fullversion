@@ -10,7 +10,15 @@ import React, { useRef, useState } from "react";
 
 export default function Otp() {
   const router = useRouter();
-  const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""]);
+  const [otpWaValues, setOtpWaValues] = useState(["", "", "", "", "", ""]);
+  const [otpEmailValues, setOtpEmailValues] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
   const [countdown, setCountdown] = useState<number | null>(null);
   const [isWaiting, setIsWaiting] = useState(false);
   const [message, setMessage] = useState(false);
@@ -18,43 +26,53 @@ export default function Otp() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const inputRefs = [
-    useRef<HTMLInputElement | null>(null),
-    useRef<HTMLInputElement | null>(null),
-    useRef<HTMLInputElement | null>(null),
-    useRef<HTMLInputElement | null>(null),
-    useRef<HTMLInputElement | null>(null),
-    useRef<HTMLInputElement | null>(null),
-  ];
+  const inputRefsWa = Array.from({ length: 6 }, () =>
+    useRef<HTMLInputElement | null>(null)
+  );
+  const inputRefsEmail = Array.from({ length: 6 }, () =>
+    useRef<HTMLInputElement | null>(null)
+  );
 
-  const focusNextInput = (index: number) => {
-    if (index < inputRefs.length - 1 && inputRefs[index + 1].current) {
-      inputRefs[index + 1].current?.focus();
+  const focusNextInput = (
+    index: number,
+    refs: React.RefObject<HTMLInputElement>[]
+  ) => {
+    if (index < refs.length - 1 && refs[index + 1].current) {
+      refs[index + 1].current?.focus();
     }
   };
 
-  const focusPreviousInput = (index: number) => {
-    if (index > 0 && inputRefs[index - 1].current) {
-      inputRefs[index - 1].current?.focus();
+  const focusPreviousInput = (
+    index: number,
+    refs: React.RefObject<HTMLInputElement>[]
+  ) => {
+    if (index > 0 && refs[index - 1].current) {
+      refs[index - 1].current?.focus();
     }
   };
 
-  const handleChange = (e: { target: { value: string } }, index: number) => {
+  const handleChange = (
+    e: { target: { value: string } },
+    index: number,
+    setOtpValues: React.Dispatch<React.SetStateAction<string[]>>,
+    refs: React.RefObject<HTMLInputElement>[]
+  ) => {
     const val = e.target.value;
-    const updatedValues = [...otpValues];
-    updatedValues[index] = val;
-    setOtpValues(updatedValues);
+    setOtpValues((prev) => {
+      const updatedValues = [...prev];
+      updatedValues[index] = val;
+      return updatedValues;
+    });
 
-    if (val.length === 1 && index < inputRefs.length - 1) {
-      focusNextInput(index);
-    } else if (val.length === 0 && index > 0) {
-      focusPreviousInput(index);
+    if (val.length === 1) {
+      focusNextInput(index, refs);
+    } else if (val.length === 0) {
+      focusPreviousInput(index, refs);
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setLoading(true);
 
     try {
@@ -64,7 +82,8 @@ export default function Otp() {
         {
           memberID: localStorage.getItem("member"),
           noTelepon: sessionStorage.getItem("phone"),
-          otp: otpValues.join(""),
+          otpWa: otpWaValues.join(""),
+          otpEmail: otpEmailValues.join(""),
         },
         {
           headers: {
@@ -88,7 +107,8 @@ export default function Otp() {
       setTimeout(() => {
         setErrorMessage(false);
       }, 2000);
-      setOtpValues(["", "", "", "", "", ""]);
+      setOtpWaValues(["", "", "", "", "", ""]);
+      setOtpEmailValues(["", "", "", "", "", ""]);
     }
   };
 
@@ -128,7 +148,7 @@ export default function Otp() {
         }
         return prevCountdown ? prevCountdown - 1 : null;
       });
-    }, 5000);
+    }, 1000);
   };
 
   return (
@@ -138,44 +158,67 @@ export default function Otp() {
 
         <div className="flex flex-col w-full px-12">
           {message && <SuccessMessage message="OTP Berhasil dikirim" />}
-          {messageSuccess && <SuccessMessage message="Verifikasi Berhasil" />}
+          {messageSuccess && (
+            <SuccessMessage message="Nomor handphone berhasil diganti" />
+          )}
           {errorMessage && (
             <ErrorMessage message="OTP yang anda masukkan salah" />
           )}
         </div>
 
         <div className="flex flex-col justify-center items-center m-8">
-          <h2 className="text-lg font-bold">Masukkan kode OTP</h2>
+          <h2 className="text-lg font-bold">
+            Verifikasi ganti nomor handphone
+          </h2>
           <p className="text-xs text-center my-6 fontMon">
-            kode OTP perubahan nomer handphone dikirmkan melalui Email anda yang
-            terdaftar
+            Kode OTP dikirimkan melalui WhatsApp dan Email.
           </p>
-          <form action="" onSubmit={handleSubmit}>
+
+          <form onSubmit={handleSubmit}>
+            <div className="flex justify-center mb-6">OTP WhatsApp</div>
             <div className="flex justify-center mb-6">
-              {inputRefs.map((ref, index) => (
+              {inputRefsWa.map((ref, index) => (
                 <input
                   key={index}
                   ref={ref}
                   type="tel"
                   maxLength={1}
-                  value={otpValues[index]}
-                  className="border-2 rounded-md border-gray-200 text-center w-10 mx-2 p-2 max-w-screen mt-2 focus:outline-none focus:border-primary"
-                  onChange={(e) => handleChange(e, index)}
+                  value={otpWaValues[index]}
+                  className="border-2 rounded-md text-center w-10 mx-2 p-2"
+                  onChange={(e) =>
+                    handleChange(e, index, setOtpWaValues, inputRefsWa)
+                  }
                   inputMode="numeric"
                   pattern="[0-9]*"
                 />
               ))}
             </div>
-
+            <div className="flex justify-center mb-6">OTP Email</div>
+            <div className="flex justify-center mb-6">
+              {inputRefsEmail.map((ref, index) => (
+                <input
+                  key={index}
+                  ref={ref}
+                  type="tel"
+                  maxLength={1}
+                  value={otpEmailValues[index]}
+                  className="border-2 rounded-md text-center w-10 mx-2 p-2"
+                  onChange={(e) =>
+                    handleChange(e, index, setOtpEmailValues, inputRefsEmail)
+                  }
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                />
+              ))}
+            </div>
             <div className="flex justify-center pt-4">
               <Button
-                label="UBAH NOMER TELEPON"
+                label="VERIFIKASI OTP"
                 className="bg-base-accent text-white"
                 loading={loading}
                 disabled={loading}
               />
             </div>
-
             <p className="text-center text-xs mt-4">
               Tidak menerima kode OTP?{" "}
               {isWaiting ? (
