@@ -1,8 +1,5 @@
 "use client";
 
-import Button from "@/components/Button";
-import ErrorMessage from "@/components/ErrorMessage";
-import Input from "@/components/Input";
 import { useAppDispatch } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { getTransaction } from "@/redux/thunks/transactionThunks";
@@ -20,13 +17,12 @@ import locked from "@/public/images/circle_lock.svg";
 import BenefitBadge from "@/components/BenefitBadge";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import TabBar from "@/components/TabBar";
-import ModalQRCode from "@/components/ModalQrCode";
+import { Pagination } from "swiper/modules";
 
 interface Transaction {
   id: number;
@@ -49,11 +45,6 @@ interface Product {
   Net: number;
 }
 
-interface Filter {
-  startDate: string;
-  endDate: string;
-}
-
 interface Tier {
   id: number;
   tier: string;
@@ -69,40 +60,14 @@ export default function Transaction() {
   const dispatch = useAppDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [detail, setDetail] = useState<Transaction | null>(null);
-  const [showModalFilter, setShowModalFilter] = useState<boolean>(false);
-  const [filter, setFilter] = useState<Filter>({
-    startDate: "",
-    endDate: "",
-  });
-
-  const [messageError, setMessageError] = useState<boolean>(false);
-
-  const [filteredData, setFilteredData] = useState<Transaction[]>([]);
-
   const totalQty = detail?.produk.reduce((sum, item) => sum + item.QTY, 0);
-
   const { error, data } = useSelector((state: RootState) => state.transaction);
-
   const [year, setYear] = useState<string>("");
-
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isShowQr, setIsShowQr] = useState(false);
 
   useEffect(() => {
     dispatch(getTransaction());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (data?.transactionData.length > 0) {
-  //     setFilteredData(data.transactionData);
-  //   }
-  // }, [data?.transactionData]);
-
-  useEffect(() => {
-    if (data?.memberInfoData.length > 0) {
-      setFilteredData(data.memberInfoData);
-    }
-  }, [data?.memberInfoData]);
 
   useEffect(() => {
     const currentYear = data?.memberInfoData.joinDate.slice(0, 4);
@@ -112,7 +77,7 @@ export default function Transaction() {
   useEffect(() => {
     if (data?.memberInfoData?.tierData?.length) {
       const activeTierIndex = data.memberInfoData.tierData.findIndex(
-        (tier: any) => tier.status === "Active"
+        (tier: Tier) => tier.status === "Active"
       );
       if (activeTierIndex !== -1) {
         setActiveIndex(activeTierIndex);
@@ -137,94 +102,8 @@ export default function Transaction() {
     }
   };
 
-  // const closeModal = () => {
-  //   setIsModalVisible(false);
-  // };
-
-  // modal untuk filter
-  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFilter((prevFilter) => ({
-      ...prevFilter,
-      [name]: value,
-    }));
-    setMessageError(false);
-  };
-
-  const convertToYYYYMMDD = (date: string): string => {
-    const [day, month, year] = date.split("/");
-    return `${year}-${month}-${day}`;
-  };
-
-  const convertedData = data?.transactionData
-    ? data.transactionData.map((item: Transaction) => ({
-        ...item,
-        tanggalTransksi: convertToYYYYMMDD(item.tanggalTransksi),
-      }))
-    : [];
-
-  const showFilterModal = () => {
-    setShowModalFilter(true);
-  };
-
-  const handleFilter = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Fungsi untuk menghitung selisih hari antara dua tanggal
-    const calculateDateDifference = (start: string, end: string): number => {
-      const startDate = new Date(start);
-      const endDate = new Date(end);
-      const differenceInTime = endDate.getTime() - startDate.getTime();
-      return differenceInTime / (1000 * 3600 * 24); // Konversi dari ms ke hari
-    };
-
-    // Validasi rentang tanggal
-    if (filter.startDate && filter.endDate) {
-      const daysDifference = calculateDateDifference(
-        filter.startDate,
-        filter.endDate
-      );
-
-      if (daysDifference > 90) {
-        setMessageError(true);
-        return; // Hentikan proses jika rentang terlalu besar
-      }
-    }
-
-    // Proses filter data
-    const filtered = convertedData.filter((item: Transaction) => {
-      return (
-        (!filter.startDate || item.tanggalTransksi >= filter.startDate) &&
-        (!filter.endDate || item.tanggalTransksi <= filter.endDate)
-      );
-    });
-
-    // Simpan hasil filter ke state
-    setFilteredData(filtered);
-
-    // Tutup modal filter
-    setShowModalFilter(false);
-
-    // Reset form filter
-    setFilter({
-      startDate: "",
-      endDate: "",
-    });
-  };
-
-  const closeModalFilter = () => {
-    setShowModalFilter(false);
-  };
-
-  // QR Modal
-  const handlePopUpQr = () => {
-    // setIsModalVisible(true);
-    setIsShowQr(true);
-  };
-
   const closeModal = () => {
     setIsModalVisible(false);
-    setIsShowQr(false);
   };
 
   if (data == null) {
@@ -240,9 +119,12 @@ export default function Transaction() {
     return <p>Error: {error}</p>;
   }
 
-  // const activeTier =
-  //   data.memberInfoData.tierData[activeIndex] ||
-  //   data.memberInfoData.tierData[0];
+  const activeTierIndex = data.memberInfoData.tierData.findIndex(
+    (tier: Tier) => tier.status === "Active"
+  );
+
+  // Jika tidak ada yang aktif, default ke indeks pertama (0)
+  const initialIndex = activeTierIndex !== -1 ? activeTierIndex : 0;
 
   return (
     <div className="flex justify-center items-center">
@@ -251,18 +133,15 @@ export default function Transaction() {
           {/* Header info */}
           <div className="flex flex-col bg-base-accent rounded-b-3xl py-8 items-center relative w-full">
             <Swiper
-              key={activeIndex}
-              initialSlide={activeIndex}
+              initialSlide={initialIndex} // Hanya diinisialisasi sekali
               slidesPerView={2}
               spaceBetween={360}
               centeredSlides={true}
-              // pagination={{ clickable: true }}
-
               modules={[Pagination]}
               className="w-full z-20"
-              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)} // Update state tanpa remount
             >
-              {data.memberInfoData.tierData.map((tier: Tier, index: number) => (
+              {data.memberInfoData.tierData.map((tier: Tier) => (
                 <SwiperSlide key={tier.id}>
                   <div className="flex flex-col items-center text-center w-full">
                     <div className="flex flex-col items-center text-center justify-center w-96 mb-3 relative">
@@ -600,68 +479,7 @@ export default function Transaction() {
               </div>
             </div>
           )}
-
-          {/* modal filter */}
-          {showModalFilter && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
-              <div className="bg-white w-full max-w-md shadow-lg rounded-lg">
-                <div className="flex justify-between items-center p-4">
-                  <span className="text-[10px] fontMon uppercase tracking-wider">
-                    Filter Transaksi
-                  </span>
-                  <button onClick={closeModalFilter} className="text-black">
-                    &#10005;
-                  </button>
-                </div>
-
-                {/* validasi error */}
-                {messageError && (
-                  <div className="flex justify-center">
-                    <ErrorMessage
-                      message={
-                        "Rentang tanggal tidak boleh lebih dari 3 bulan (90 hari)."
-                      }
-                    />
-                  </div>
-                )}
-
-                <form onSubmit={handleFilter}>
-                  <div className="p-4">
-                    <div className="flex flex-col gap-2 mb-4">
-                      <div className="flex gap-4 justify-evenly mb-4">
-                        <Input
-                          label="Tanggal Awal"
-                          type="date"
-                          name="startDate"
-                          value={filter.startDate}
-                          onChange={handleFilterChange}
-                        />
-                        <Input
-                          label="Tanggal Akhir"
-                          type="date"
-                          name="endDate"
-                          value={filter.endDate}
-                          onChange={handleFilterChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="flex justify-center">
-                      <Button
-                        label="Terapkan"
-                        className="bg-base-accent text-white"
-                      />
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
         </div>
-        {/* Modal for QR code */}
-        {isShowQr && (
-          <ModalQRCode data={data.memberInfoData} closeModal={closeModal} />
-        )}
-
         <TabBar />
       </div>
     </div>

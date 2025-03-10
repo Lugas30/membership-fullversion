@@ -77,7 +77,7 @@ export default function BenefitBadge({ activeIndex }: BenefitBadgeProps) {
       {benefitList[activeIndex]?.map((benefit) => (
         <div
           key={benefit.id}
-          className="relative flex flex-row rounded-lg bg-white/10 backdrop-blur-lg border border-white/20 text-white text-sm font-semibold shadow-md min-h-3"
+          className="relative flex flex-row rounded-lg bg-white/10 backdrop-blur-lg border border-white/20 text-white text-sm font-semibold shadow-md h-[42px]"
         >
           <Image
             src={imageMap[benefit.image]}
