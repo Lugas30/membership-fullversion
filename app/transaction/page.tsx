@@ -17,6 +17,8 @@ import ProgressBar from "@/components/PrgressBar";
 import checklist from "@/public/images/circle_check.svg";
 import locked from "@/public/images/circle_lock.svg";
 
+import BenefitBadge from "@/components/BenefitBadge";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -85,6 +87,7 @@ export default function Transaction() {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isShowQr, setIsShowQr] = useState(false);
+  const [activeTier, setActiveTier] = useState("starter");
 
   useEffect(() => {
     dispatch(getTransaction());
@@ -257,8 +260,9 @@ export default function Transaction() {
               // pagination={{ clickable: true }}
 
               modules={[Pagination]}
-              // onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
               className="w-full z-20"
+              // onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
             >
               {data.memberInfoData.tierData.map((tier: Tier, index: number) => (
                 <SwiperSlide key={tier.id}>
@@ -312,39 +316,6 @@ export default function Transaction() {
                             </span>
                           </div>
 
-                          {/* dihide karena perubahan tampilan */}
-                          {/* <div className="absolute inset-0 flex items-end justify-between z-20 p-4">
-                            <Link
-                              href="/history-tier"
-                              className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
-                            >
-                              <Image
-                                src="/images/graf-up.svg"
-                                alt="Grafik"
-                                width={10}
-                                height={12}
-                                className="logo shadow"
-                              />
-                              <span className="text-[8px] fontMon tracking-widest">
-                                RIWAYAT TIER
-                              </span>
-                            </Link>
-                            <div
-                              className="bg-white/50 flex p-2 rounded gap-1 cursor-pointer"
-                              onClick={handlePopUpQr}
-                            >
-                              <Image
-                                src="/images/qr.svg"
-                                alt="Barcode"
-                                width={10}
-                                height={12}
-                                className="logo shadow"
-                              />
-                              <span className="text-[8px] fontMon tracking-widest">
-                                TAMPILKAN ID
-                              </span>
-                            </div>
-                          </div> */}
                           <div className="absolute inset-0 flex items-end justify-between z-20 px-4 pb-2">
                             {data.memberInfoData.tierInfo.tierName ===
                             "Maestro" ? (
@@ -433,7 +404,12 @@ export default function Transaction() {
                       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
                         {tier.status === "Passed" && (
                           <>
-                            <span className="flex flex-col justify-center items-center text-sm text-white mb-1 uppercase fontMon tracking-widest">
+                            <span
+                              className="flex flex-col justify-center items-center text-sm text-white mb-1 uppercase fontMon tracking-widest"
+                              style={{
+                                textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
+                              }}
+                            >
                               {tier.tier}
                             </span>
                             <div className="absolute inset-0 flex items-end justify-center z-20 p-4">
@@ -448,86 +424,19 @@ export default function Transaction() {
                                   height={20}
                                   className=""
                                 />
-                                <span>Anda telah mencapai tier ini.</span>
+                                <span
+                                  style={{
+                                    textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
+                                  }}
+                                >
+                                  Anda telah mencapai tier ini.
+                                </span>
                               </div>
                             </div>
                           </>
                         )}
                       </div>
                     </div>
-
-                    {/* diHide karena perubahan desain */}
-                    {/* <div className="w-96 rounded-xl h-16">
-                      {tier.status === "Passed" && (
-                        <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 p-3 rounded-xl tracking-wider">
-                          <Image
-                            src={checklist}
-                            alt="checklist"
-                            width={20}
-                            height={20}
-                            className=""
-                          />
-                          <span>Anda telah mencapai tier ini.</span>
-                        </div>
-                      )}
-                      {tier.status === "Locked" && (
-                        <div className="flex flex-row justify-center gap-2 items-center text-[10px] bg-gray-200 p-3 rounded-xl tracking-wider">
-                          <Image
-                            src={locked}
-                            alt="locked"
-                            width={20}
-                            height={20}
-                            className=""
-                          />
-                          <span>
-                            Belanja hingga Rp
-                            {formatToIDR(tier.amountStartingFrom || 0)} untuk
-                            membuka tier ini
-                          </span>
-                        </div>
-                      )}
-                      {tier.status === "Active" && (
-                        <>
-                          {data.memberInfoData.tierInfo.tierName ===
-                          "Maestro" ? (
-                            <div className="">
-                              <div className="flex justify-between items-center w-full">
-                                <small className="text-white text-[10px] tracking-wider fontMon">
-                                  Kamu telah mencapai tier tertinggi.
-                                </small>
-                                <small className="text-white">100%</small>
-                              </div>
-                              <ProgressBar currentValue={100} maxValue={100} />
-                            </div>
-                          ) : (
-                            <div className="">
-                              <div className="flex justify-between items-center w-full">
-                                <small className="text-white text-[10px] tracking-wider fontMon">
-                                  Rp{" "}
-                                  {formatToIDR(
-                                    data.memberInfoData.tierInfo
-                                      .amountForNextTier || 0
-                                  )}{" "}
-                                  untuk tier selanjutnya
-                                </small>
-                                <small className="text-white">
-                                  {data.memberInfoData.tierInfo
-                                    .memberPersentase || 0}
-                                  %
-                                </small>
-                              </div>
-                              <ProgressBar
-                                currentValue={
-                                  data.memberInfoData.tierInfo
-                                    .memberPersentase || 0
-                                }
-                                maxValue={100}
-                              />
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </div> */}
                   </div>
                 </SwiperSlide>
               ))}
@@ -536,31 +445,11 @@ export default function Transaction() {
             {/* Total Poin */}
 
             <div className="w-full px-8">
-              <div className="flex justify-between items-center w-full">
-                <small className="text-white text-[9px] fontMon tracking-wider">
-                  TOTAL POIN
-                </small>
-                {data.memberInfoData.expiredPoint !== 0 ? (
-                  <small className="text-white text-[9px] tracking-wider fontMon">
-                    {data.memberInfoData.expiredPoint} Poin kedaluwarsa pada{" "}
-                    {formatDate(data.memberInfoData.expiredPointDate)}
-                  </small>
-                ) : (
-                  <></>
-                )}
+              {/* Benefit Section */}
+              <div className="text-[10px] mb-3 fontMon tracking-wider uppercase text-white">
+                Benefit :
               </div>
-
-              <div className="flex justify-between items-center w-full">
-                <span className="text-amber-200 text-lg">
-                  {formatToIDR(data.memberInfoData.points || 0)}
-                </span>
-                <Link
-                  href="/history-point"
-                  className="text-white text-[10px] tracking-wider underline underline-offset-8"
-                >
-                  Riwayat Poin
-                </Link>
-              </div>
+              <BenefitBadge activeIndex={activeIndex} />
             </div>
           </div>
 

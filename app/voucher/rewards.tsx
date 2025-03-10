@@ -82,37 +82,33 @@ export default function Rewards() {
 
       {data && data.rewardData ? (
         data.rewardData.length > 0 ? (
-          data.rewardData.map((item: Rewards) => (
-            <div
-              className={`bg-white w-full rounded-lg border border-gray-300 flex flex-col items-center justify-between mb-4 ${
-                item.status === "inactive"
-                  ? "opacity-50"
-                  : item.expiredDate < new Date().toLocaleDateString("id-ID")
-                  ? "opacity-50"
-                  : "cursor-pointer"
-              }`}
-              onClick={
-                item.status === "active" ? () => showModal(item.id) : () => {}
-              }
-              key={item.id}
-            >
-              <Image
-                src={`https://web.amscorp.id:3060/imagestorage/gift/${item.image}`}
-                alt="reward"
-                width={1240}
-                height={1240}
-                className="w-auto h-auto rounded-t-lg"
-              />
-              <div className="flex justify-between items-center w-full p-4 rounded-b-lg">
-                <span className="text-xs">
-                  <Countdown targetDate={item.expiredDate} />
-                </span>
-                <span className="text-xs">
-                  {item.status === "active" ? "GUNAKAN" : "TERPAKAI"}
-                </span>
+          data.rewardData.map((item: Rewards) => {
+            const isActive = new Date(item.expiredDate) >= new Date();
+
+            return (
+              <div
+                className={`bg-white w-full rounded-lg border border-gray-300 flex flex-col items-center justify-between mb-4 ${
+                  isActive ? "cursor-pointer" : "opacity-50 cursor-not-allowed"
+                }`}
+                onClick={isActive ? () => showModal(item.id) : () => {}}
+                key={item.id}
+              >
+                <Image
+                  src={`https://web.amscorp.id:3060/imagestorage/gift/${item.image}`}
+                  alt="reward"
+                  width={1240}
+                  height={1240}
+                  className="w-auto h-auto rounded-t-lg"
+                />
+                <div className="flex justify-between items-center w-full p-4 rounded-b-lg">
+                  <span className="text-xs">
+                    <Countdown targetDate={item.expiredDate} />
+                  </span>
+                  <span className="text-xs">{isActive ? "GUNAKAN" : ""}</span>
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <p className="text-center text-gray-500">Belum memiliki voucher.</p>
         )
