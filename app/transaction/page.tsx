@@ -87,7 +87,6 @@ export default function Transaction() {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isShowQr, setIsShowQr] = useState(false);
-  const [activeTier, setActiveTier] = useState("starter");
 
   useEffect(() => {
     dispatch(getTransaction());
@@ -250,7 +249,7 @@ export default function Transaction() {
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <div className="w-full">
           {/* Header info */}
-          <div className="flex flex-col bg-base-accent rounded-b-3xl py-8 justify-center items-center relative w-full">
+          <div className="flex flex-col bg-base-accent rounded-b-3xl py-8 items-center relative w-full">
             <Swiper
               key={activeIndex}
               initialSlide={activeIndex}
@@ -261,7 +260,6 @@ export default function Transaction() {
 
               modules={[Pagination]}
               className="w-full z-20"
-              // onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
               onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
             >
               {data.memberInfoData.tierData.map((tier: Tier, index: number) => (
@@ -390,12 +388,6 @@ export default function Transaction() {
                                 {formatToIDR(tier.amountStartingFrom || 0)}{" "}
                                 untuk membuka tier ini
                               </span>
-                              <Link
-                                href={"/tier-info"}
-                                className="bg-grey/10 backdrop-blur-lg backdrop-saturate-100 shadow-lg border border-white/20 rounded-full px-3 py-1 cursor-pointer"
-                              >
-                                Cek benefit
-                              </Link>
                             </div>
                           </div>
                         </div>
@@ -446,8 +438,14 @@ export default function Transaction() {
 
             <div className="w-full px-8">
               {/* Benefit Section */}
-              <div className="text-[10px] mb-3 fontMon tracking-wider uppercase text-white">
-                Benefit :
+              <div className="flex flex-row justify-between mb-3 fontMon tracking-wider uppercase text-white">
+                <span className="text-[10px]">Benefit :</span>
+                <Link
+                  href={"/tier-info"}
+                  className="bg-grey/10 text-[8px] backdrop-blur-lg backdrop-saturate-100 shadow-lg border border-white/20 rounded-full px-3 py-1 cursor-pointer"
+                >
+                  Info Benefit
+                </Link>
               </div>
               <BenefitBadge activeIndex={activeIndex} />
             </div>
