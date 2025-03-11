@@ -86,7 +86,7 @@ const Vouchers: FC<Voucher> = ({
         <div className="flex gap-2">
           <div className="relative">
             <input
-              type="text"
+              type="tel"
               className="w-full p-3 rounded text-[10px] text-gray-700 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-black focus:border-black fontMon pl-7"
               placeholder="1.000"
               value={points ? formatToIDR(Number(points)) : ""} // Format nilai poin ke IDR

@@ -319,7 +319,7 @@ export default function Transaction() {
             <div className="w-full px-8">
               {/* Benefit Section */}
               <div className="flex flex-row justify-between mb-3 fontMon tracking-wider uppercase text-white">
-                <span className="text-[10px]">Benefit :</span>
+                <span className="text-[10px] mt-1">Benefit :</span>
                 <Link
                   href={"/tier-info"}
                   className="bg-grey/10 text-[8px] backdrop-blur-lg backdrop-saturate-100 shadow-lg border border-white/20 rounded-full px-3 py-1 cursor-pointer"
