@@ -65,7 +65,11 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   }, [targetDate]);
 
   return (
-    <span className={`text-xs ${isUrgent ? "text-red-500 font-bold" : ""}`}>
+    <span
+      className={`text-[10px] uppercase fontMon ${
+        isUrgent ? "text-red-500 font-bold text-lg" : ""
+      }`}
+    >
       {remainingTime}
     </span>
   );

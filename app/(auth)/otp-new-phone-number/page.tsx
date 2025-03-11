@@ -168,9 +168,7 @@ export default function Otp() {
         </div>
 
         <div className="flex flex-col justify-center items-center m-8">
-          <h2 className="text-lg font-bold">
-            Verifikasi ganti nomor handphone
-          </h2>
+          <h2 className="text-lg font-bold">Verifikasi Ubah Nomor Handphone</h2>
           <p className="text-xs text-center my-6 fontMon">
             Kode OTP dikirimkan melalui WhatsApp dan Email.
           </p>

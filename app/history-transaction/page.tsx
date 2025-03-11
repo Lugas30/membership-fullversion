@@ -225,7 +225,7 @@ export default function HistoryTransaction() {
                         Total
                       </span>
                       <span className="text-xs">
-                        RP {formatToIDR(item.total)}
+                        Rp {formatToIDR(item.total)}
                       </span>
                     </div>
                   </div>

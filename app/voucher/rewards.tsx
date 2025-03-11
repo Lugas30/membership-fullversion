@@ -21,6 +21,8 @@ interface Rewards {
   termsCondition: string;
   nominal: number;
   status: string;
+  voucherDisplay: string;
+  voucherStatus: string;
 }
 
 export default function Rewards() {
@@ -83,14 +85,20 @@ export default function Rewards() {
       {data && data.rewardData ? (
         data.rewardData.length > 0 ? (
           data.rewardData.map((item: Rewards) => {
-            const isActive = new Date(item.expiredDate) >= new Date();
+            // const isActive = new Date(item.expiredDate) >= new Date();
 
             return (
               <div
                 className={`bg-white w-full rounded-lg border border-gray-300 flex flex-col items-center justify-between mb-4 ${
-                  isActive ? "cursor-pointer" : "opacity-50 cursor-not-allowed"
+                  item.voucherDisplay === "show"
+                    ? "cursor-pointer"
+                    : "opacity-50 cursor-not-allowed"
                 }`}
-                onClick={isActive ? () => showModal(item.id) : () => {}}
+                onClick={
+                  item.voucherDisplay === "show"
+                    ? () => showModal(item.id)
+                    : () => {}
+                }
                 key={item.id}
               >
                 <Image
@@ -101,10 +109,20 @@ export default function Rewards() {
                   className="w-auto h-auto rounded-t-lg"
                 />
                 <div className="flex justify-between items-center w-full p-4 rounded-b-lg">
-                  <span className="text-xs">
-                    <Countdown targetDate={item.expiredDate} />
+                  {item.voucherDisplay === "hide" &&
+                  item.voucherStatus === "used" ? (
+                    <span className="text-[10px] fontMon tracking-wider">
+                      TERPAKAI
+                    </span>
+                  ) : (
+                    <span className="">
+                      <Countdown targetDate={item.expiredDate} />
+                    </span>
+                  )}
+
+                  <span className="text-[10px] fontMon">
+                    Berlaku hingga: {item.expiredDate}
                   </span>
-                  <span className="text-xs">{isActive ? "GUNAKAN" : ""}</span>
                 </div>
               </div>
             );

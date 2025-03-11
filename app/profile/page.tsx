@@ -249,6 +249,7 @@ export default function Profile() {
               value={formData.email}
               onChange={handleChange}
               error={formError.email}
+              disabled={true}
               className="mb-4"
             />
             <Select

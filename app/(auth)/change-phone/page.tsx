@@ -115,11 +115,11 @@ export default function ChangePhoneNumber() {
       <div className="flex flex-col items-center w-full max-w-md bg-white md:rounded-lg min-h-screen">
         <LogoHeader className="m-12" />
         <div className="flex flex-col w-full p-8">
-          <h1 className="text-xl">Ubah Nomor Telepon</h1>
+          <h1 className="text-xl">Ubah Nomor Handphone</h1>
           {error && <ErrorMessage message={errorMessage} />}
           <p className="text-xs my-10 fontMon leading-relaxed">
-            Masukkan nomor handphone baru. Kode OTP akan dikirimkan ke email
-            yang telah terdaftar dan terverifikasi.
+            Masukkan nomor handphone baru. Kode OTP akan dikirimkan ke nomor
+            handphone baru dan email yang telah terverifikasi.
           </p>
           <form action="" onSubmit={handleSend}>
             <Input

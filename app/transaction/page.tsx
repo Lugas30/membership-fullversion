@@ -194,21 +194,22 @@ export default function Transaction() {
                           </div>
 
                           <div className="absolute inset-0 flex items-end justify-between z-20 px-4 pb-2">
-                            {data.memberInfoData.tierInfo.tierName ===
+                            {data.memberInfoData.tierInfo.tier_name ===
                             "Maestro" ? (
-                              <div className="">
-                                <div className="flex justify-between items-center w-full">
-                                  <small className="text-white text-[10px] tracking-wider fontMon">
-                                    Kamu telah mencapai tier tertinggi.
-                                  </small>
-                                  <small className="text-white">100%</small>
-                                </div>
-                                <ProgressBar
-                                  currentValue={100}
-                                  maxValue={100}
-                                />
+                              <div className="flex justify-center items-center w-full">
+                                <p className="text-white text-[10px] tracking-wider fontMon">
+                                  Kamu telah mencapai tier tertinggi.
+                                </p>
+                                {/* <small className="text-white">100%</small> */}
                               </div>
                             ) : (
+                              // <div className="">
+
+                              //   {/* <ProgressBar
+                              //     currentValue={100}
+                              //     maxValue={100}
+                              //   /> */}
+                              // </div>
                               <div className="w-full ">
                                 <div className="flex justify-between items-center w-full">
                                   <small className="text-white text-[10px] tracking-wider fontMon">

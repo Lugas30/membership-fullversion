@@ -18,6 +18,7 @@ interface Voucher {
   pointVoucher: number;
   tanggalExpired: string;
   statusPenggunaan: string;
+  voucherStatus: string;
 }
 
 export default function Vouchers() {
@@ -55,13 +56,6 @@ export default function Vouchers() {
     return <p>Error: {error}</p>;
   }
 
-  // Function to check if the voucher has expired
-  // const isVoucherExpired = (expiryDate: string) => {
-  //   const today = new Date();
-  //   const expiry = new Date(expiryDate.split("/").reverse().join("-"));
-  //   return expiry < today;
-  // };
-
   const isVoucherExpired = (expiryDate: string) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Reset jam untuk membandingkan hanya tanggal
@@ -85,7 +79,11 @@ export default function Vouchers() {
                     ? "bg-[#E0DDD4] text-black"
                     : "bg-[#131010] text-white"
                 } 
-                ${expired ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+                ${
+                  expired || item.voucherStatus === "used"
+                    ? "opacity-50 cursor-not-allowed"
+                    : "cursor-pointer"
+                }
               `}
               key={item.id}
               onClick={() => !expired && handleShowVoucher(item.noVoucher)}
@@ -141,7 +139,7 @@ export default function Vouchers() {
                 >
                   <Countdown targetDate={item.tanggalExpired} />
                 </span>
-                <Barcode
+                {/* <Barcode
                   value={item.noVoucher}
                   displayValue={false}
                   height={20}
@@ -151,7 +149,10 @@ export default function Vouchers() {
                     item.category == "VCR" ? "#131010" : "#F8FAFC"
                   }`}
                   background="transparent"
-                />
+                /> */}
+                <span className="text-[10px] fontMon">
+                  Berlaku hingga: {item.tanggalExpired}
+                </span>
               </div>
             </div>
           );

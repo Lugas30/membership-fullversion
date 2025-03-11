@@ -36,6 +36,18 @@ const Vouchers: FC<Voucher> = ({
   points,
   handleChange,
 }) => {
+  // Fungsi untuk membersihkan format IDR menjadi angka asli
+  const cleanIDR = (value: string) => {
+    return value.replace(/[^\d]/g, ""); // Menghapus semua karakter kecuali angka
+  };
+
+  // Fungsi handleChange yang sudah divalidasi dan menggunakan formatToIDR
+  const handleValidatedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = cleanIDR(e.target.value); // Hapus format IDR
+    e.target.value = rawValue; // Pastikan nilai yang disimpan tetap angka
+    handleChange(e); // Tetap mengirim event untuk konsistensi dengan tipe yang diharapkan
+  };
+
   return (
     <form onSubmit={handleSubmit} className="w-full mt-4">
       <div className="grid grid-cols-3 gap-2">
@@ -68,18 +80,21 @@ const Vouchers: FC<Voucher> = ({
       </div>
 
       <div className="flex flex-col justify-between items-center my-5 gap-2 w-full">
-        <div className="">
+        {/* <div className="">
           <span className="text-xs">Nominal poin custom</span>
-        </div>
+        </div> */}
         <div className="flex gap-2">
-          <div>
+          <div className="relative">
             <input
               type="text"
-              className="w-full p-3 rounded text-[10px] text-gray-700 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-black focus:border-black fontMon"
-              placeholder="Masukan jumlah poin"
-              value={points}
-              onChange={handleChange}
+              className="w-full p-3 rounded text-[10px] text-gray-700 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-black focus:border-black fontMon pl-7"
+              placeholder="1.000"
+              value={points ? formatToIDR(Number(points)) : ""} // Format nilai poin ke IDR
+              onChange={handleValidatedChange}
             />
+            <span className="text-[10px] absolute top-0 flex justify-center items-center h-full left-3 fontMon">
+              Rp
+            </span>
           </div>
           <div>
             <button
