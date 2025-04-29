@@ -101,7 +101,7 @@ export default function Otp() {
         localStorage.setItem("token", response.data.verifyData.token);
         setTimeout(() => {
           router.replace(`/validasi-form`);
-        }, 2000);
+        }, 100);
       } else {
         setErrorMessage(true);
       }
@@ -143,7 +143,7 @@ export default function Otp() {
         }
         return prevCountdown ? prevCountdown - 1 : null;
       });
-    }, 5000);
+    }, 1000);
   };
 
   return (
@@ -196,7 +196,10 @@ export default function Otp() {
                   Kirim ulang dalam {countdown} detik
                 </span>
               ) : (
-                <span onClick={handleRecodeOTP} className="cursor-pointer">
+                <span
+                  onClick={handleRecodeOTP}
+                  className="cursor-pointer underline underline-offset-4"
+                >
                   Kirim ulang.
                 </span>
               )}

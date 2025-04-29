@@ -108,7 +108,7 @@ export default function Otp() {
         }
         return prevCountdown ? prevCountdown - 1 : null;
       });
-    }, 5000);
+    }, 1000);
   };
 
   return (

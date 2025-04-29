@@ -103,7 +103,7 @@ export default function Otp() {
         setMessageSuccess(true);
         setTimeout(() => {
           router.replace(`/home`);
-        }, 5000);
+        }, 100);
       } else {
         setErrorMessage(true);
       }
@@ -146,7 +146,7 @@ export default function Otp() {
         }
         return prevCountdown ? prevCountdown - 1 : null;
       });
-    }, 5000);
+    }, 1000);
   };
 
   return (
