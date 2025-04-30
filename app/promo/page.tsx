@@ -244,10 +244,10 @@ export default function Promo() {
             )}
           </div>
 
-          {/* open modal */}
+          {/* open modal ini yang diganti */}
           {isModalVisible && (
-            <div className="sticky h-screen inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
-              <div className="bg-white w-full max-w-md min-h-screen shadow-lg">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-auto">
+              <div className="bg-white w-full max-w-md max-h-[90vh] shadow-lg overflow-y-auto rounded-lg">
                 <div className="flex justify-between items-center p-6">
                   <span className="text-xs">PROMO</span>
                   <button onClick={closeModal} className="text-black">
@@ -260,7 +260,7 @@ export default function Promo() {
                   alt="reward"
                   width={1240}
                   height={1240}
-                  className="logo"
+                  className="w-full h-auto rounded-t-lg"
                 />
 
                 <div className="p-6">
