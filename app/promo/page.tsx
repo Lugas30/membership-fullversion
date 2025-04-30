@@ -247,7 +247,7 @@ export default function Promo() {
           {/* open modal ini yang diganti */}
           {isModalVisible && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-auto">
-              <div className="bg-white w-full max-w-md max-h-[90vh] shadow-lg overflow-y-auto rounded-lg">
+              <div className="bg-white w-full h-full max-w-md max-h-full shadow-lg overflow-y-auto rounded-lg">
                 <div className="flex justify-between items-center p-6">
                   <span className="text-xs">PROMO</span>
                   <button onClick={closeModal} className="text-black">
