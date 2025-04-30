@@ -83,7 +83,9 @@ const Vouchers: FC<Voucher> = ({
         {/* <div className="">
           <span className="text-xs">Nominal poin custom</span>
         </div> */}
-        <div className="flex gap-2">
+
+        {/* Inputan poin custom dan tombol MAX - Dihide sementara*/}
+        {/* <div className="flex gap-2">
           <div className="relative">
             <input
               type="tel"
@@ -105,7 +107,7 @@ const Vouchers: FC<Voucher> = ({
               MAX
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="mt-8 flex justify-center">

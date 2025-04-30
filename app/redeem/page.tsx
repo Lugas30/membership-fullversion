@@ -312,7 +312,7 @@ export default function Redeem() {
                 </span>
               </div>
 
-              <div className="flex self-start mt-10 mb-4">
+              <div className="mt-10 mb-4">
                 <span className="text-xs">Nominal poin yang akan ditukar</span>
               </div>
 

@@ -157,13 +157,14 @@ export default function TierInfo() {
                 <h1 className="text-2xl text-center">{activeTier.tier}</h1>
                 <div>
                   <div className="p-6 w-full min-h-80">
-                    <h2>Penambahan point</h2>
+                    {/* <h2>Penambahan point</h2>
                     <span className="text-[10px] fontMon tracking-wider">
                       Every purchase Rp 10.000 = {activeTier.amountPoint} poin
                       (rupiah)
-                    </span>
+                    </span> */}
 
-                    <h2 className="mb-2 mt-5">Benefit</h2>
+                    <h2 className="mb-2">Benefit</h2>
+
                     <div
                       className="text-gray-700 text-[10px] fontMon tracking-wider"
                       dangerouslySetInnerHTML={{
