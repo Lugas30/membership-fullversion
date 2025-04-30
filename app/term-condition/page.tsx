@@ -36,8 +36,7 @@ export default function TermCondition() {
           </div>
 
           {/* content */}
-          <div className="p-8">
-            {/* content */}
+          <div className="p-8 text-justify">
             <h2 className="text-base mb-5">SYARAT DAN KETENTUAN MEMBERSHIP</h2>
             <div className="text-[10px] fontMon leading-5">
               Selamat datang di AMS Membership, layanan resmi untuk Member AMS,
@@ -64,7 +63,7 @@ export default function TermCondition() {
               Anda.
               <br />
               <br />
-              <h2 className="text-sm my-5">Integritas Data </h2>
+              <h2 className="text-sm my-5">Integritas Data</h2>
               Semua data dan informasi yang Anda sampaikan kepada kami melalui
               Platform, kami anggap sebagai data dan informasi yang benar serta
               akurat. Oleh karenanya Anda bertanggung jawab untuk membarui atau
@@ -72,90 +71,87 @@ export default function TermCondition() {
               <br />
               <br />
               <h2 className="text-sm my-5">Ketentuan Dasar</h2>
-              <br />
-              <ul>
+              <ul className="list-disc pl-5">
                 <li>
-                  • Untuk menggunakan aplikasi ini, Anda wajib berumur 17 tahun
-                  ke atas.
+                  Untuk menggunakan aplikasi ini, Anda wajib berumur 17 tahun ke
+                  atas.
                 </li>
-                <li>• Keanggotaan Anda tidak dapat dipindahtangankan.</li>
+                <li>Keanggotaan Anda tidak dapat dipindahtangankan.</li>
                 <li>
-                  • Tidak disarankan untuk membagikan nama pengguna dan kata
-                  sandi kepada orang lain, atau mengizinkan orang lain untuk
-                  mengakses Layanan menggunakan nama pengguna dan kata sandi
-                  Anda.
+                  Tidak disarankan untuk membagikan nama pengguna dan kata sandi
+                  kepada orang lain, atau mengizinkan orang lain untuk mengakses
+                  Layanan menggunakan nama pengguna dan kata sandi Anda.
                 </li>
                 <li>
-                  • Anda bertanggung jawab atas setiap penggunaan Layanan yang
+                  Anda bertanggung jawab atas setiap penggunaan Layanan yang
                   terjadi sehubungan dengan nomor anggota dan kata sandi atau
                   PIN.
                 </li>
                 <li>
-                  • Silakan informasikan kepada kami apabila melihat adanya
+                  Silakan informasikan kepada kami apabila melihat adanya
                   penggunaan tidak sah atas nomor keanggotaan atau kata
                   sandi/PIN Anda.
                 </li>
                 <li>
-                  • Tidak diperbolehkan menggunakan aplikasi untuk tujuan ilegal
+                  Tidak diperbolehkan menggunakan aplikasi untuk tujuan ilegal
                   atau tidak sah.
                 </li>
                 <li>
-                  • Dalam menggunakan Layanan ini, Anda tidak diperbolehkan
+                  Dalam menggunakan Layanan ini, Anda tidak diperbolehkan
                   menggunakan alamat email palsu, meniru identitas orang lain,
                   atau menggambarkan afiliasi palsu dengan pihak lain.
                 </li>
                 <li>
-                  • Dilarang memodifikasi, mengadaptasi, atau meretas
+                  Dilarang memodifikasi, mengadaptasi, atau meretas
                   Aplikasi/Website AMS (“App”), atau memodifikasi aplikasi lain
                   untuk memberikan kesan palsu bahwa aplikasi tersebut berkaitan
                   dengan AMS.
                 </li>
                 <li>
-                  • Tidak diperbolehkan mengakses AMS Membership dengan cara apa
+                  Tidak diperbolehkan mengakses AMS Membership dengan cara apa
                   pun selain Aplikasi/Website resmi yang telah disediakan.
                 </li>
                 <li>
-                  • Tidak diperbolehkan untuk mencoba mengganggu atau mengubah
+                  Tidak diperbolehkan untuk mencoba mengganggu atau mengubah
                   operasi Aplikasi/Website dengan cara apa pun (misalnya:
                   menyerang server, memasukkan virus, bom waktu, trojan horse,
                   worm, cancelbot, atau rutinitas komputer lainnya yang bersifat
                   merusak).
                 </li>
                 <li>
-                  • Tidak diperbolehkan memposting foto yang mempromosikan
+                  Tidak diperbolehkan memposting foto yang mempromosikan
                   rasisme, pornografi, atau yang mendiskreditkan orang atau
                   institusi mana pun sebagai foto profil.
                 </li>
                 <li>
-                  • Tidak diperbolehkan menggunakan Aplikasi atau Layanan dengan
+                  Tidak diperbolehkan menggunakan Aplikasi atau Layanan dengan
                   cara yang melanggar hukum yang berlaku, melanggar kekayaan
                   intelektual pihak ketiga atau hak lainnya, atau dengan cara
                   yang menipu, tidak senonoh, menyinggung, atau memfitnah.
                 </li>
                 <li>
-                  • PT Aditya Mandiri Sejahtera tidak bertanggung jawab atas
+                  PT Aditya Mandiri Sejahtera tidak bertanggung jawab atas
                   kerugian yang dihasilkan dari segala bentuk pelanggaran dari
                   ketentuan yang telah disebutkan pada Syarat dan Ketentuan ini.
                 </li>
                 <li>
-                  • Pelanggaran terhadap perjanjian ini akan mengakibatkan
+                  Pelanggaran terhadap perjanjian ini akan mengakibatkan
                   penghentian akun AMS Membership.
                 </li>
                 <li>
-                  • Dalam hal kami menghentikan keanggotaan karena alasan apa
-                  pun, semua Poin AMS Membership akan hangus.
+                  Dalam hal kami menghentikan keanggotaan karena alasan apa pun,
+                  semua Poin AMS Membership akan hangus.
                 </li>
-              </ul>{" "}
-              <br />
+              </ul>
               <h2 className="text-sm my-5">Kondisi umum</h2>
-              <ul>
+              <ul className="list-disc pl-5">
                 <li>
-                  • Kami berhak untuk mengubah atau menghentikan Layanan dengan
+                  Kami berhak untuk mengubah atau menghentikan Layanan dengan
                   alasan apa pun, tanpa pemberitahuan kapan pun.
                 </li>
                 <li>
-                  • Kami berhak mengubah ketentuan penggunaan ini kapan saja.
-                  Jika hal tersebut merupakan perubahan material, kami akan
+                  Kami berhak mengubah ketentuan penggunaan ini kapan saja. Jika
+                  hal tersebut merupakan perubahan material, kami akan
                   memberitahu melalui alamat email atau nomor telepon yang
                   tercantum pada profil Anda. Apa yang dimaksud dengan
                   "perubahan material" akan ditentukan berdasarkan kebijakan
@@ -163,30 +159,27 @@ export default function TermCondition() {
                   serta penilaian yang masuk akal.
                 </li>
                 <li>
-                  • Kami berhak untuk menolak Layanan kepada siapa pun dan kapan
+                  Kami berhak untuk menolak Layanan kepada siapa pun dan kapan
                   pun, apabila ditemukan indikasi yang akan membawa dampak buruk
                   terhadap setiap pihak.
                 </li>
                 <li>
-                  • Kami berhak untuk memaksa pencabutan keanggotaan apa pun
-                  yang menjadi tidak aktif, melanggar ketentuan kami, atau dapat
+                  Kami berhak untuk memaksa pencabutan keanggotaan apa pun yang
+                  menjadi tidak aktif, melanggar ketentuan kami, atau dapat
                   menyesatkan anggota lain.
                 </li>
               </ul>
-              <br />
               <h2 className="text-sm my-5">Ganti Rugi</h2>
               <p>
                 Anda bertanggung jawab dan akan mengganti kerugian serta
                 melepaskan kami dari segala denda, hukuman, kewajiban, dan
                 kerugian lainnya terhadap segala klaim yang timbul dari:
               </p>
-              <br />
-              <ul>
-                <li>a. Pelanggaran Anda terhadap syarat dan ketentuan ini;</li>
-                <li>b. Kesalahan atau penipuan atau kelalaian Anda; atau</li>
-                <li>c. Pelanggaran Anda terhadap hak pihak ketiga mana pun.</li>
+              <ul className="list-disc pl-5">
+                <li> Pelanggaran Anda terhadap syarat dan ketentuan ini;</li>
+                <li> Kesalahan atau penipuan atau kelalaian Anda; atau</li>
+                <li> Pelanggaran Anda terhadap hak pihak ketiga mana pun.</li>
               </ul>
-              <br />
               <h2 className="text-sm my-5">Komunikasi Elektronik</h2>
               <p>
                 Anda setuju bahwa segala perjanjian, pemberitahuan dan
@@ -195,7 +188,6 @@ export default function TermCondition() {
                 oleh Anda saat dikirim ke Saluran Komunikasi yang Anda berikan
                 kepada kami.
               </p>
-              <br />
               <p>
                 Kami dapat berkomunikasi dengan Anda melalui surat, email,
                 telepon, SMS, Platform, layanan obrolan Over the Top (OTT)
@@ -211,130 +203,133 @@ export default function TermCondition() {
                 senantiasa menjaga data Anda sesuai dengan peraturan yang
                 berlaku di Indonesia.
               </p>
-              <br />
               <h2 className="text-sm my-5">
                 Ketersediaan Penggunaan Aplikasi dan Layanan
               </h2>
-              Aplikasi ini biasanya tersedia 24 jam sehari, tujuh hari seminggu.
-              Namun, kami mungkin perlu menghentikan atau menangguhkan akses ke
-              Layanan karena alasan pemeliharaan, teknis, atau lainnya.
-              <br />
-              <br />
-              Saat mengakses dan menggunakan Layanan, Anda diwajibkan untuk
-              mematuhi arahan, instruksi, atau protokol yang dipublikasikan di
-              Aplikasi/Website.
-              <br />
-              <br />
-              Kami dengan senang hati menawarkan berbagai Layanan di
-              Aplikasi/Website, yang ingin kami kembangkan dan tingkatkan secara
-              berkala. Layanan dapat diperbarui, diubah, atau dihapus sesuai
-              kebijakan kami, sehingga kami tidak dapat menjamin bahwa Layanan
-              tertentu akan selalu tersedia di Aplikasi/Website.
-              <br />
-              <br />
+              <p>
+                Aplikasi ini biasanya tersedia 24 jam sehari, tujuh hari
+                seminggu. Namun, kami mungkin perlu menghentikan atau
+                menangguhkan akses ke Layanan karena alasan pemeliharaan,
+                teknis, atau lainnya.
+              </p>
+              <p>
+                Saat mengakses dan menggunakan Layanan, Anda diwajibkan untuk
+                mematuhi arahan, instruksi, atau protokol yang dipublikasikan di
+                Aplikasi/Website.
+              </p>
+              <p>
+                Kami dengan senang hati menawarkan berbagai Layanan di
+                Aplikasi/Website, yang ingin kami kembangkan dan tingkatkan
+                secara berkala. Layanan dapat diperbarui, diubah, atau dihapus
+                sesuai kebijakan kami, sehingga kami tidak dapat menjamin bahwa
+                Layanan tertentu akan selalu tersedia di Aplikasi/Website.
+              </p>
               <h2 className="text-sm my-5">
                 Mengaktifkan dan Menonaktifkan Lokasi
               </h2>
-              Kami membutuhkan Anda untuk mengaktifkan lokasi guna
-              mengidentifikasi toko terdekat dengan dan/atau mengirimi materi
-              promosi terkait toko terdekat. Informasi ini bersifat opsional,
-              dan Anda dapat memilih untuk menonaktifkan lokasi.
-              <br />
-              <br />
+              <p>
+                Kami membutuhkan Anda untuk mengaktifkan lokasi guna
+                mengidentifikasi toko terdekat dengan dan/atau mengirimi materi
+                promosi terkait toko terdekat. Informasi ini bersifat opsional,
+                dan Anda dapat memilih untuk menonaktifkan lokasi.
+              </p>
               <h2 className="text-sm my-5">Penghasilan Poin</h2>
-              Layanan ini berfungsi sebagai sarana tanpa batasan, memantau saldo
-              poin atau menggunakan poin melalui penukaran poin. Untuk memproses
-              perolehan poin apa pun, Anda harus menginformasikan nomor
-              keanggotaan Anda kepada penanggung jawab transaksi, biasanya kasir
-              di toko.
-              <br />
-              <br />
+              <p>
+                Layanan ini berfungsi sebagai sarana tanpa batasan, memantau
+                saldo poin atau menggunakan poin melalui penukaran poin. Untuk
+                memproses perolehan poin apa pun, Anda harus menginformasikan
+                nomor keanggotaan Anda kepada penanggung jawab transaksi,
+                biasanya kasir di toko.
+              </p>
               <h2 className="text-sm my-5">Ketentuan Penghasilan Poin:</h2>
-              a. Anggota harus memberitahukan nomor ponsel yang aktif dan
-              terdaftar dalam Program ke kasir di toko sebelum transaksi
-              pembelian untuk mendapatkan Poin AMS Membership.
-              <br />
-              <br />
-              b. Anggota akan memperoleh Poin MAPCLUB dalam jumlah yang akan
-              ditentukan dari waktu ke waktu untuk setiap pembelanjaan di toko.
-              Poin AMS Membership diberikan berdasarkan harga bersih di luar
-              pajak dan biaya layanan.
-              <br />
-              <br />
-              c. Waktu yang dibutuhkan untuk mengupdate saldo poin adalah 1
-              (satu) hari setelah tanggal transaksi. Namun, pada anomali
-              tertentu, kami berhak menentukan waktu yang tepat untuk
-              memperbarui saldo poin sesuai dengan sifat transaksi.
-              <br />
-              <br />
+              <ul className="list-disc pl-5">
+                <li>
+                  Anggota harus memberitahukan nomor ponsel yang aktif dan
+                  terdaftar dalam Program ke kasir di toko sebelum transaksi
+                  pembelian untuk mendapatkan Poin AMS Membership.
+                </li>
+                <li>
+                  Anggota akan memperoleh Poin MAPCLUB dalam jumlah yang akan
+                  ditentukan dari waktu ke waktu untuk setiap pembelanjaan di
+                  toko. Poin AMS Membership diberikan berdasarkan harga bersih
+                  di luar pajak dan biaya layanan.
+                </li>
+                <li>
+                  Waktu yang dibutuhkan untuk mengupdate saldo poin adalah 1
+                  (satu) hari setelah tanggal transaksi. Namun, pada anomali
+                  tertentu, kami berhak menentukan waktu yang tepat untuk
+                  memperbarui saldo poin sesuai dengan sifat transaksi.
+                </li>
+              </ul>
               <h2 className="text-sm my-5">Penukaran Poin</h2>
               <h2 className="text-sm my-5">Ketentuan Penukaran Poin:</h2>
-              a. Anda dapat menggunakan poin yang diperoleh untuk menukarkan
-              produk atau layanan apa pun yang tersedia melalui Layanan
-              ("Penukaran/Redeem").
-              <br />
-              <br />
-              b. Poin AMS Membership tidak dapat ditukar dengan uang tunai dan
-              tidak dapat dialihkan.
-              <br />
-              <br />
-              c. Poin AMS Membership yang dimiliki oleh lebih dari satu Anggota
-              tidak dapat digabungkan untuk membayar satu transaksi.
-              <br />
-              <br />
-              d. Setelah digunakan, Poin AMS Membership akan segera dipotong
-              dari akun Anda. Walaupun kami bertujuan untuk memastikan bahwa
-              poin AMS Anda tidak akan ditukarkan tanpa izin dan persetujuan,
-              Anda juga harus memastikan bahwa informasi AMS Membership, seperti
-              nomor ID AMS, PIN, atau kode penukaran, aman, dan hanya tersedia
-              untuk Anda.
-              <br />
-              <br />
+              <ul className="list-disc pl-5">
+                <li>
+                  Anda dapat menggunakan poin yang diperoleh untuk menukarkan
+                  produk atau layanan apa pun yang tersedia melalui Layanan
+                  ("Penukaran/Redeem").
+                </li>
+                <li>
+                  Poin AMS Membership tidak dapat ditukar dengan uang tunai dan
+                  tidak dapat dialihkan.
+                </li>
+                <li>
+                  Poin AMS Membership yang dimiliki oleh lebih dari satu Anggota
+                  tidak dapat digabungkan untuk membayar satu transaksi.
+                </li>
+                <li>
+                  Setelah digunakan, Poin AMS Membership akan segera dipotong
+                  dari akun Anda. Walaupun kami bertujuan untuk memastikan bahwa
+                  poin AMS Anda tidak akan ditukarkan tanpa izin dan
+                  persetujuan, Anda juga harus memastikan bahwa informasi AMS
+                  Membership, seperti nomor ID AMS, PIN, atau kode penukaran,
+                  aman, dan hanya tersedia untuk Anda.
+                </li>
+              </ul>
               <h2 className="text-sm my-5">Voucher</h2>
-              a. Voucher hanya bisa digunakan pada store offline yang di naungi
-              oleh PT Aditya Mandiri Sejahtera.
-              <br />
-              <br />
-              b. Voucher mempunyai batas waktu (periode kadaluwarsa) sesuai
-              dengan ketentuan yang sudah ada pada syarat dan ketentuan voucher.
-              <br />
-              <br />
-              c. Kode Voucher hanya dapat digunakan untuk satu kali transaksi,
-              kecuali dinyatakan sebaliknya pada syarat dan ketentuan khusus
-              Voucher.
-              <br />
-              <br />
-              d. Apabila Anda menggunakan kode Voucher yang sama lebih dari satu
-              kali dalam satu hari, maka kode Voucher akan otomatis dibatalkan.
-              <br />
-              <br />
-              e. Voucher tidak dapat digunakan bersamaan dengan promosi atau
-              diskon lainnya.
-              <br />
-              <br />
-              f. Voucher tidak dapat ditukar dengan uang atau diuangkan.
-              <br />
-              <br />
-              g. Kami berhak untuk merubah ketentuan penggunaan Voucher ini atau
-              membatalkan setiap promosi sewaktu-waktu tanpa pemberitahuan.
-              <br />
-              <br />
+              <ul className="list-disc pl-5">
+                <li>
+                  Voucher hanya bisa digunakan pada store offline yang dinaungi
+                  oleh PT Aditya Mandiri Sejahtera.
+                </li>
+                <li>
+                  Voucher mempunyai batas waktu (periode kadaluwarsa) sesuai
+                  dengan ketentuan yang sudah ada pada syarat dan ketentuan
+                  voucher.
+                </li>
+                <li>
+                  Kode Voucher hanya dapat digunakan untuk satu kali transaksi,
+                  kecuali dinyatakan sebaliknya pada syarat dan ketentuan khusus
+                  Voucher.
+                </li>
+                <li>
+                  Apabila Anda menggunakan kode Voucher yang sama lebih dari
+                  satu kali dalam satu hari, maka kode Voucher akan otomatis
+                  dibatalkan.
+                </li>
+                <li>
+                  Voucher tidak dapat digunakan bersamaan dengan promosi atau
+                  diskon lainnya.
+                </li>
+                <li>Voucher tidak dapat ditukar dengan uang atau diuangkan.</li>
+                <li>
+                  Kami berhak untuk merubah ketentuan penggunaan Voucher ini
+                  atau membatalkan setiap promosi sewaktu-waktu tanpa
+                  pemberitahuan.
+                </li>
+              </ul>
               <h2 className="text-sm my-5">Kontak / Call Center</h2>
-              Untuk semua pertanyaan, keluhan, saran, kritik, dan klaim mengenai
-              Layanan ini harap hubungi:
-              <br />
-              <br />
-              PT Aditya Mandiri Sejahtera
-              <br />
-              <br />
-              Jalan Kebayunan No.18, RT.02/RW.20, Tapos, Kec. Tapos, Kota Depok,
-              Jawa Barat 16457
-              <br />
-              <br />
-              Email Customer Relationship Management: crm@amscorp.id Nomor
-              <br />
-              <br />
-              Customer Relationship Management: +62 811-1331-0569
+              <p>
+                Untuk semua pertanyaan, keluhan, saran, kritik, dan klaim
+                mengenai Layanan ini harap hubungi:
+              </p>
+              <p>PT Aditya Mandiri Sejahtera</p>
+              <p>
+                Jalan Kebayunan No.18, RT.02/RW.20, Tapos, Kec. Tapos, Kota
+                Depok, Jawa Barat 16457
+              </p>
+              <p>Email Customer Relationship Management: crm@amscorp.id</p>
+              <p>Nomor Customer Relationship Management: +62 811-1331-0569</p>
             </div>
           </div>
         </div>

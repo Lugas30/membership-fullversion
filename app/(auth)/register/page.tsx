@@ -554,7 +554,11 @@ export default function Register() {
               />
               <span className="text-[10px] ms-2 fontMon">
                 Saya menyetujui{" "}
-                <Link href="/term-condition" className="text-rose-800">
+                <Link
+                  href="/term-condition"
+                  target="_blank"
+                  className="text-rose-800"
+                >
                   <span className="font-bold">Syarat dan Ketentuan</span>
                 </Link>{" "}
                 yang berlaku.

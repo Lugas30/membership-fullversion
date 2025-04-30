@@ -246,7 +246,7 @@ export default function Promo() {
 
           {/* open modal */}
           {isModalVisible && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
+            <div className="sticky h-screen inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
               <div className="bg-white w-full max-w-md min-h-screen shadow-lg">
                 <div className="flex justify-between items-center p-6">
                   <span className="text-xs">PROMO</span>

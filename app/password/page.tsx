@@ -352,7 +352,7 @@ export default function Profile() {
               <form onSubmit={handleSubmitPassword}>
                 <div className="mb-2 relative">
                   <Input
-                    label="Password Terkini"
+                    label="Password Lama"
                     type={showPassOld ? "text" : "password"}
                     name="currentPassword"
                     value={password.currentPassword}
