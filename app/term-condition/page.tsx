@@ -63,6 +63,25 @@ export default function TermCondition() {
               Anda.
               <br />
               <br />
+              <h2 className="text-sm my-5">Himbauan</h2>
+              Kami menghimbau kepada seluruh pengguna untuk tidak melakukan
+              tindakan kriminal atau melanggar ketentuan hukum apapun yang dapat
+              merugikan pihak lain, baik dalam penggunaan maupun distribusi
+              produk. Apabila tindakan tersebut dilakukan, maka segala akibat
+              yang timbul menjadi tanggung jawab sepenuhnya dari pihak yang
+              bersangkutan, dan kami tidak akan bertanggung jawab atas hal
+              tersebut.
+              <br />
+              <br />
+              Setiap pelanggaran terhadap hukum akan ditindak tegas sesuai
+              dengan peraturan perundang-undangan yang berlaku. Kami juga
+              mengingatkan bahwa setiap individu yang terlibat dalam kegiatan
+              ilegal yang melibatkan produk dari brand-brand PT Aditya Mandiri
+              Sejahtera dapat dikenakan sanksi hukum yang sesuai, termasuk namun
+              tidak terbatas pada denda, hukuman penjara, atau tindakan hukum
+              lainnya sesuai dengan ketentuan yang berlaku.
+              <br />
+              <br />
               <h2 className="text-sm my-5">Integritas Data</h2>
               Semua data dan informasi yang Anda sampaikan kepada kami melalui
               Platform, kami anggap sebagai data dan informasi yang benar serta
