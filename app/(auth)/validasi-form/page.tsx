@@ -48,8 +48,8 @@ export default function Validasi() {
   const dispatch = useAppDispatch();
   const [optionsProv, setOptionsProv] = useState<Option[]>([]);
   const [optionsCity, setOptionsCity] = useState<Option[]>([]);
-  const [prov, setProv] = useState("");
-  const [city, setCity] = useState("");
+  const [prov, setProv] = useState<string>("");
+  const [city, setCity] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<boolean | false>(false);
   const [errorMessage, setErrorMessage] = useState<boolean | false>(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -124,6 +124,19 @@ export default function Validasi() {
       setOptionsCity([]);
     }
   }, [prov]);
+
+  // Untuk mengosongkan PIN karna tertarik dari user data
+  useEffect(() => {
+    if (userData) {
+      // Menarik data userData ke dalam formData, namun tidak untuk pin
+      setFormData({
+        ...userData.memberData,
+        pin: "", // Mengosongkan field pin
+      });
+      setProv(userData.memberData.provinceID);
+      setCity(userData.memberData.cityID);
+    }
+  }, [userData]);
 
   const handleChange = (
     event: FormEvent<HTMLInputElement | HTMLSelectElement>
@@ -314,7 +327,7 @@ export default function Validasi() {
               label="*Nama Lengkap"
               type="text"
               name="fullName"
-              value={toNormalCase(formData.fullName)}
+              value={toNormalCase(formData.fullName) || ""}
               onChange={handleChange}
               error={formError.fullName}
               required={true}
@@ -325,7 +338,7 @@ export default function Validasi() {
                 label="No. Handphone"
                 type="tel"
                 name="phone"
-                value={formData.phone}
+                value={formData.phone || ""}
                 onChange={handleChange}
                 error={formError.phone}
                 disabled={true}
@@ -340,7 +353,7 @@ export default function Validasi() {
               label="*Alamat Email"
               type="email"
               name="email"
-              value={formData.email}
+              value={formData.email || ""}
               onChange={handleChange}
               error={formError.email}
               required={true}
@@ -386,7 +399,7 @@ export default function Validasi() {
               label="*Tanggal Lahir"
               type="date"
               name="dateofBirth"
-              value={formData.dateofBirth}
+              value={formData.dateofBirth || ""}
               onChange={handleChange}
               error={formError.dateofBirth}
               required={true}
@@ -416,7 +429,7 @@ export default function Validasi() {
                 label="*Password"
                 type={showPass ? "text" : "password"}
                 name="password"
-                value={formData.password}
+                value={formData.password || ""}
                 onChange={handleChange}
                 required={true}
                 error={formError.password}
@@ -452,7 +465,7 @@ export default function Validasi() {
                 pattern="[0-9]*"
                 maxLength={6}
                 name="pin"
-                value={formData.pin}
+                value={formData.pin || ""}
                 onChange={handleChange}
                 required={true}
                 error={formError.pin}

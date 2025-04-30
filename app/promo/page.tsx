@@ -168,7 +168,9 @@ export default function Promo() {
               <span className="text-[10px] fontMon tracking-widest">
                 PROMO BERLAKU
               </span>
-              <div
+
+              {/* Button filter minta dihide */}
+              {/* <div
                 className="flex items-center justify-center gap-2 cursor-pointer"
                 onClick={showFilterModal}
               >
@@ -182,7 +184,7 @@ export default function Promo() {
                 <span className="text-[10px] fontMon tracking-widest">
                   FILTER
                 </span>
-              </div>
+              </div> */}
             </div>
           </Header>
 

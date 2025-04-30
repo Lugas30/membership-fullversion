@@ -305,7 +305,7 @@ export default function Redeem() {
 
               <div className="flex flex-col justify-center items-center mt-10">
                 <span className="text-[10px] fontMon tracking-wider">
-                  POIN TERKINI
+                  TOTAL POIN
                 </span>
                 <span className="text-lg font-medium">
                   Rp {formatToIDR(user.memberInfoData.points || 0)}

@@ -471,7 +471,7 @@ export default function Profile() {
               <form onSubmit={handleSubmitPin}>
                 <div className="relative">
                   <Input
-                    label="*PIN"
+                    label="*PIN Baru"
                     type={showPin ? "text" : "password"}
                     inputMode="numeric"
                     pattern="[0-9]*"

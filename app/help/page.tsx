@@ -113,7 +113,7 @@ export default function Help() {
                 </a>
               </div>
             </div>
-            <div className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4">
+            {/* <div className="bg-white p-4 w-full rounded-lg border border-gray-300 flex items-center justify-between mb-4">
               <div className="flex justify-start items-center w-full gap-4">
                 <svg
                   width="22"
@@ -147,7 +147,7 @@ export default function Help() {
                   {data?.contactData.instagram}
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
