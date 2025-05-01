@@ -106,7 +106,7 @@ export default function Help() {
                   </g>
                 </svg>
                 <a
-                  href={`mailto:${data?.contactData.email}}`}
+                  href={`mailto:${data?.contactData.email}`}
                   className="text-[10px] uppercase tracking-widest fontMon"
                 >
                   {data?.contactData.email}
