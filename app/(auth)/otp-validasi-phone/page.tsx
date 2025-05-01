@@ -77,7 +77,7 @@ export default function Otp() {
         setMessageSuccess(true);
         setTimeout(() => {
           router.replace(`/home`);
-        }, 2000);
+        }, 100);
       } else {
         setErrorMessage(true);
       }

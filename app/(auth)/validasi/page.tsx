@@ -11,7 +11,7 @@ import LogoHeader from "@/components/LogoHeader";
 export default function Validasi() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null); // Perubahan tipe error untuk menampung pesan error yang lebih spesifik
   const [inputError, setInputError] = useState<{ [key: string]: string }>({});
   const [data, setData] = useState({
     userAccount: "",
@@ -61,8 +61,11 @@ export default function Validasi() {
         localStorage.setItem("member", response.data.loginData.memberID);
         sessionStorage.setItem("phone", data.userAccount);
         router.replace(`/otp-validasi`);
+      } else if (response.data.responseCode === "2002502") {
+        // Menambahkan kondisi untuk responseCode 2002501
+        setError("Nomor telah divalidasi sebelumnya.");
       } else {
-        setError(true);
+        setError("No handphone tidak terdaftar");
       }
     } catch (error) {
       console.log("Error processing OTP:", error);
@@ -70,7 +73,7 @@ export default function Validasi() {
       setLoading(false);
       setData({ userAccount: "" });
       setTimeout(() => {
-        setError(false);
+        setError(null); // Reset error setelah 3 detik
       }, 3000);
     }
   };
@@ -81,7 +84,8 @@ export default function Validasi() {
         <LogoHeader className="m-12" />
         <div className="flex flex-col w-full p-8">
           <h1 className="text-xl">Validasi Nomor</h1>
-          {error && <ErrorMessage message="No handphone tidak terdaftar" />}
+          {error && <ErrorMessage message={error} />}{" "}
+          {/* Tampilkan pesan error yang sesuai */}
           <p className="text-xs my-10 fontMon leading-relaxed">
             Pastikan memasukkan nomor yang telah terdaftar dan aktif. Kode OTP
             akan dikirimkan via WhatsApp.

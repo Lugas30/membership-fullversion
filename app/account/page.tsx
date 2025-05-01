@@ -74,6 +74,7 @@ export default function Page() {
   const handleLogout = () => {
     localStorage.removeItem("member");
     localStorage.removeItem("token");
+    sessionStorage.removeItem("phone");
     router.replace("/");
   };
 

@@ -241,7 +241,7 @@ export default function Validasi() {
     const data = {
       memberID: formData.memberID,
       fullName: formData.fullName,
-      phone: formData.phone,
+      // phone: formData.phone,
       email: formData.email,
       password: formData.password,
       pin: formData.pin,
@@ -266,15 +266,21 @@ export default function Validasi() {
     }
 
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.put(
-        `https://golangapi-j5iu.onrender.com/api/v1.0/member/mobile/profile`,
+        `${process.env.NEXT_PUBLIC_API_URL}profile/validate`,
         data,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (response.data.responseCode === "2002500") {
         setSuccessMessage(true);
-        setTimeout(() => router.replace("/home"), 2000);
+        router.replace("/home");
       } else if (response.data.responseCode === "4002500") {
         setErrorMessage(true);
         setTimeout(() => setErrorMessage(false), 2000);
