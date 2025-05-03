@@ -504,6 +504,7 @@ export default function Validasi() {
                 label="SIMPAN"
                 className="bg-base-accent text-white"
                 loading={isLoading}
+                disabled={isLoading}
                 type="submit"
               />
             </div>

@@ -576,6 +576,7 @@ export default function Register() {
                 label="DAFTAR"
                 className="bg-base-accent text-white"
                 loading={loading}
+                disabled={loading}
               />
             </div>
 

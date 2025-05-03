@@ -182,6 +182,7 @@ export default function Otp() {
               label="KIRIM"
               className="bg-base-accent text-white rounded-full w-full p-2"
               loading={loading}
+              disabled={loading}
             />
 
             <p className="text-center text-xs mt-4">

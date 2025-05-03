@@ -181,6 +181,7 @@ export default function Login() {
                 label="MASUK AKUN"
                 className="bg-base-accent text-white"
                 loading={data.loading}
+                disabled={data.loading}
               />
             </div>
           </form>

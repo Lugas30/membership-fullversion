@@ -449,6 +449,7 @@ export default function Profile() {
                     label="SIMPAN PASSWORD"
                     className="bg-base-accent text-white"
                     loading={password.loading}
+                    disabled={password.loading}
                   />
                 </div>
               </form>
@@ -546,6 +547,7 @@ export default function Profile() {
                     label="SIMPAN PIN"
                     className="bg-base-accent text-white"
                     loading={pin.loading}
+                    disabled={pin.loading}
                   />
                 </div>
               </form>

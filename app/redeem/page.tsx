@@ -483,6 +483,7 @@ export default function Redeem() {
                     type="submit"
                     label="Submit"
                     onClick={handlePinSubmit}
+                    disabled={isLoading}
                     className="bg-base-accent text-white"
                   />
                 </div>

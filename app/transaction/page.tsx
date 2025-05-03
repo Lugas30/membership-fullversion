@@ -134,8 +134,8 @@ export default function Transaction() {
           <div className="flex flex-col bg-base-accent rounded-b-3xl py-8 items-center relative w-full">
             <Swiper
               initialSlide={initialIndex} // Hanya diinisialisasi sekali
-              slidesPerView={2}
-              spaceBetween={360}
+              // slidesPerView={2}
+              spaceBetween={120} // sebelumnya 360
               centeredSlides={true}
               modules={[Pagination]}
               className="w-full z-20"

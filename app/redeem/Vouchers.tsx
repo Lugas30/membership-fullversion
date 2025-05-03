@@ -116,6 +116,7 @@ const Vouchers: FC<Voucher> = ({
           type="submit"
           className="bg-base-accent text-white"
           loading={isLoading}
+          disabled={isLoading || !selectedVoucher}
         />
       </div>
     </form>

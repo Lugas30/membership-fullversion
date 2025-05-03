@@ -328,6 +328,7 @@ export default function Profile() {
                 label="SIMPAN"
                 className="bg-base-accent text-white"
                 loading={isLoading}
+                disabled={isLoading}
               />
             </div>
           </form>

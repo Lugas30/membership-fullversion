@@ -89,6 +89,7 @@ export default function ForgotPassword() {
                 label="KIRIM PERMINTAAN"
                 className="bg-base-accent text-white"
                 loading={loading}
+                disabled={loading}
               />
             </div>
             <div className="text-xs text-center fontMon my-4">

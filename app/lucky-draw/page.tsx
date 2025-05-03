@@ -213,6 +213,7 @@ export default function Page() {
                   type="button"
                   className="bg-base-accent text-white"
                   loading={isLoading}
+                  disabled={isLoading}
                 />
               </div>
 
@@ -327,6 +328,7 @@ export default function Page() {
                 onClick={handlePinSubmit}
                 className="bg-base-accent text-white"
                 loading={isLoading}
+                disabled={isLoading}
               />
             </div>
           </div>

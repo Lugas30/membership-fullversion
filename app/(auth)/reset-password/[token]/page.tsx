@@ -272,6 +272,7 @@ export default function ResetPassword() {
                 label="SIMPAN PASSWORD"
                 className="bg-base-accent text-white rounded-full w-full p-2 my-6"
                 loading={password.loading}
+                disabled={password.loading}
               />
             </form>
           </div>

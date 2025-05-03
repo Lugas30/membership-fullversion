@@ -189,6 +189,7 @@ export default function Otp() {
                 label="KIRIM"
                 className="bg-base-accent text-white"
                 loading={loading}
+                disabled={loading}
               />
             </div>
 
