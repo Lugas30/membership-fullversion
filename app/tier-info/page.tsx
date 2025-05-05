@@ -80,10 +80,32 @@ export default function TierInfo() {
           <div className="relative">
             <div className="absolute w-full bg-white">
               <Swiper
-                slidesPerView={2}
-                spaceBetween={280}
+                // slidesPerView={2}
+                // spaceBetween={280}
                 centeredSlides={true}
                 modules={[Pagination]}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                    spaceBetween: 280,
+                  },
+                  280: {
+                    slidesPerView: 2,
+                    spaceBetween: 320,
+                  },
+                  320: {
+                    slidesPerView: 2,
+                    spaceBetween: 310,
+                  },
+                  400: {
+                    slidesPerView: 2,
+                    spaceBetween: 290,
+                  },
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 280,
+                  },
+                }}
                 onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
                 className="w-full"
               >

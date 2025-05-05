@@ -141,7 +141,7 @@ export default function Transaction() {
               breakpoints={{
                 320: {
                   slidesPerView: 2,
-                  spaceBetween: 310,
+                  spaceBetween: 300,
                 },
                 640: {
                   slidesPerView: 2,
