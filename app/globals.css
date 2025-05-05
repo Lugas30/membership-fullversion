@@ -47,3 +47,15 @@ li {
   list-style-type: decimal;
   list-style-position: inside;
 }
+
+@media (min-width: 320px) and (max-width: 400px) {
+  .scale-slide {
+    transform: scale(0.85);
+  }
+}
+
+@media (min-width: 401px) {
+  .scale-slide {
+    transform: scale(1); /* Normal */
+  }
+}

@@ -72,17 +72,36 @@ export default function Store() {
   const showSearchModal = () => setIsSearchModalVisible(true);
   const closeSearchModal = () => setIsSearchModalVisible(false);
 
+  // const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setFilteredData(
+  //     // Filter data berdasarkan pencarian
+  //     data.storeLocationData.filter((location: Store) => {
+  //       const searchLower = search.toLowerCase();
+  //       const combinedString =
+  //         `${location.brand} ${location.kota}`.toLowerCase(); // Gabungkan brand dan kota
+  //       return combinedString.includes(searchLower); // Cek apakah pencarian cocok
+  //     })
+  //   );
+  //   setIsSearchModalVisible(false);
+  //   setSearch("");
+  // };
+
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFilteredData(
-      // Filter data berdasarkan pencarian
-      data.storeLocationData.filter((location: Store) => {
-        const searchLower = search.toLowerCase();
-        const combinedString =
-          `${location.brand} ${location.kota}`.toLowerCase(); // Gabungkan brand dan kota
-        return combinedString.includes(searchLower); // Cek apakah pencarian cocok
-      })
-    );
+    const selectedBrand = params.brand; // Mendapatkan brand dari params
+
+    // Filter data berdasarkan pencarian dan brand yang dipilih
+    const filtered = data.storeLocationData.filter((location: Store) => {
+      const searchLower = search.toLowerCase();
+      const combinedString = `${location.brand} ${location.kota}`.toLowerCase(); // Gabungkan brand dan kota
+      const matchesSearch = combinedString.includes(searchLower); // Cek apakah pencarian cocok
+      const matchesBrand = generateSlug(location.brand) === selectedBrand; // Cek apakah brand cocok dengan yang dipilih
+
+      return matchesSearch && matchesBrand; // Pastikan kedua kondisi terpenuhi
+    });
+
+    setFilteredData(filtered);
     setIsSearchModalVisible(false);
     setSearch("");
   };

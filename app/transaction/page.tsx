@@ -135,15 +135,25 @@ export default function Transaction() {
             <Swiper
               initialSlide={initialIndex} // Hanya diinisialisasi sekali
               // slidesPerView={2}
-              spaceBetween={120} // sebelumnya 360
+              // spaceBetween={120} // sebelumnya 360
               centeredSlides={true}
               modules={[Pagination]}
+              breakpoints={{
+                320: {
+                  slidesPerView: 2,
+                  spaceBetween: 310,
+                },
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 360,
+                },
+              }}
               className="w-full z-20"
               onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)} // Update state tanpa remount
             >
               {data.memberInfoData.tierData.map((tier: Tier) => (
                 <SwiperSlide key={tier.id}>
-                  <div className="flex flex-col items-center text-center w-full">
+                  <div className="flex flex-col items-center text-center w-full scale-slide">
                     <div className="flex flex-col items-center text-center justify-center w-96 mb-3 relative">
                       <Image
                         src={`https://amscorp.id/card/${tier.tier_image}`}

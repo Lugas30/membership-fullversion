@@ -89,7 +89,8 @@ export default function Store() {
               <span className="text-[10px] tracking-widest fontMon">
                 LOKASI TOKO
               </span>
-              <div className="flex items-center justify-center gap-2 cursor-pointer">
+              {/* Dihilangkan karna sudah dibuat perbrand */}
+              {/* <div className="flex items-center justify-center gap-2 cursor-pointer">
                 <Image
                   src="/images/filter.svg"
                   alt="Filter"
@@ -98,7 +99,7 @@ export default function Store() {
                   className="w-auto h-auto cursor-pointer"
                   onClick={showFilterModal}
                 />
-              </div>
+              </div> */}
             </div>
           </Header>
 
