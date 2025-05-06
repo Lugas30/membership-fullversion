@@ -73,29 +73,35 @@ export default function Faq() {
 
           {/* content */}
           <div className="p-4 text-sm tracking-wider">
-            <Accordion allowMultipleExpanded>
+            <Accordion allowZeroExpanded>
               {data.faqCategoryData?.map((category: any) => (
                 <AccordionItem key={category.id}>
-                  <AccordionItemHeading className="">
+                  <AccordionItemHeading>
                     <AccordionItemButton>
                       {category.description}
                     </AccordionItemButton>
                   </AccordionItemHeading>
                   <AccordionItemPanel>
-                    {category.faqData?.map((faq: any) => (
-                      <AccordionItem key={faq.ID}>
-                        <AccordionItemHeading className="">
-                          <AccordionItemButton>{faq.TITLE}</AccordionItemButton>
-                        </AccordionItemHeading>
-                        <AccordionItemPanel className="text-[10px] fontMon p-4">
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: faq.DESCRIPTION,
-                            }}
-                          />
-                        </AccordionItemPanel>
-                      </AccordionItem>
-                    )) || <p>Tidak ada data FAQ tersedia.</p>}
+                    <Accordion allowZeroExpanded>
+                      {" "}
+                      {/* Membolehkan panel dalam untuk membuka lebih dari satu */}
+                      {category.faqData?.map((faq: any) => (
+                        <AccordionItem key={faq.ID}>
+                          <AccordionItemHeading>
+                            <AccordionItemButton>
+                              {faq.TITLE}
+                            </AccordionItemButton>
+                          </AccordionItemHeading>
+                          <AccordionItemPanel className="text-[10px] fontMon p-4">
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: faq.DESCRIPTION,
+                              }}
+                            />
+                          </AccordionItemPanel>
+                        </AccordionItem>
+                      )) || <p>Tidak ada data FAQ tersedia.</p>}
+                    </Accordion>
                   </AccordionItemPanel>
                 </AccordionItem>
               ))}

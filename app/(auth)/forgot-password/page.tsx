@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function ForgotPassword() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [inputError, setInputError] = useState<{ [key: string]: string }>({});
   const [data, setData] = useState({
@@ -46,16 +46,19 @@ export default function ForgotPassword() {
 
       if (response.data.responseCode === "2002500") {
         setSuccess(true);
+      } else if (response.data.responseCode === "4002501") {
+        setError("Telah melampaui batas permintaan perhari");
       } else {
-        setError(true);
+        setError("Nomor tidak terdaftar.");
       }
     } catch (error) {
       console.log("Error processing OTP:", error);
+      setError("Terjadi kesalahan saat memproses permintaan.");
     } finally {
       setLoading(false);
       setData({ userAccount: "" });
       setTimeout(() => {
-        setError(false);
+        setError(null);
       }, 3000);
     }
   };
@@ -68,7 +71,7 @@ export default function ForgotPassword() {
           {success && (
             <SuccessMessage message="Link ubah password telah dikirim" />
           )}
-          {error && <ErrorMessage message="Nomor tidak terdaftar" />}
+          {error && <ErrorMessage message={error} />}
           <p className="text-sm mt-20 mb-10">
             Kami akan mengirimkan link via Whatsapp untuk mengatur ulang
             passsword.

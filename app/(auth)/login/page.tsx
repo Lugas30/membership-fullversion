@@ -27,28 +27,17 @@ export default function Login() {
     loading: false,
   });
 
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setData({
-  //     ...data,
-  //     [event.target.name]: event.target.value,
-  //   });
-  //   setInputError({});
-  //   setIsError(false); // Error hilang saat diinput
-  // };
+  // Handle change function for form inputs
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const target = event.currentTarget as HTMLInputElement;
-    const { name, value } = target;
-
-    // Validasi untuk phone
-    if (name === "user") {
-      if (!/^\d*$/.test(value)) {
-        setInputError((prev) => ({
-          ...prev,
-          user: "Nomor handphone hanya boleh mengandung angka",
-        }));
-        return;
-      }
+    // Validate phone number for "user" field
+    if (name === "user" && !/^\d*$/.test(value)) {
+      setInputError((prev) => ({
+        ...prev,
+        user: "Nomor handphone hanya boleh mengandung angka",
+      }));
+      return;
     }
 
     setData((prevData) => ({
@@ -60,9 +49,10 @@ export default function Login() {
       [name]: "",
     }));
     setGlobalError(null);
-    setIsError(false); // Hilangkan error saat input valid
+    setIsError(false); // Hide error when input is valid
   };
 
+  // Validate form inputs before submitting
   const validateInputs = () => {
     const errors: { [key: string]: string } = {};
 
@@ -77,10 +67,12 @@ export default function Login() {
     return Object.keys(errors).length === 0;
   };
 
+  // Handle form submission
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!validateInputs()) return;
     setData({ ...data, loading: true });
+
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}dashboard/login`,
@@ -88,27 +80,28 @@ export default function Login() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
-      if (response.data.responseCode == 2002500) {
+      if (response.data.responseCode === "2002500") {
         localStorage.setItem("member", response.data.loginData.memberID);
         localStorage.setItem("token", response.data.loginData.token);
         router.replace("/home");
-      } else if (response.data.responseCode == 4002501) {
-        const response = await axios.post(
+      } else if (response.data.responseCode === "4002501") {
+        const responseVerify = await axios.post(
           `${process.env.NEXT_PUBLIC_API_URL}dashboard/Verify?userAccount=${data.user}`
         );
 
-        if (response.data.responseCode === "2002500") {
+        if (responseVerify.data.responseCode === "2002500") {
           sessionStorage.setItem("phone", data.user);
           router.replace(`/otp-validasi-login`);
         }
-      } else {
-        // setIsError(true);
+      } else if (response.data.responseCode === "4002503") {
         setGlobalError(
-          response.data.responseMessage || "No Telepon atau Password Salah"
+          "Akun anda terkunci, Silakan akses fitur 'Lupa Password'"
         );
+      } else {
+        setGlobalError("No Telepon atau Password Salah");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setGlobalError("Terjadi kesalahan, coba lagi nanti.");
     } finally {
       setData({ user: "", password: "", loading: false });
@@ -121,12 +114,7 @@ export default function Login() {
         <LogoHeader className="m-14" />
 
         <div className="flex flex-col w-full px-8">
-          {/* {isError && (
-            <ErrorMessage message={"No Telepon atau Password Salah"} />
-          )} */}
-          {globalError && (
-            <ErrorMessage message={"No Telepon atau Password Salah"} />
-          )}
+          {globalError && <ErrorMessage message={globalError} />}
 
           <form onSubmit={handleSubmit}>
             <Input

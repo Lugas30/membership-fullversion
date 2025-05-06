@@ -139,11 +139,23 @@ export default function Transaction() {
               centeredSlides={true}
               modules={[Pagination]}
               breakpoints={{
-                320: {
+                0: {
                   slidesPerView: 2,
-                  spaceBetween: 300,
+                  spaceBetween: 280,
                 },
-                640: {
+                349: {
+                  slidesPerView: 2,
+                  spaceBetween: 310,
+                },
+                374: {
+                  slidesPerView: 2,
+                  spaceBetween: 330,
+                },
+                410: {
+                  slidesPerView: 2,
+                  spaceBetween: 350,
+                },
+                429: {
                   slidesPerView: 2,
                   spaceBetween: 360,
                 },

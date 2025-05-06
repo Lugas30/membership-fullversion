@@ -48,13 +48,36 @@ li {
   list-style-position: inside;
 }
 
-@media (min-width: 320px) and (max-width: 400px) {
+/* Menambahkan transisi pada transformasi */
+.scale-slide {
+  transition: transform 0.3s ease; /* Durasi 0.3 detik dengan efek transisi yang halus */
+}
+
+@media (min-width: 0px) and (max-width: 349px) {
+  .scale-slide {
+    transform: scale(0.75);
+  }
+}
+
+@media (min-width: 350px) and (max-width: 374px) {
   .scale-slide {
     transform: scale(0.85);
   }
 }
 
-@media (min-width: 401px) {
+@media (min-width: 375px) and (max-width: 410px) {
+  .scale-slide {
+    transform: scale(0.9);
+  }
+}
+
+@media (min-width: 411px) and (max-width: 429px) {
+  .scale-slide {
+    transform: scale(0.95);
+  }
+}
+
+@media (min-width: 430px) {
   .scale-slide {
     transform: scale(1); /* Normal */
   }

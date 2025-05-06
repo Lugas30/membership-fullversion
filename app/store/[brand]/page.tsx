@@ -214,9 +214,10 @@ export default function Store() {
 
           {/* modal detail location */}
           {isModalVisible && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50">
-              <div className="bg-white w-full max-w-md min-h-screen shadow-lg p-6">
-                <div className="flex justify-between items-center">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-auto">
+              <div className="bg-white w-full h-full max-w-md max-h-full shadow-lg">
+                {/* Header */}
+                <div className="flex justify-between items-center p-6">
                   <span className="text-[10px] tracking-widest fontMon">
                     LOKASI TOKO
                   </span>
@@ -225,7 +226,8 @@ export default function Store() {
                   </button>
                 </div>
 
-                <div className="flex flex-col items-center justify-center my-6">
+                {/* Content */}
+                <div className="flex flex-col items-center justify-center my-6 overflow-auto">
                   <h2 className="text-base">
                     {detail?.brand &&
                       detail.brand.charAt(0).toUpperCase() +
