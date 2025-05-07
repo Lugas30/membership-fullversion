@@ -59,7 +59,7 @@ export default function Help() {
             </div>
             <p className="text-[10px] text-center tracking-wider my-6 fontMon leading-relaxed">
               Jika Anda membutuhkan bantuan atau memiliki pertanyaan terkait
-              aplikasi ini, silakan hubungi kami melalui informasi kontak yang
+              layanan ini, silakan hubungi kami melalui informasi kontak yang
               tersedia di bawah ini. Tim kami siap membantu Anda.
             </p>
           </div>

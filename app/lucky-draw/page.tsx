@@ -202,7 +202,7 @@ export default function Page() {
               {/* Points Section */}
               <div className="flex justify-center items-center mb-4">
                 <span className="text-xs">
-                  Senilai: {formatToIDR(data.voucherData.nominal)} point/kupon
+                  Senilai: {formatToIDR(data.voucherData.nominal)} poin/kupon
                 </span>
               </div>
 

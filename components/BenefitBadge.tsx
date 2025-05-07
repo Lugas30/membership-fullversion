@@ -37,7 +37,7 @@ const benefitList = [
   [
     { id: 6, image: "point", text: "Earn 2% Extra Points" },
     { id: 7, image: "doublepoint", text: "2x Points Birthday & Bigdays" },
-    { id: 8, image: "voucher", text: "50k Birthday Voucher" },
+    // { id: 8, image: "voucher", text: "50k Birthday Voucher" },
   ],
   [
     { id: 9, image: "point", text: "Earn 2.5% Extra Points" },
@@ -60,7 +60,7 @@ const benefitList = [
   [
     { id: 21, image: "point", text: "Earn 5% Extra Points" },
     { id: 22, image: "doublepoint", text: "2x Points Birthday & Bigdays" },
-    { id: 23, image: "voucher", text: "50k Birthday Voucher" },
+    { id: 23, image: "voucher", text: "100k Birthday Voucher" },
     { id: 24, image: "limited", text: "Access Limited Edition" },
     { id: 25, image: "freebies", text: "Freebies limited edition" },
     { id: 26, image: "anualgift", text: "Annual Gift Top 10 Spender" },

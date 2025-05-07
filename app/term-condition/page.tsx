@@ -42,10 +42,10 @@ export default function TermCondition() {
               Selamat datang di AMS Membership, layanan resmi untuk Member AMS,
               yaitu program membership dari PT Aditya Mandiri Sejahtera yang
               menaungi 4 brand fashion ready to wear; Celcius, Celcius Woman,
-              Misssissippi Ladies, dan Queensland. Harap membaca dan memahami
-              syarat dan ketentuan AMS Membership ini karena syarat dan
-              ketentuan ini mengatur penggunaan Anda atas program dan layanan
-              sebagai Member AMS.
+              Misssissippi, dan Queensland. Harap membaca dan memahami syarat
+              dan ketentuan AMS Membership ini karena syarat dan ketentuan ini
+              mengatur penggunaan Anda atas program dan layanan sebagai Member
+              AMS.
               <br />
               <br />
               Layanan kami memungkinkan Anda dalam membuat akun, menautkannya,
@@ -92,7 +92,7 @@ export default function TermCondition() {
               <h2 className="text-sm my-5">Ketentuan Dasar</h2>
               <ul className="list-disc pl-5">
                 <li>
-                  Untuk menggunakan aplikasi ini, Anda wajib berumur 17 tahun ke
+                  Untuk menggunakan Layanan ini, Anda wajib berumur 17 tahun ke
                   atas.
                 </li>
                 <li>Keanggotaan Anda tidak dapat dipindahtangankan.</li>
@@ -112,7 +112,7 @@ export default function TermCondition() {
                   sandi/PIN Anda.
                 </li>
                 <li>
-                  Tidak diperbolehkan menggunakan aplikasi untuk tujuan ilegal
+                  Tidak diperbolehkan menggunakan Layanan untuk tujuan ilegal
                   atau tidak sah.
                 </li>
                 <li>
@@ -121,20 +121,19 @@ export default function TermCondition() {
                   atau menggambarkan afiliasi palsu dengan pihak lain.
                 </li>
                 <li>
-                  Dilarang memodifikasi, mengadaptasi, atau meretas
-                  Aplikasi/Website AMS (“App”), atau memodifikasi aplikasi lain
-                  untuk memberikan kesan palsu bahwa aplikasi tersebut berkaitan
+                  Dilarang mengadaptasi, meretas, atau memodifikasi Layanan lain
+                  untuk memberikan kesan palsu bahwa Layanan tersebut berkaitan
                   dengan AMS.
                 </li>
                 <li>
                   Tidak diperbolehkan mengakses AMS Membership dengan cara apa
-                  pun selain Aplikasi/Website resmi yang telah disediakan.
+                  pun selain website resmi yang telah disediakan.
                 </li>
                 <li>
                   Tidak diperbolehkan untuk mencoba mengganggu atau mengubah
-                  operasi Aplikasi/Website dengan cara apa pun (misalnya:
-                  menyerang server, memasukkan virus, bom waktu, trojan horse,
-                  worm, cancelbot, atau rutinitas komputer lainnya yang bersifat
+                  operasi website dengan cara apa pun (misalnya: menyerang
+                  server, memasukkan virus, bom waktu, trojan horse, worm,
+                  cancelbot, atau rutinitas komputer lainnya yang bersifat
                   merusak).
                 </li>
                 <li>
@@ -143,10 +142,10 @@ export default function TermCondition() {
                   institusi mana pun sebagai foto profil.
                 </li>
                 <li>
-                  Tidak diperbolehkan menggunakan Aplikasi atau Layanan dengan
-                  cara yang melanggar hukum yang berlaku, melanggar kekayaan
-                  intelektual pihak ketiga atau hak lainnya, atau dengan cara
-                  yang menipu, tidak senonoh, menyinggung, atau memfitnah.
+                  Tidak diperbolehkan menggunakan Layanan dengan cara yang
+                  melanggar hukum yang berlaku, melanggar kekayaan intelektual
+                  pihak ketiga atau hak lainnya, atau dengan cara yang menipu,
+                  tidak senonoh, menyinggung, atau memfitnah.
                 </li>
                 <li>
                   PT Aditya Mandiri Sejahtera tidak bertanggung jawab atas
@@ -222,11 +221,9 @@ export default function TermCondition() {
                 senantiasa menjaga data Anda sesuai dengan peraturan yang
                 berlaku di Indonesia.
               </p>
-              <h2 className="text-sm my-5">
-                Ketersediaan Penggunaan Aplikasi dan Layanan
-              </h2>
+              <h2 className="text-sm my-5">Ketersediaan Penggunaan Layanan</h2>
               <p>
-                Aplikasi ini biasanya tersedia 24 jam sehari, tujuh hari
+                Layanan ini biasanya tersedia 24 jam sehari, tujuh hari
                 seminggu. Namun, kami mungkin perlu menghentikan atau
                 menangguhkan akses ke Layanan karena alasan pemeliharaan,
                 teknis, atau lainnya.
@@ -234,14 +231,14 @@ export default function TermCondition() {
               <p>
                 Saat mengakses dan menggunakan Layanan, Anda diwajibkan untuk
                 mematuhi arahan, instruksi, atau protokol yang dipublikasikan di
-                Aplikasi/Website.
+                website.
               </p>
               <p>
-                Kami dengan senang hati menawarkan berbagai Layanan di
-                Aplikasi/Website, yang ingin kami kembangkan dan tingkatkan
-                secara berkala. Layanan dapat diperbarui, diubah, atau dihapus
-                sesuai kebijakan kami, sehingga kami tidak dapat menjamin bahwa
-                Layanan tertentu akan selalu tersedia di Aplikasi/Website.
+                Kami dengan senang hati menawarkan berbagai Layanan di website,
+                yang ingin kami kembangkan dan tingkatkan secara berkala.
+                Layanan dapat diperbarui, diubah, atau dihapus sesuai kebijakan
+                kami, sehingga kami tidak dapat menjamin bahwa Layanan tertentu
+                akan selalu tersedia di website.
               </p>
               <h2 className="text-sm my-5">
                 Mengaktifkan dan Menonaktifkan Lokasi
@@ -264,14 +261,14 @@ export default function TermCondition() {
               <ul className="list-disc pl-5">
                 <li>
                   Anggota harus memberitahukan nomor ponsel yang aktif dan
-                  terdaftar dalam Program ke kasir di toko sebelum transaksi
+                  terdaftar dalam program ke kasir di toko sebelum transaksi
                   pembelian untuk mendapatkan Poin AMS Membership.
                 </li>
                 <li>
-                  Anggota akan memperoleh Poin MAPCLUB dalam jumlah yang akan
-                  ditentukan dari waktu ke waktu untuk setiap pembelanjaan di
-                  toko. Poin AMS Membership diberikan berdasarkan harga bersih
-                  di luar pajak dan biaya layanan.
+                  Anggota akan memperoleh Poin dalam jumlah yang akan ditentukan
+                  dari waktu ke waktu untuk setiap pembelanjaan di toko. Poin
+                  AMS Membership diberikan berdasarkan harga bersih di luar
+                  diskon, pajak dan biaya Layanan.
                 </li>
                 <li>
                   Waktu yang dibutuhkan untuk mengupdate saldo poin adalah 1
@@ -308,22 +305,22 @@ export default function TermCondition() {
               <h2 className="text-sm my-5">Voucher</h2>
               <ul className="list-disc pl-5">
                 <li>
-                  Voucher hanya bisa digunakan pada store offline yang dinaungi
+                  Voucher hanya bisa digunakan pada store offline yang di naungi
                   oleh PT Aditya Mandiri Sejahtera.
                 </li>
                 <li>
-                  Voucher mempunyai batas waktu (periode kadaluwarsa) sesuai
+                  Voucher mempunyai batas waktu (periode kedaluwarsa) sesuai
                   dengan ketentuan yang sudah ada pada syarat dan ketentuan
                   voucher.
                 </li>
                 <li>
-                  Kode Voucher hanya dapat digunakan untuk satu kali transaksi,
+                  Kode voucher hanya dapat digunakan untuk satu kali transaksi,
                   kecuali dinyatakan sebaliknya pada syarat dan ketentuan khusus
-                  Voucher.
+                  voucher.
                 </li>
                 <li>
-                  Apabila Anda menggunakan kode Voucher yang sama lebih dari
-                  satu kali dalam satu hari, maka kode Voucher akan otomatis
+                  Apabila Anda menggunakan kode voucher yang sama lebih dari
+                  satu kali dalam satu hari, maka kode voucher akan otomatis
                   dibatalkan.
                 </li>
                 <li>
@@ -332,7 +329,7 @@ export default function TermCondition() {
                 </li>
                 <li>Voucher tidak dapat ditukar dengan uang atau diuangkan.</li>
                 <li>
-                  Kami berhak untuk merubah ketentuan penggunaan Voucher ini
+                  Kami berhak untuk merubah ketentuan penggunaan voucher ini
                   atau membatalkan setiap promosi sewaktu-waktu tanpa
                   pemberitahuan.
                 </li>
@@ -347,8 +344,8 @@ export default function TermCondition() {
                 Jalan Kebayunan No.18, RT.02/RW.20, Tapos, Kec. Tapos, Kota
                 Depok, Jawa Barat 16457
               </p>
-              <p>Email Customer Relationship Management: crm@amscorp.id</p>
-              <p>Nomor Customer Relationship Management: +62 811-1331-0569</p>
+              <p>Alamat Email: crm@amscorp.id</p>
+              <p>Nomor Handphone: +62 811-1331-0569</p>
             </div>
           </div>
         </div>
