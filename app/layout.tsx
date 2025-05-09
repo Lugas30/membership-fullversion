@@ -2,6 +2,7 @@
 import "./globals.css";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export default function RootLayout({
   children,
@@ -24,6 +25,9 @@ export default function RootLayout({
           content="AMS Membership, Celcius, Celcius Woman, Mississippi, Queensland, Program membership fashion, AMS member, Celcius Member, Mississippi Member, Queensland Member"
         />
         <meta name="robots" content="index, follow" />
+
+        <GoogleAnalytics gaId="G-GWZ36CCV0X" />
+
         <title>AMS Membership</title>
       </head>
       <body className="bg-slate-100">
