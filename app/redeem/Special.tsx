@@ -32,35 +32,38 @@ const Special: FC<Voucher> = ({
   return (
     <form onSubmit={handleSubmit} className="w-full mt-4">
       <div className="flex flex-col gap-2">
-        {/* Filter vouchers where status_Voucher is "enable" */}
-        {data
-          .filter((voucher) => voucher.status_Voucher === "enabled")
-          .map((voucher: VoucherData) => (
-            <div
-              key={voucher.id}
-              className={`p-5 rounded-xl border cursor-pointer text-center text-xs ${
-                selectedVoucher === voucher.voucherCode
+        {/* Filter vouchers */}
+        {data.map((voucher: VoucherData) => (
+          <div
+            key={voucher.id}
+            className={`p-5 rounded-xl border cursor-pointer text-center text-xs ${
+              voucher.status_Voucher === "enabled"
+                ? selectedVoucher === voucher.voucherCode
                   ? "bg-base-accent text-white"
                   : "hover:bg-gray-100"
-              }`}
-              onClick={() => handleSelectVoucher(voucher.voucherCode)}
-            >
-              <div className="flex justify-between items-center">
-                <div className="flex flex-col items-start gap-2">
-                  <span>Voucher Special</span>
-                  <span className="text-xl">
-                    Rp {formatToIDR(voucher.nominal)}
-                  </span>
-                </div>
-                <span className="text-sm">
-                  {formatToIDR(voucher.pointVoucher)}{" "}
-                  <span className="fontMon uppercase text-[8px] tracking-widest">
-                    Poin
-                  </span>
+                : "bg-gray-200 text-gray-400" // Disabled state (grayscale)
+            }`}
+            onClick={() =>
+              voucher.status_Voucher === "enabled" &&
+              handleSelectVoucher(voucher.voucherCode)
+            }
+          >
+            <div className="flex justify-between items-center">
+              <div className="flex flex-col items-start gap-2">
+                <span>Voucher Special</span>
+                <span className="text-xl">
+                  Rp {formatToIDR(voucher.nominal)}
                 </span>
               </div>
+              <span className="text-sm">
+                {formatToIDR(voucher.pointVoucher)}{" "}
+                <span className="fontMon uppercase text-[8px] tracking-widest">
+                  Poin
+                </span>
+              </span>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
 
       <div className="mt-8 flex justify-center">
