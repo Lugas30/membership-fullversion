@@ -11,6 +11,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* <GoogleTagManager gtmId="G-GWZ36CCV0X" /> */}
+      <GoogleTagManager gtmId="G-BCQ06P5FG5" />
       <head>
         <meta
           name="viewport"
@@ -25,8 +27,6 @@ export default function RootLayout({
           content="AMS Membership, Celcius, Celcius Woman, Mississippi, Queensland, Program membership fashion, AMS member, Celcius Member, Mississippi Member, Queensland Member"
         />
         <meta name="robots" content="index, follow" />
-
-        <GoogleTagManager gtmId="G-GWZ36CCV0X" />
 
         <title>AMS Membership</title>
       </head>
