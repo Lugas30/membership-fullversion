@@ -19,6 +19,7 @@ interface Voucher {
   tanggalExpired: string;
   statusPenggunaan: string;
   voucherStatus: string;
+  type: string;
 }
 
 export default function Vouchers() {
@@ -92,7 +93,11 @@ export default function Vouchers() {
                 <div className="flex flex-col">
                   <span className="text-sm">
                     {item.category == "VCR" ? "Voucher" : "Voucher Special"}
+                    <span className="px-1 normal-case">
+                      {item.type === "CASHBACK" ? "Cashback" : " "}
+                    </span>
                   </span>
+
                   <div className="">
                     <span
                       className={`text-sm ${

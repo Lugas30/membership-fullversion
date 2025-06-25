@@ -248,6 +248,7 @@ export default function Page() {
                 <div className="flex flex-col justify-center items-center gap-2 w-16">
                   <Link
                     href="/comingsoon"
+                    // href="/missionzz"
                     className="flex flex-col justify-center items-center gap-2 w-16 drop-shadow-[3px_3px_5px_rgba(0,0,0,0.10)]"
                   >
                     <Image
