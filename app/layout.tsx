@@ -11,8 +11,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <GoogleTagManager gtmId="G-GWZ36CCV0X" /> */}
-      <GoogleTagManager gtmId="G-BCQ06P5FG5" />
       <head>
         <meta
           name="viewport"
@@ -32,6 +30,7 @@ export default function RootLayout({
       </head>
       <body className="bg-slate-100">
         <Provider store={store}>{children}</Provider>
+        <GoogleTagManager gtmId="G-BCQ06P5FG5" />
       </body>
     </html>
   );

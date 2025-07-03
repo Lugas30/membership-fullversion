@@ -5,7 +5,6 @@ import Button from "@/components/Button";
 import LogoHeader from "@/components/LogoHeader";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { GoogleTagManager } from "@next/third-parties/google";
 
 export default function Auth() {
   // router untuk redirect
@@ -28,7 +27,6 @@ export default function Auth() {
 
   return (
     <>
-      {/* <GoogleTagManager gtmId="G-BCQ06P5FG5" /> */}
       <div className="flex justify-center items-center">
         <div className="flex flex-col items-center max-w-md w-full min-h-screen bg-white md:rounded-lg">
           <LogoHeader className="m-11" />
