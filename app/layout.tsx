@@ -27,10 +27,27 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
 
         <title>AMS Membership</title>
+
+        {/* Google Tag Manager & Analytics */}
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-BCQ06P5FG5"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BCQ06P5FG5');
+    `,
+          }}
+        />
       </head>
       <body className="bg-slate-100">
         <Provider store={store}>{children}</Provider>
-        <GoogleTagManager gtmId="G-BCQ06P5FG5" />
+        {/* <GoogleTagManager gtmId="G-BCQ06P5FG5" /> */}
       </body>
     </html>
   );
